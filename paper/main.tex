@@ -718,8 +718,10 @@ reconciliation proposed above into a falsifiable hypothesis.
 \section*{Materials and Methods}
 
 \paragraph{Data and preprocessing.}
-Resting-state functional MRI sessions were drawn from cognitively unimpaired
-controls (CC) and patients with Alzheimer's disease (AD). Each session
+Resting-state functional MRI sessions were downloaded from the Alzheimer's
+Disease Neuroimaging Initiative (ADNI) database
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}), comprising cognitively
+unimpaired controls (CC) and patients with Alzheimer's disease (AD). Each session
 comprised $140$ volumes (repetition time $\mathrm{TR}=\SI{3.0}{\second}$,
 $\sim$\SI{7}{\minute}). Images were minimally preprocessed and parcellated into
 $N_{\mathrm{p}}=121$ regions of interest, the $100$ cortical parcels of the
@@ -879,18 +881,47 @@ it occurred) was achieved within plausible amplitude bounds.
 Group comparisons used two-sided Mann--Whitney $U$ tests; distributions are
 shown as violins with medians or as mean $\pm$ SD/IQR as stated. Analyses were
 implemented in Python (NumPy, scikit-learn, nilearn, Matplotlib).
-\todo{Add data/code availability, exact $N$, and any ethics/consent statement.}
+
+\paragraph{Ethics.}
+This work is a secondary analysis of de-identified, publicly available human
+imaging data obtained from ADNI. The ADNI study was approved by the
+institutional review boards of all participating sites, and all participants
+(or their authorised representatives) provided written informed consent at
+enrolment; no new data were acquired for the present study.
+
+\paragraph{Data and code availability.}
+The imaging data analysed here were downloaded from the Alzheimer's Disease
+Neuroimaging Initiative (ADNI) database
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). ADNI data are available
+to qualified researchers upon registration and acceptance of the ADNI Data Use
+Agreement; in accordance with that agreement, the raw and derived imaging data
+are not redistributed here. The exact cohorts and sample sizes used in every
+analysis are listed in Table~\ref{tab:cohorts}. All analysis and
+figure-generation code is openly available at
+\href{https://github.com/cristianocapone/AD-reservoir-FC-stimulation}%
+{github.com/cristianocapone/AD-reservoir-FC-stimulation}.
+
+\paragraph{Acknowledgments.}
+Data used in preparation of this article were obtained from the Alzheimer's
+Disease Neuroimaging Initiative (ADNI) database
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). As such, the
+investigators within the ADNI contributed to the design and implementation of
+ADNI and/or provided data but did not participate in the analysis or writing of
+this report. A complete listing of ADNI investigators can be found at
+\href{https://adni.loni.usc.edu/wp-content/uploads/how_to_apply/ADNI_Acknowledgement_List.pdf}%
+{adni.loni.usc.edu/wp-content/uploads/how\_to\_apply/ADNI\_Acknowledgement\_List.pdf}.
+Data collection and sharing for ADNI was funded by the ADNI (National Institutes
+of Health grant U01~AG024904) and DOD ADNI (Department of Defense award number
+W81XWH-12-2-0012).
 
 % ============================================================================
 \clearpage
 % , , , , , , , , , , , , , , , , , , , , , , , , , --
 %  References (BibTeX).  All entries live in refs.bib.
-%  \nocite{*} prints every entry in refs.bib so the full thematic bibliography
-%  is visible during drafting; REMOVE \nocite{*} before submission so that only
-%  cited works appear, and replace unsrtnat with the journal style (e.g. Science).
-%  !! Verify every entry (volume/issue/pages/DOI) against the publisher record. !!
+%  Only cited works are printed (\nocite{*} removed for submission).
+%  Replace unsrtnat with the target journal's style before submission, and
+%  verify every entry (volume/issue/pages/DOI) against the publisher record.
 % , , , , , , , , , , , , , , , , , , , , , , , , , --
-\nocite{*}
 \bibliographystyle{unsrtnat}
 \bibliography{refs}
 
