@@ -70,8 +70,10 @@ Sanit\`a, 00161 Rome, Italy}
 \begin{abstract}
 \noindent
 Resting-state functional connectivity (FC) is altered in Alzheimer's disease
-(AD), but whether the alteration is focal or spatially distributed remains
-unresolved, a question with direct consequences for targeted neuromodulation.
+(AD), and the disorder is widely regarded as a distributed, network-level
+process; yet whether its FC signature can be reduced to a few focal sites, or is
+functionally irreducible to them, has not been tested causally, a question with
+direct consequences for targeted neuromodulation.
 We fit subject-specific reservoir-computing models that reconstruct each
 individual's lagged FC and are identifiable across subjects. Two complementary
 read-outs of the fitted models, the geometry of the read-out weights across
@@ -107,9 +109,11 @@ is consistently associated with altered connectivity, prominently within the
 default-mode network~\cite{greicius2004,sheline2013}. Yet group-level FC
 differences are typically modest, spatially heterogeneous, and entangled with
 acquisition and physiological confounds, so that FC has proven a useful but
-imperfect biomarker. A basic and consequential question remains open: is the AD
-FC alteration concentrated in a small number of regions or connections, or is it
-spatially distributed across the network?
+imperfect biomarker~\cite{pievani2011,brier2012}. Although AD is generally
+viewed as a distributed, network-level disorder, a more basic question remains
+open at the causal level: is the AD FC alteration \emph{reducible} to a small
+number of regions or connections, or is it functionally irreducible to them,
+distributed across the network?
 
 The answer matters well beyond diagnosis. A focal alteration would, in
 principle, offer a target for the emerging arsenal of network-level
@@ -201,7 +205,10 @@ individual connectivity well: group-mean reconstructed FC matrices
 (Fig.~\ref{fig:model}C,D) reproduced the corresponding empirical matrices
 (Fig.~\ref{fig:model}A,B), and across the four group means each model FC was
 most similar to its own data FC, the AD model lying closest to the AD data and
-the CC model to the CC data (Fig.~\ref{fig:model}E). Crucially, reconstructions
+the CC model to the CC data (Fig.~\ref{fig:model}E). The four group-mean matrices
+are globally very similar (all pairwise $r>0.93$), so this ordering is only a weak
+group-level effect; the decisive evidence for individual identifiability is the
+within- versus across-subject contrast. Crucially, reconstructions
 were subject-specific rather than generic: the correlation between a subject's
 simulated and empirical FC was far higher within- than across-subjects
 (Fig.~\ref{fig:model}F,G,H), establishing that the fitted models are
@@ -271,7 +278,7 @@ choice of classifier, a linear discriminant and a random forest performing
 similarly. The two feature spaces differed mainly in their sensitivity to the
 read-out regularisation: FC-lag was most accurate at low noise and degraded as
 the read-out was over-regularised, whereas G-space was comparatively
-noise-tolerant and even peaked at intermediate noise
+noise-tolerant, remaining near its best over a broad range of $\sigma$
 (Fig.~\ref{fig:classification}C,D). That two geometrically distinct read-outs
 reach a similar ceiling is itself consistent with a modest, distributed disease
 signal rather than a sharply localised one. Importantly, accuracy had not
@@ -318,10 +325,13 @@ accuracy reflects sample size rather than a ceiling of the representation.
 \subsection*{In-silico stimulation: pathology site versus therapeutic target}
 Finally, we used the model to ask whether the AD signature can be reverted by
 intervention and, crucially, \emph{which} focal target, if any, makes a
-single-site stimulation effective. We addressed this in two stages, motivated
-by a key dissociation that emerges from the analysis: the sites where the AD
-read-out deviates most from controls are not the sites where stimulation is most
-therapeutically effective. Shifting an AD
+single-site stimulation effective. We addressed this in two stages; as the
+analysis below establishes, the sites where the AD read-out deviates most from
+controls are not the sites where stimulation is most therapeutically effective.
+Throughout, ``most-affected'' sites are those with the largest per-site read-out
+deviation from the control template, i.e.\ the largest column norm
+$\lVert\Delta\mathbf{W}\rVert$ of $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}
+-\mathbf{W}_{\mathrm{AD}}$ (Materials and Methods). Shifting an AD
 read-out toward the CC template over all regions (``full-W'') moved both
 classifiers' scores into the CC range at small interpolation strength and
 reclassified the large majority of AD patients as CC
@@ -419,8 +429,10 @@ prescribes \emph{how} to drive a target. Efficacy is sharply frequency-tuned: a
 sinusoidal drive at a focal site moves the FC-lag score toward the control
 distribution most efficiently when its frequency matches the reservoir's dominant
 eigenmode $f_{\mathrm{eig}}$, the resonant drive far outperforming an off-resonance
-one per unit amplitude (fig.~S8A,B). This frequency falls in the infraslow band
-($f_{\mathrm{eig}}\approx0.026$\,Hz at the acquisition TR) in which resting-state
+one per unit amplitude (fig.~S8A,B). This frequency, $f_{\mathrm{eig}}\approx0.077$
+cycles/step, corresponds to $\approx0.026$\,Hz once expressed in physical time
+through the TR ($=3$\,s) --- a unit conversion, not a dependence of the resonance on
+TR --- placing it in the infraslow band in which resting-state
 connectivity itself fluctuates, so the same fitted model specifies both a location
 (the subcortical/limbic targets of Fig.~\ref{fig:topsites}) and an optimal driving
 frequency, a spatial \emph{and} spectral prescription that descriptive analyses
@@ -443,11 +455,13 @@ focal protocols on a common classifier (fig.~S2) refines the picture. The
 2-site drive matched to the two leading reservoir eigenmodes is more efficient
 than single-site resonant drive, but both, selected for modal excitation or
 disease norm, reclassify only $\sim$$50\%$ of patients. In contrast, choosing
-the target by its \emph{effect on the discriminant}, the site whose resonant
+the target by its \emph{effect on the discriminant} --- the site whose resonant
 drive moves the FC-lag score most toward CC, i.e.\ the projection of the
-stimulation effect onto the LDA, is markedly more effective: a single such
-population-average site reclassifies $\sim$$65\%$ of patients, and
-\emph{personalising} the target from each subject's own model reverts
+stimulation effect onto the LDA, a criterion we call \emph{LDA-resonant} ---
+is markedly more effective: a single such
+population-average site (the \emph{population-average} LDA-resonant target)
+reclassifies $\sim$$65\%$ of patients, and \emph{personalising} the target
+(the \emph{per-patient} LDA-resonant site, chosen from each subject's own model) reverts
 essentially all of them ($\sim$$100\%$, driving the score past the CC mean;
 fig.~S2). The most effective ``drive-toward-health'' sites are predominantly
 cortical, led by the left Default-network prefrontal cortex, with
@@ -726,7 +740,10 @@ comprised $140$ volumes (repetition time $\mathrm{TR}=\SI{3.0}{\second}$,
 $\sim$\SI{7}{\minute}). Images were minimally preprocessed and parcellated into
 $N_{\mathrm{p}}=121$ regions of interest, the $100$ cortical parcels of the
 Schaefer 7-network atlas~\cite{schaefer2018} plus $21$ Harvard--Oxford
-subcortical labels.
+subcortical labels. All $121$ parcels (cortical and subcortical) enter the
+reservoir fit, the classifiers and the stimulation analyses throughout; the
+network-sorted group-mean FC matrices of Fig.~\ref{fig:data}D,E display the
+$100$ cortical parcels only, for which the Yeo 7-network assignment is defined.
 Region-wise BOLD time series were denoised by regression of $24$ head-motion
 parameters and mean white-matter and cerebrospinal-fluid signals, and
 band-pass filtered to $0.01$--$\SI{0.10}{\hertz}$. To balance the two groups
@@ -755,14 +772,21 @@ PCA-reconstructed \emph{target}
 $\hat{\mathbf{s}} = \mathbf{V}_{50}\mathbf{V}_{50}^{\!\top}\mathbf{s}$, which
 removes idiosyncratic high-order variance while preserving the dominant
 spatiotemporal structure. Empirical functional connectivity (FC) was the
-Pearson correlation matrix of $\hat{\mathbf{s}}$.
+Pearson correlation matrix of $\hat{\mathbf{s}}$. The $N_{\mathrm{PC}}=50$
+projection defines only the reservoir's training \emph{target}; the read-out and
+all FC quantities remain in the full $N_{\mathrm{p}}=121$ region space, so the
+regional dimensionality is never reduced below $121$.
 
 \paragraph{Reservoir model.}
 We used a fixed random recurrent network of $N=2000$ rate units with state
 $\mathbf{x}(t)$, internal weights $\mathbf{J}$ (Gaussian, rescaled to spectral
-radius $0.95$), and input weights $\mathbf{J}_{\mathrm{in}}$
-($\sigma_{\mathrm{in}}=0.01$). Units evolved in discrete time
-($\mathrm{d}t=0.005$) as
+radius $0.95$), and fixed random input weights $\mathbf{J}_{\mathrm{in}}$
+($\sigma_{\mathrm{in}}=0.01$; the subscript ``in'' distinguishes these untrained
+input weights from the trained read-out $\mathbf{W}$). The network is a
+\emph{linear}, deterministic reservoir: the update below is linear in
+$\mathbf{x}$ and no endogenous noise is injected into the dynamics
+(regularisation noise enters only the read-out fit, Eq.~2). Units evolved in
+discrete time ($\mathrm{d}t=0.005$) as
 \begin{equation}
 \mathbf{x}(t+\mathrm{d}t) = e^{-\mathrm{d}t/\tau}\,\mathbf{x}(t)
   + \bigl(1-e^{-\mathrm{d}t/\tau}\bigr)
@@ -770,7 +794,7 @@ radius $0.95$), and input weights $\mathbf{J}_{\mathrm{in}}$
 \end{equation}
 with a short membrane time constant $\tau$ (effectively instantaneous update),
 and a linear read-out $\mathbf{y}(t)=\mathbf{W}^{\!\top}\mathbf{x}(t)$ in the
-$N_{\mathrm{p}}$-dimensional region space. The same reservoir (identical
+$N_{\mathrm{p}}=121$-dimensional region space. The same reservoir (identical
 $\mathbf{J},\mathbf{J}_{\mathrm{in}}$) was reused for every session.
 
 \paragraph{Read-out fitting.}
@@ -786,19 +810,31 @@ $\sigma$ in the regressor,
 \qquad E_{ij}\sim\mathcal{N}(0,\sigma^{2}),
 \end{equation}
 where $\mathbf{Y}$ is the time-aligned target and $(\cdot)^{+}$ the
-Moore--Penrose pseudoinverse; $\sigma=0.025$ unless swept
+Moore--Penrose pseudoinverse. The noise scale $\sigma$ acts as the
+ridge-regularisation parameter of the read-out fit (larger $\sigma$, stronger
+regularisation); $\sigma=0.025$ unless swept
 (Fig.~\ref{fig:classification}).
 
 \paragraph{Closed-loop reconstruction.}
-To validate the generative model (Fig.~\ref{fig:model}) the reservoir was reset
-and run closed-loop: the real target drove the network for the first $5$ steps,
-after which the read-out fed back its own output,
-$\mathbf{u}(t)=f\,\mathbf{y}(t)$, for the remainder of the session. The
+The model has two operating modes. In \emph{teacher-forced} (open-loop) mode the
+real target drives the input, $\mathbf{u}(t)=f\,\hat{\mathbf{s}}(t)$; this mode is
+used to fit $\mathbf{W}$ and to compute the classifier features. In
+\emph{closed-loop} (free-run) mode the read-out feeds back its own output,
+$\mathbf{u}(t)=f\,\mathbf{y}(t)$, generating an autonomous reconstruction. To
+validate the generative model (Fig.~\ref{fig:model}) the reservoir was reset and
+run closed-loop: the real target drove the network for the first $5$ steps, after
+which it free-ran for the remainder of the session. The
 simulated reconstruction $\mathbf{Y}_{\mathrm{sim}}$ and its (lagged) FC were
 compared to the empirical signals. Subject identifiability was quantified by
 the matrix of correlations between simulated subject $i$ and empirical subject
 $j$, comparing the same-subject (diagonal) and cross-subject (off-diagonal)
-distributions.
+distributions. Both intervention families are evaluated consistently in both
+modes: a read-out interpolation ($\mathbf{W}_{\mathrm{int}}$) and an input
+oscillation ($A\sin$) each alter the same reservoir, and each is scored by the
+classifiers on the teacher-forced FC-lag features \emph{and} assessed for its
+departure from baseline on the closed-loop free-run FC
+(Fig.~\ref{fig:singlecompare}, figs.~S6,~S9); the two are therefore compared on a
+common footing, not one in open- and the other in closed-loop.
 
 \paragraph{Read-out ``G-space''.}
 Each read-out was projected onto the row space of its own reservoir states:
@@ -838,7 +874,15 @@ The model was used as a counterfactual testbed by shifting each AD read-out
 toward the CC-mean read-out,
 $\mathbf{W}_{\mathrm{int}} = (1-\alpha)\,\mathbf{W}_{\mathrm{AD}}
  + \alpha\,\bar{\mathbf{W}}_{\mathrm{CC}}$, applied either to all $121$ columns
-(sites; full-W) or to focal subsets. Focal sites were ranked per patient by the
+(sites; full-W) or to focal subsets. Here $\alpha$ is the read-out interpolation
+strength: $\alpha=0$ leaves the unmodified AD read-out, $\alpha=1$ replaces it
+entirely by the CC-mean read-out $\bar{\mathbf{W}}_{\mathrm{CC}}$, and $\alpha>1$
+is over-correction. We nonetheless explore $\alpha>1$ because the exact $\alpha=1$
+replacement can be insufficient: the reconstruction is closed-loop, so the
+reservoir state driven by the AD input keeps the FC partly AD-like even under the
+CC read-out, and crossing the decision boundary can require pushing past
+$\bar{\mathbf{W}}_{\mathrm{CC}}$ (cf.\ fig.~S6). ($\alpha$ is distinct from the
+oscillation amplitude $A$ below.) Focal sites were ranked per patient by the
 column norm of $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}-
 \mathbf{W}_{\mathrm{AD}}$: the top-$5$, the top-$1$, and the top-$1$ site plus
 its $10$ nearest neighbours in MNI space (parcel centroids from the atlas). For
@@ -849,13 +893,24 @@ summary comparisons; it is a convenient common operating point, not a
 biophysically calibrated limit, and the full dose-response is shown throughout.
 
 \paragraph{Oscillatory stimulation.}
-As an alternative focal protocol, a sinusoid $A\sin(2\pi f t)$ was injected as
+As an alternative focal protocol, a sinusoid $A\sin(2\pi f t)$ (amplitude $A$ in
+input units, in the same units as $\mathbf{J}_{\mathrm{in}}\mathbf{u}$ and
+distinct from the read-out interpolation strength $\alpha$ above) was injected as
 additional input at the top-$k$ sites ($k=1,2,5$) during the teacher-forced
 pass, with $\mathbf{W}$ unchanged; the oscillation propagates through the
 recurrent dynamics and reshapes the reconstructed FC, which was re-scored by the
-FC-lag classifier. Candidate frequencies were the leading complex eigenmode of
-$\mathbf{J}$ and the spectral peak of the AD reservoir states; amplitude was
-swept up to supra-physiological values. The state-level response of the linear
+FC-lag classifier. Two candidate drive frequencies were compared: the leading
+complex eigenmode of $\mathbf{J}$ (model-intrinsic, requiring the eigendecomposition
+of $\mathbf{J}$) and the peak of the empirical power spectrum of the AD reservoir
+states (data-driven, obtained by FFT without inspecting $\mathbf{J}$); the two
+agree closely. Because $\mathbf{J}$ (and hence its eigenspectrum) is fixed and
+shared across subjects, the resonance $f_{\mathrm{eig}}$ is a property of the model,
+not a subject-specific fit. Frequencies were swept over $f\in[0,0.5]$ cycles/step
+and amplitude up to \emph{supra-physiological} values --- i.e.\ beyond the RMS of
+the endogenous teacher-forcing drive (the target scaled by the feedback gain
+$0.1$), so that the stimulated-to-baseline amplitude ratio
+$\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}>1$
+(Fig.~\ref{fig:stim}G). The state-level response of the linear
 reservoir to a periodic drive is governed by the transfer function
 $(\mathrm{i}\omega\mathbf{I}-\mathbf{J})^{-1}\mathbf{J}_{\mathrm{in}}\mathbf{b}$,
 which is large only when the drive frequency is near an eigenmode \emph{and} the
