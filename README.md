@@ -42,8 +42,10 @@ excluded via `.gitignore`.
 
 ## Requirements
 
-Python 3 with NumPy, SciPy, scikit-learn, nilearn, and Matplotlib. Preprocessing
-additionally uses a BIDS/fMRIPrep toolchain (see `BIDS_CONVERSION.md`).
+Python 3 with NumPy, SciPy, scikit-learn, nilearn, Matplotlib, and
+matplotlib-venn (used by the Figure 5 pathology-vs-therapy site comparison).
+Preprocessing additionally uses a BIDS/fMRIPrep toolchain (see
+`BIDS_CONVERSION.md`).
 
 ## Citation
 

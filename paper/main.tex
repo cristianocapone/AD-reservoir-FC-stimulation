@@ -397,8 +397,8 @@ The anatomy of the read-out changes was nonetheless interpretable. The sites
 with the largest per-patient correction magnitude
 $\lVert\Delta\mathbf{W}\rVert$ were consistently subcortical and limbic, most
 frequently the bilateral pallidum and nucleus accumbens, the brainstem and the
-amygdala (Fig.~\ref{fig:topsites}), each selected among the top-five sites in a
-large fraction of AD patients, structures of the limbic and basal-ganglia
+amygdala (Fig.~\ref{fig:topsites}A,B), each selected among the top-five sites in
+a large fraction of AD patients, structures of the limbic and basal-ganglia
 circuitry implicated in Alzheimer's disease, with the brainstem and amygdala in
 particular harbouring some of the earliest neurofibrillary
 pathology~\cite{braak1991}. Critically, however, correcting even these
@@ -417,25 +417,44 @@ magnitude of change, and identifying it requires the per-patient generative
 model. The analysis below shows that this change of criterion is decisive: the
 same type of focal, single-site, resonant intervention that fails at the
 deviation-ranked target succeeds completely at the discriminant-aligned one.
+Directly comparing the two site sets makes the dissociation explicit
+(Fig.~\ref{fig:topsites}C--E): the $35$ distinct sites ever appearing in a
+patient's pathology top-5 and the $33$ distinct per-patient therapy sites
+(personalised LDA-resonant targets) identified across the $40$ AD patients
+share only $11$ sites, the great majority of each set is exclusive to its own
+criterion, and the therapy sites, unlike the pathology sites, have no shared
+anatomical hub.
 
 \begin{figure}[tbp]
   \centering
   \includegraphics[width=\linewidth]{figure5_topsites.pdf}
-  \caption{\textbf{Most-affected read-out sites per AD session and their
-  anatomical location.}
-  For each AD patient, brain sites are ranked by the per-site correction
-  magnitude $\lVert\Delta\mathbf{W}\rVert$ (column norm of
-  $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}-\mathbf{W}_{\mathrm{AD}}$).
-  (\textbf{A}) Top-5 membership matrix: rows, the $N=40$ AD sessions; columns,
-  the brain sites ever selected, ordered by selection frequency; a filled cell
-  marks a site among that patient's top-five.
-  (\textbf{B}) Selection frequency: number of AD patients with each site among
-  the top-five (orange) or as the single most-affected site (top-1, purple).
-  The leading sites are subcortical and limbic, bilateral pallidum and nucleus
-  accumbens, the brainstem and the amygdala.
-  (\textbf{C}) Glass-brain markers at the selected parcels (MNI centroids),
-  coloured and sized by top-five selection frequency, showing their deep
-  subcortical/limbic location.}
+  \caption{\textbf{Pathology sites and therapeutic-stimulation sites are
+  largely disjoint.}
+  \emph{Pathology} sites are ranked per AD patient by the per-site read-out
+  correction magnitude $\lVert\Delta\mathbf{W}\rVert$ (column norm of
+  $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}-\mathbf{W}_{\mathrm{AD}}$,
+  top-5 per patient). \emph{Therapy} sites are each patient's personalised
+  LDA-resonant target, the single site (top-1) whose resonant drive moves that
+  patient's FC-lag discriminant most toward CC (Materials and Methods).
+  (\textbf{A}) Glass-brain markers at the pathology sites (MNI centroids),
+  coloured and sized by top-five selection frequency: deep subcortical/limbic
+  location.
+  (\textbf{B}) Pathology selection frequency: number of AD patients with each
+  site among the top-five (orange) or as the single most-affected site (top-1,
+  purple). The leading sites are subcortical and limbic, bilateral pallidum and
+  nucleus accumbens, the brainstem and the amygdala.
+  (\textbf{C}) Overlap between the two site sets: of the $35$ distinct
+  pathology sites (top-5 union across patients) and $33$ distinct therapy sites
+  (top-1 per patient), only $11$ sites ($\sim$$31\%$ and $\sim$$33\%$ of each
+  set, respectively) are shared; the great majority of each set is exclusive to
+  that criterion.
+  (\textbf{D}) Glass-brain markers at the therapy sites, coloured and sized by
+  top-1 selection frequency: predominantly cortical and, unlike the pathology
+  sites, without a shared anatomical hub, each site is selected by at most three
+  of the $40$ patients.
+  (\textbf{E}) Therapy selection frequency: the leading therapy sites are the
+  left Default-network prefrontal cortex and visual association cortex, with no
+  site selected by more than three patients.}
   \label{fig:topsites}
 \end{figure}
 
@@ -449,7 +468,7 @@ cycles/step, corresponds to $\approx0.026$\,Hz once expressed in physical time
 through the TR ($=3$\,s) --- a unit conversion, not a dependence of the resonance on
 TR --- placing it in the infraslow band in which resting-state
 connectivity itself fluctuates, so the same fitted model specifies both a location
-(the subcortical/limbic targets of Fig.~\ref{fig:topsites}) and an optimal driving
+(the subcortical/limbic targets of Fig.~\ref{fig:topsites}A,B) and an optimal driving
 frequency, a spatial \emph{and} spectral prescription that descriptive analyses
 cannot provide. This optimum is an \emph{interaction} of the two, however: a
 resonant drive reshapes the FC network-wide, yet the effect still depends strongly
