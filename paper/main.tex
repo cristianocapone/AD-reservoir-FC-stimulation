@@ -186,7 +186,11 @@ below.
   (\textbf{B}) Representative band-pass--filtered BOLD time series for four
   parcels in a CC (blue) and an AD (red) session.
   (\textbf{C}) Mean functional connectivity (FC; Pearson $r$ over parcel pairs)
-  per session, CC vs AD.
+  per session, CC vs AD. The two distributions do not differ significantly
+  (two-sided Mann--Whitney $U$ over all $557$ CC and $145$ AD sessions,
+  $p=0.08$; the panel shows a balanced $40$-session CC subsample), a weak trend
+  toward higher mean FC in AD, consistent with the subtle, spatially diffuse
+  group difference described below.
   (\textbf{D},\textbf{E}) Group-mean FC matrices (Schaefer-100 cortical parcels,
   network-sorted) for CC (D) and AD (E); white lines delimit the seven
   Yeo networks (legend).
@@ -267,7 +271,15 @@ Fig.~\ref{fig:classification}, dotted band and ROC in
 Fig.~\ref{fig:classification}E). The reservoir-based read-outs therefore lie in the
 same modest range as this leakage-free FC benchmark, at its lower end but well
 within its (wide) cross-validation spread, consistent with their being compact
-per-subject parameterisations rather than classifiers optimised for discrimination. In a two-dimensional embedding of the FC features the CC and
+per-subject parameterisations rather than classifiers optimised for discrimination.
+As a further control we classified the \emph{experimental} lagged FC directly,
+i.e.\ the lagged correlations of the empirical parcel BOLD ($143$ CC, $40$ AD
+patients; same Gram-SVD embedding and leave-one-patient-out LDA/RF as the
+model-based FC-lag): this reached comparable accuracy (AUROC $\approx0.71$,
+peaking at $K\!\approx\!20$--$25$ and at lag~$2$), showing that reading out the
+\emph{model's} reconstructed lagged FC neither adds nor loses diagnostic
+information relative to the empirical lagged connectivity, but repackages the
+same signal in the fitted, perturbable read-out. In a two-dimensional embedding of the FC features the CC and
 AD point clouds overlap substantially, yet with distinct group centroids
 (Fig.~\ref{fig:classification}F), consistent with the modest separability that
 every classifier attains.
