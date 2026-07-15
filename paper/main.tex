@@ -90,7 +90,8 @@ FC signature is not reducible to those focal nodes. By contrast, selecting each
 patient's stimulation site by its \emph{effect on the disease discriminant}, the
 site whose resonant drive shifts the reconstructed FC most toward the control
 distribution, achieves complete, individualised reclassification from a single
-site, with further gains from closed-loop amplitude and site titration. The
+site, with a real-time closed-loop controller reaching nearly the same efficacy at
+substantially lower dose using only causally available information. The
 optimal targets are predominantly cortical (prefrontal default-network,
 dorsal-attention and visual cortex) and highly heterogeneous across patients,
 indicating that effective neuromodulation requires model-informed, personalised
@@ -546,39 +547,44 @@ that the closed-loop control below is designed to minimise.
   (\textbf{C}) Efficacy vs perturbation cost: only the LDA-resonant drive converts
   perturbation into full reclassification.
   The closed-loop \emph{operating points} (patient means; grey $\times$ open-loop,
-  blue $+$ amplitude-titrated, green $\star$ amplitude$+$site) are overlaid on
-  \textbf{A}--\textbf{C}: all reach $100\%$, but the amplitude$+$site point does so
-  at the smallest dose (\textbf{A}) and the smallest distance ($\approx0.48$;
-  \textbf{B},\textbf{C}), to the left of the open-loop dose-response curve.
-  \emph{Bottom row, closed-loop control at the LDA-resonant target} (the same
-  curing site as the green curve of \textbf{A}), using the FC-lag score as feedback:
-  \emph{open-loop} (fixed $A=6$), \emph{CL amplitude} (smallest amplitude crossing
-  the boundary), and \emph{CL amplitude$+$site} (the cheapest crossing among the
-  top-$15$ candidate sites). Because all three drive a curing site, they are matched
-  on \emph{efficacy} and differ only in \emph{cost}.
-  (\textbf{D}) Efficacy is matched, all three reclassify $100\%$ (so \textbf{E}
-  compares perturbation at equal effect, not reclassification rate).
-  (\textbf{E}) Distance among reclassified patients falls from $0.68$
-  (open-loop) to $0.65$ (amplitude alone, at a $2.6\times$ lower mean dose) to
-  $\mathbf{0.48}$ when the site is also adapted, site adaptation is the larger lever.
-  (\textbf{F}) Per-patient: almost every subject lies below the diagonal, i.e.\ the
-  closed-loop reaches the same reversal with a smaller perturbation, the in-silico
-  analogue of adaptive (closed-loop) neuromodulation.}
+  orange $+$ online closed-loop) are overlaid on \textbf{A}--\textbf{C}: the online
+  closed-loop point sits at a substantially smaller dose than the open-loop point,
+  for a comparable, though not quite complete ($97.5\%$ vs $100\%$), reclassification
+  rate and a modestly smaller distance.
+  \emph{Bottom row, real-time closed-loop control at the LDA-resonant target} (the
+  same curing site as the green curve of \textbf{A}), comparing a fixed
+  \emph{open-loop} drive ($A=6$) to an \emph{online closed-loop} controller that
+  titrates amplitude every few steps from a sliding-window estimate of the FC-lag
+  biomarker computed only from the model's own past output, no oracle access to the
+  future trajectory (Materials and Methods).
+  (\textbf{D}) Per-patient stimulation amplitude (dose): online control lowers the
+  mean dose from $6.0$ to $3.3$ ($\sim$$44\%$ lower) while nearly matching efficacy
+  ($39/40$, $97.5\%$, vs $40/40$ open-loop).
+  (\textbf{E}) Distance from baseline among patients reclassified under both
+  protocols ($n=39$): online control lowers the mean distance by $\sim$$7\%$
+  ($0.69\!\to\!0.64$).
+  (\textbf{F}) Per-patient: most subjects lie below the diagonal, i.e.\ real-time
+  control reaches nearly the same reversal at a smaller perturbation cost, the
+  in-silico analogue of adaptive (closed-loop) neuromodulation, using only
+  information available causally, online.}
   \label{fig:singlecompare}
 \end{figure}
 
 Because the fitted model is a closed-loop dynamical system, the same FC-lag score
-that diagnoses a patient can serve as the feedback signal for an \emph{adaptive}
-intervention. Titrating the resonant drive to the decision boundary, and adapting
-both its amplitude and its site per patient, reverts all $40$ AD individuals while
-reducing the departure from each subject's own dynamics by $\sim$$30\%$ relative to a
-fixed open-loop drive (distance $0.68\!\to\!0.48$; Fig.~\ref{fig:singlecompare}D--F).
-Adapting the site is the larger lever; titrating amplitude alone, at a $2.6\times$
-lower mean dose, barely lowers the distance, because the resonant perturbation
-saturates quickly (Fig.~\ref{fig:singlecompare}B). Closed-loop control therefore
-converts the costly fixed drive into a minimal-perturbation, individualised
-protocol that reaches the same in-silico reversal far closer to the patient's own
-resting dynamics.
+that diagnoses a patient can serve as the feedback signal for a \emph{real-time,
+causally valid} adaptive intervention: rather than an offline oracle with access to
+the full future trajectory, we titrate the resonant drive's amplitude online, every
+few steps, from a sliding window of the model's own past output (Materials and
+Methods). At the fixed, personalised LDA-resonant site, this online controller
+reclassifies $39/40$ ($97.5\%$) of AD patients, nearly matching the $100\%$ reached
+by a fixed open-loop drive, while cutting the mean stimulation amplitude by
+$\sim$$44\%$ ($A=6\to3.3$) and the departure from each subject's own dynamics by
+$\sim$$7\%$ among patients reclassified under both protocols (distance
+$0.69\!\to\!0.64$; Fig.~\ref{fig:singlecompare}D--F). Online amplitude titration
+therefore converts the costly fixed drive into a substantially cheaper,
+individualised protocol that reaches nearly the same in-silico reversal closer to
+the patient's own resting dynamics, using only information available causally, in
+real time.
 
 \section*{Discussion}
 We fit identifiable, subject-specific reservoir-computing models of
@@ -695,13 +701,16 @@ prescription. The heterogeneity of the per-patient optimal targets further argue
 that effective targeting must be individualised rather than one-size-fits-all,
 consistent with connectivity-guided personalised stimulation~\cite{fox2014}.
 Because the fitted model is a dynamical system, the same biomarker that scores a
-patient can also \emph{close the loop}: titrating the drive against the FC-lag score
-and adapting both amplitude and site reverts every patient while cutting the
-departure from their own dynamics by roughly a third relative to a fixed open-loop
-drive (Fig.~\ref{fig:singlecompare}), the in-silico counterpart of adaptive
-(closed-loop) neuromodulation, in which the minimal perturbation that crosses the
-diagnostic boundary, rather than a supra-physiological open-loop drive, is
-sought. We emphasise, however, that these are \emph{model-level} prescriptions:
+patient can also \emph{close the loop} in real time: titrating the drive's
+amplitude online against a sliding-window FC-lag estimate, using only the model's
+own past output rather than an offline oracle, reclassifies $97.5\%$ of patients
+(nearly matching the $100\%$ open-loop rate) while cutting both the stimulation
+dose ($\sim$$44\%$) and the departure from their own dynamics ($\sim$$7\%$ among
+patients reclassified under both protocols) relative to a fixed open-loop drive
+(Fig.~\ref{fig:singlecompare}), the in-silico counterpart of adaptive
+(closed-loop) neuromodulation, in which a causally available, minimal-dose
+perturbation that crosses the diagnostic boundary, rather than a
+supra-physiological open-loop drive, is sought. We emphasise, however, that these are \emph{model-level} prescriptions:
 the reservoir is fit to infraslow BOLD connectivity, not electrophysiology, so an
 ``intervention'' here is an abstract input to the regional FC dynamics, and its
 optimal spatial pattern and (infraslow) frequency should be read as targets at the
