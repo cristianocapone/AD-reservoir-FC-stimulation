@@ -56,7 +56,7 @@ CDW = "#1A237E"; COS = "#E65100"; CLA = "#2E7D32"
 COL_OL = "#455A64"; COL_OCL = "#E65100"
 dwn = ALPHAS / ALPHAS.max(); osn = AMPS / AMPS.max()
 fig = plt.figure(figsize=(13.5, 8.6), facecolor="white")
-gs = gridspec.GridSpec(2, 3, figure=fig, wspace=0.30, hspace=0.42, left=0.07, right=0.985, top=0.91, bottom=0.07)
+gs = gridspec.GridSpec(2, 3, figure=fig, wspace=0.30, hspace=0.42, left=0.07, right=0.985, top=0.95, bottom=0.07)
 def tag(ax, s): ax.text(-0.17, 1.05, s, transform=ax.transAxes, fontsize=13, fontweight="bold")
 L_DW = "theoretical $\\Delta W$ (top-1, $\\alpha\\!\\to\\!50$)"
 L_OS = "resonant osc ($\\Delta W$ top-1 site)"
@@ -137,10 +137,6 @@ ax.set_xlabel("open-loop distance (fixed $A$)"); ax.set_ylabel("online-CL distan
 ax.set_title(f"Per-patient improvement\n({int(m_both.sum())}/{n_ad} reclassified under both)")
 tag(ax, "F")
 
-fig.suptitle("Single-site stimulation and real-time closed-loop control: a single read-out column is inert, a "
-             "resonant drive cures only at the discriminant-aligned site, and online amplitude titration from a "
-             "sliding-window biomarker minimises the perturbation",
-             fontsize=10.4, fontweight="bold", y=0.975)
 for ext in ("png", "pdf"):
     fig.savefig(f"figure6_singlecompare.{ext}", dpi=300, bbox_inches="tight", facecolor="white")
     print(f"Saved figure6_singlecompare.{ext}")

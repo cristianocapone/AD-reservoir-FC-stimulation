@@ -29,6 +29,7 @@ Panels:
 
 Saves: figure5_topsites.{png,pdf}
 """
+import os
 import numpy as np
 import matplotlib
 matplotlib.use("Agg")
@@ -91,42 +92,51 @@ order5 = np.argsort(counts5)[::-1]; sel5 = order5[counts5[order5] > 0]
 order_p = np.argsort(pers_counts)[::-1]; sel_p = order_p[pers_counts[order_p] > 0]
 
 # ══════════════════════════════════════════════════════════════════════════════
-# BRAIN RENDERS
+# BRAIN RENDERS  (4 glass-brain views on a 2x2 montage, so they are larger when
+# embedded than the default single-row lzry montage)
 # ══════════════════════════════════════════════════════════════════════════════
-print("\nRendering glass brains ...")
+print("\nRendering glass brains (2x2) ...")
 from nilearn import plotting
+from PIL import Image
 
-sel = counts5 > 0
-disp = plotting.plot_markers(
-    node_values=counts5[sel].astype(float), node_coords=parcel_coords[sel],
-    node_size=25 + 10 * counts5[sel], node_cmap="YlOrRd",
-    node_vmin=0, node_vmax=float(counts5.max()),
-    display_mode="lzry", alpha=0.85, colorbar=True,
-    title="top-5 selection frequency")
-disp.savefig("figure5_brain.png", dpi=300)
-disp.savefig("figure5_brain.pdf")
-disp.close()
+def render_brain_2x2(counts, cmap, out_png):
+    """Render two 2-view glass brains (lateral l/r; coronal+axial y/z) and
+    stack them vertically into a near-square 2x2 montage."""
+    sel = counts > 0
+    halves = []
+    for mode in ("lr", "yz"):
+        disp = plotting.plot_markers(
+            node_values=counts[sel].astype(float), node_coords=parcel_coords[sel],
+            node_size=45 + 16 * counts[sel], node_cmap=cmap,
+            node_vmin=0, node_vmax=float(counts.max()),
+            display_mode=mode, alpha=0.9, colorbar=False)
+        tmp = f"_half_{mode}.png"
+        disp.savefig(tmp, dpi=300); disp.close()
+        halves.append(Image.open(tmp).convert("RGBA"))
+    w = min(h.width for h in halves)
+    halves = [h.resize((w, round(h.height * w / h.width))) for h in halves]
+    combo = Image.new("RGBA", (w, sum(h.height for h in halves)), (255, 255, 255, 255))
+    y = 0
+    for h in halves:
+        combo.paste(h, (0, y), h); y += h.height
+    combo.convert("RGB").save(out_png, dpi=(300, 300))
 
-sel = pers_counts > 0
-disp = plotting.plot_markers(
-    node_values=pers_counts[sel].astype(float), node_coords=parcel_coords[sel],
-    node_size=25 + 10 * pers_counts[sel], node_cmap="RdPu",
-    node_vmin=0, node_vmax=float(pers_counts.max()),
-    display_mode="lzry", alpha=0.85, colorbar=True,
-    title="top-1 selection frequency")
-disp.savefig("figure5_stimbrain.png", dpi=300)
-disp.savefig("figure5_stimbrain.pdf")
-disp.close()
-print("Saved figure5_brain.{png,pdf} and figure5_stimbrain.{png,pdf}")
+render_brain_2x2(counts5, "YlOrRd", "figure5_brain.png")
+render_brain_2x2(pers_counts, "RdPu", "figure5_stimbrain.png")
+for m in ("lr", "yz"):
+    p = f"_half_{m}.png"
+    if os.path.exists(p):
+        os.remove(p)
+print("Saved figure5_brain.png and figure5_stimbrain.png (2x2 montage)")
 
 # ══════════════════════════════════════════════════════════════════════════════
 # COMPOSITE FIGURE 5
 # ══════════════════════════════════════════════════════════════════════════════
 print("Rendering composite figure ...")
-fig = plt.figure(figsize=(15.5, 8.2), facecolor="white")
-gs = gridspec.GridSpec(2, 3, figure=fig, width_ratios=[1.05, 1.0, 0.85],
-                        height_ratios=[1.0, 1.0], hspace=0.48, wspace=0.32,
-                        left=0.055, right=0.98, top=0.88, bottom=0.11)
+fig = plt.figure(figsize=(15, 9.8), facecolor="white")
+gs = gridspec.GridSpec(2, 3, figure=fig, width_ratios=[1.15, 1.0, 0.82],
+                        height_ratios=[1.0, 1.0], hspace=0.42, wspace=0.30,
+                        left=0.05, right=0.98, top=0.89, bottom=0.10)
 
 def _tag(ax, t, x=-0.08, y=1.05):
     ax.text(x, y, t, transform=ax.transAxes, fontsize=13,
@@ -136,7 +146,7 @@ def _tag(ax, t, x=-0.08, y=1.05):
 ax_a = fig.add_subplot(gs[0, 0])
 ax_a.imshow(imread("figure5_brain.png")); ax_a.axis("off")
 ax_a.set_title("Pathology: $\\Delta W$ top-5 sites", pad=2, color="#B71C1C")
-_tag(ax_a, "A", x=-0.04, y=1.02)
+_tag(ax_a, "A", x=-0.06, y=1.10)
 
 # ── B: Delta-W selection-frequency bars ────────────────────────────────────────
 ax_b = fig.add_subplot(gs[0, 1])
@@ -181,7 +191,7 @@ ax_c.text(0.70, -0.36, col2, transform=ax_c.transAxes, ha="center", va="top", fo
 ax_d = fig.add_subplot(gs[1, 0])
 ax_d.imshow(imread("figure5_stimbrain.png")); ax_d.axis("off")
 ax_d.set_title("Therapy: LDA-resonant top-1 sites", pad=2, color="#880E4F")
-_tag(ax_d, "D", x=-0.04, y=1.02)
+_tag(ax_d, "D", x=-0.06, y=1.10)
 
 # ── E: LDA-resonant selection-frequency bars ────────────────────────────────────
 ax_e = fig.add_subplot(gs[1, 1])
