@@ -1,0 +1,87 @@
+# ============================================================================
+#  Only analysis/figure CODE and the manuscript are tracked.
+#  Raw and derived neuroimaging data are NOT redistributed: the imaging data
+#  come from ADNI (adni.loni.usc.edu) and are governed by the ADNI Data Use
+#  Agreement. Qualified researchers can obtain them directly from ADNI.
+# ============================================================================
+
+# ---- Virtual environments -------------------------------------------------
+AD.venv/
+bids_env/
+.venv/
+venv/
+env/
+
+# ---- Python caches --------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# ---- Editor / tooling -----------------------------------------------------
+.claude/
+.vscode/
+.idea/
+
+# ---- Neuroimaging data & BIDS/derivative trees (NOT redistributed) --------
+ABIDE/
+AD/
+AD_bids/
+ADNI_BIDS_tmp/
+ADNI_definitivo_2_CN_/
+ADNI_definitivo_2_CN_dataset/
+CN_bids/
+MCI/
+MCI_bids/
+bids_stub/
+fmriprep_output/
+timeseries/
+timeseries_GSR/
+work/
+work_AD_bids/
+work_CN_bids/
+work_MCI_bids/
+esempio/
+esempio_out/
+
+# ---- Generated figure / output folders ------------------------------------
+analysis/
+figures_MC/
+figures_MC_twoclasses/
+qc_figures/
+summary_out/
+
+# ---- Large binary / cached data artefacts ---------------------------------
+*.zip
+*.npz
+*.pkl
+*.nii
+*.nii.gz
+*.gz
+*.h5
+*.mat
+
+# ---- Logs & scratch text --------------------------------------------------
+*.log
+*.err
+/*.txt
+!DATA_README.txt
+
+# ---- Root-level generated figures (kept out; sources regenerate them) -----
+/*.png
+/*.eps
+/*.pdf
+
+# ---- LaTeX build artefacts (keep .tex, .bib, and the built main.pdf) ------
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.out
+paper/*.log
+paper/*.synctex.gz
+
+# ---- Keep the manuscript figures and the compiled manuscript --------------
+!paper_figures/
+!paper_figures/*.pdf
+!paper/
+!paper/*.pdf

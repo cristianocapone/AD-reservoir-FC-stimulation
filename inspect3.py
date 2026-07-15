@@ -1,0 +1,16 @@
+﻿import numpy as np
+d = np.load("pertB_data.npz", allow_pickle=True)
+print("Z_base range:", d["Z_base"].min(), d["Z_base"].max())
+print("cc_lda_scores range:", d["cc_lda_scores"].min(), d["cc_lda_scores"].max())
+print("ad_lda_scores range:", d["ad_lda_scores"].min(), d["ad_lda_scores"].max())
+print("full_w_lda sample (alpha=0):", d["full_w_lda"][0,:5])
+print("full_w_lda sample (alpha=1):", d["full_w_lda"][5,:5])
+print("full_w_stable sample:", d["full_w_stable"][:, :5])
+print("full_w_fcr range:", d["full_w_fcr"].min(), d["full_w_fcr"].max())
+
+d2 = np.load("pertB_direct_data.npz", allow_pickle=True)
+print()
+print("direct: ad_lda range:", d2["ad_lda"].min(), d2["ad_lda"].max())
+print("direct: cc_lda range:", d2["cc_lda"].min(), d2["cc_lda"].max())
+print("direct: full_w_lda[0]:", d2["full_w_lda"][0,:5])
+print("direct: full_w_lda[5]:", d2["full_w_lda"][5,:5])
