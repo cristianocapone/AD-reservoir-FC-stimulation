@@ -23,7 +23,7 @@ is exact linear algebra on the base-patient Gram (76x76) and a 76-vector per
 stimulated feature; the reservoir is simulated once per (AD patient, site) at the
 selection amplitude, plus once per selected (patient, site, amplitude).
 
-Saves: pert_lopo_target_data.npz, paper_figures/figureS12_lopo_target.{png,pdf}
+Saves: pert_lopo_target_data.npz, paper_figures/figure_lopo_target.{png,pdf}
 """
 import os, sys, io
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace", line_buffering=True)
@@ -330,6 +330,6 @@ fig.suptitle("The therapeutic reclassification effect survives a leakage-free (l
              fontsize=10.6,fontweight="bold",y=1.02)
 fig.tight_layout()
 for ext in ("png","pdf"):
-    fig.savefig(f"{OUT}/figureS12_lopo_target.{ext}",dpi=300,bbox_inches="tight",facecolor="white")
-    print(f"Saved {OUT}/figureS12_lopo_target.{ext}")
+    fig.savefig(f"{OUT}/figure_lopo_target.{ext}",dpi=300,bbox_inches="tight",facecolor="white")
+    print(f"Saved {OUT}/figure_lopo_target.{ext}")
 plt.close(fig); print("Done.")
