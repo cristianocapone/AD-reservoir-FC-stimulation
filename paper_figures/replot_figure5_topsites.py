@@ -133,10 +133,10 @@ print("Saved figure5_brain.png and figure5_stimbrain.png (2x2 montage)")
 # COMPOSITE FIGURE 5
 # ══════════════════════════════════════════════════════════════════════════════
 print("Rendering composite figure ...")
-fig = plt.figure(figsize=(15, 9.8), facecolor="white")
+fig = plt.figure(figsize=(15, 8.8), facecolor="white")
 gs = gridspec.GridSpec(2, 3, figure=fig, width_ratios=[1.15, 1.0, 0.82],
                         height_ratios=[1.0, 1.0], hspace=0.42, wspace=0.30,
-                        left=0.05, right=0.98, top=0.89, bottom=0.10)
+                        left=0.05, right=0.98, top=0.975, bottom=0.10)
 
 def _tag(ax, t, x=-0.08, y=1.05):
     ax.text(x, y, t, transform=ax.transAxes, fontsize=13,
@@ -206,14 +206,6 @@ ax_e.set_ylabel(f"# AD patients (of {n_ad})")
 ax_e.set_title("Therapy: site-selection frequency")
 ax_e.legend(frameon=False, fontsize=7.5)
 _tag(ax_e, "E", x=-0.14)
-
-fig.suptitle(
-    "Pathology sites vs therapeutic-stimulation sites: where the read-out "
-    "deviates most is not where single-site resonant stimulation is most "
-    f"effective\n(N={n_ad} AD; $\\Delta W$ = per-patient top-5 read-out "
-    "correction magnitude; LDA-resonant = per-patient top-1 site, chosen by "
-    "its effect on the disease discriminant under resonant drive)",
-    fontsize=11.3, fontweight="bold", y=0.985)
 
 for ext in ("png", "pdf"):
     fig.savefig(f"figure5_topsites.{ext}", dpi=300, bbox_inches="tight", facecolor="white")

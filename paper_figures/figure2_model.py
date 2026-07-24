@@ -260,9 +260,9 @@ noise_stds = nd["noise_stds"]; r_sess = nd["r_sess"]
 # FIGURE
 # ══════════════════════════════════════════════════════════════════════════════
 print("Rendering ...")
-fig = plt.figure(figsize=(19, 13.5), facecolor="white")
+fig = plt.figure(figsize=(19, 12.8), facecolor="white")
 gs  = gridspec.GridSpec(3, 4, figure=fig, hspace=0.50, wspace=0.42,
-                        top=0.94, bottom=0.05, left=0.06, right=0.97)
+                        top=0.985, bottom=0.05, left=0.06, right=0.97)
 
 def _fc_panel(ax, fc_mat, title, title_col, draw_nets=True):
     fc_s = fc_mat[:100, :100][np.ix_(sorted_idx, sorted_idx)]
@@ -398,10 +398,6 @@ ax_j.set_xlabel("Noise σ"); ax_j.set_ylabel("FC reconstruction r")
 ax_j.set_title("FC reconstruction quality vs. regularisation noise", pad=4)
 ax_j.legend(frameon=False, fontsize=7.5, loc="lower right")
 _tag(ax_j, "J", x=-0.06); _clean(ax_j)
-
-fig.suptitle(
-    "Reservoir model: group-mean FC (data vs model), fit quality, and identifiability",
-    fontsize=11.5, fontweight="bold", y=0.975)
 
 for ext in ("png", "pdf"):
     out = f"figure2_model.{ext}"
