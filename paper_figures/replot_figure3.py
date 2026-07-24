@@ -52,9 +52,9 @@ fpr, tpr, _ = roc_curve(oof_y, oof_s); oof_auc = roc_auc_score(oof_y, oof_s)
 pcs = cv["pcs"]; yemb = cv["y"]
 CC_COL = "#1565C0"; AD_COL = "#C62828"
 
-fig = plt.figure(figsize=(16.5, 9.0), facecolor="white")
+fig = plt.figure(figsize=(16.5, 8.1), facecolor="white")
 gs  = gridspec.GridSpec(2, 3, figure=fig, hspace=0.42, wspace=0.30,
-                        top=0.89, bottom=0.08, left=0.06, right=0.98)
+                        top=0.975, bottom=0.08, left=0.06, right=0.98)
 
 def _tag(ax, t):
     ax.text(-0.15, 1.05, t, transform=ax.transAxes, fontsize=13,
@@ -138,13 +138,6 @@ for lab, col, name in [(0, CC_COL, "CC"), (1, AD_COL, "AD")]:
 ax.set_xlabel("FC tangent-space PC 1"); ax.set_ylabel("FC tangent-space PC 2")
 ax.set_title("CC vs AD point clouds\n(2-D PCA of FC features)")
 ax.legend(frameon=False, fontsize=8, loc="best"); _tag(ax, "F")
-
-fig.suptitle(
-    "CC vs AD classification: G-space geometry vs. lagged-FC of reconstruction, "
-    "with a nested-CV tangent-space FC-SVM benchmark\n"
-    f"(reservoir read-outs: per-patient W, LDA & RF, repeated 5-fold 80/20 CV, "
-    f"N={n_cc} CC + {n_ad} AD; dotted band = tangent-FC benchmark)",
-    fontsize=10.5, fontweight="bold", y=0.975)
 
 for ext in ("png", "pdf"):
     fig.savefig(f"figure3_classification.{ext}", dpi=300, bbox_inches="tight",

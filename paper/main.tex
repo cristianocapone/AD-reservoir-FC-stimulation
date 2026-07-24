@@ -1,12 +1,13 @@
 ﻿% ============================================================================
-%  Nature Communications â€” manuscript (single-column, submission format)
+%  Scientific Reports â€” manuscript (single-column, submission format)
 %  Reservoir-computing readout geometry & in-silico stimulation in AD fMRI
 %
 %  Compile:  pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
-%  Nature Communications accepts LaTeX at submission; this emulates the
-%  house style (superscript citations, naturemag reference list, Methods
-%  after Discussion, double spacing + line numbers) in the standard article
-%  class rather than the Springer-Nature sn-jnl class, for portability.
+%  Scientific Reports accepts LaTeX at submission; this emulates the house
+%  style (superscript citations, naturemag reference list, coloured sans
+%  section headings, Methods after Discussion, double spacing + line numbers)
+%  in the standard article class rather than the wlscirep class, for
+%  portability (wlscirep.cls is not required and is not assumed present).
 % ============================================================================
 \documentclass[11pt]{article}
 
@@ -18,7 +19,7 @@
 % ---- layout -----------------------------------------------------------------
 \usepackage[letterpaper,margin=1in]{geometry}
 \usepackage{setspace}
-\doublespacing                         % Nature Communications submission spacing
+\doublespacing                         % Scientific Reports submission spacing
 \usepackage{lineno}                    % continuous line numbers (enabled below)
 
 % ---- graphics / tables / math -----------------------------------------------
@@ -27,14 +28,24 @@
 \usepackage{amsmath}                   % (newtxmath supplies AMS symbols; no amssymb)
 \usepackage{booktabs}
 \usepackage{siunitx}
-\usepackage{caption}                          % Nature-style "Fig. 1 |" captions
+\usepackage{caption}                          % "Fig. 1 |" captions (Nature Portfolio style)
 \DeclareCaptionLabelSeparator{natbar}{ $\vert$\ }
 \captionsetup{labelfont=bf,labelsep=natbar,font=small,%
               singlelinecheck=false,justification=justified}
 \renewcommand{\figurename}{Fig.}
 \usepackage{xcolor}
+% ---- Scientific Reports house colour + coloured sans section headings --------
+\definecolor{srblue}{RGB}{0,60,113}           % Scientific Reports heading blue
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+  {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}%
+  {\sffamily\Large\bfseries\color{srblue}}}
+\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
+  {\sffamily\large\bfseries\color{srblue}}}
+\makeatother
 \usepackage{authblk}                          % author / affiliation block
-\usepackage[super,sort&compress]{natbib}      % superscript citations (Nature style)
+\usepackage[super,sort&compress]{natbib}      % superscript citations (Nature Portfolio style)
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 
 % authblk styling
@@ -49,7 +60,7 @@
 \newcommand{\todo}[1]{\textcolor{red}{[\textbf{TODO:} #1]}}
 
 % ============================================================================
-\title{\bfseries From read-out geometry to in-silico stimulation:
+\title{\sffamily\bfseries From read-out geometry to in-silico stimulation:
 a distributed functional-connectivity signature of Alzheimer's disease}
 
 \author[1,*]{Cristiano Capone}

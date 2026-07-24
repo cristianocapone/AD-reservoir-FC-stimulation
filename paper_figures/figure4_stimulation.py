@@ -99,8 +99,9 @@ def dose_panel(ax, strats, space, cc_vals, thr, physio_vline=True, xlim=None):
     ax.legend(frameon=False, fontsize=7)
 
 # ── figure layout ──────────────────────────────────────────────────────────────
-fig = plt.figure(figsize=(15, 8), facecolor="white")
-gs  = gridspec.GridSpec(2, 3, figure=fig, hspace=0.52, wspace=0.40)
+fig = plt.figure(figsize=(15, 7.2), facecolor="white")
+gs  = gridspec.GridSpec(2, 3, figure=fig, hspace=0.52, wspace=0.40,
+                        top=0.965, bottom=0.09, left=0.06, right=0.98)
 
 # ── Row 1: G-space ─────────────────────────────────────────────────────────────
 ax_a = fig.add_subplot(gs[0, 0])
@@ -147,11 +148,6 @@ for ax, lbl in zip([ax_a, ax_b, ax_c, ax_d, ax_e, ax_f],
                    ["A", "B", "C", "D", "E", "F"]):
     ax.text(-0.13, 1.05, lbl, transform=ax.transAxes,
             fontsize=13, fontweight="bold", va="bottom", ha="left")
-
-fig.suptitle(
-    r"In-silico stimulation:  $W_\mathrm{int} = (1-\alpha)\,W_\mathrm{AD} + \alpha\,\bar{W}_\mathrm{CC}$"
-    "   |   G-space & FC-lag LDA  (K=25, lags 0–2,  N=40 AD patients)",
-    fontsize=10, y=1.01)
 
 for ext in ("png", "pdf"):
     out = f"figure4_stimulation.{ext}"
