@@ -1,13 +1,14 @@
 ﻿% ============================================================================
-%  Scientific Reports â€” manuscript (single-column, submission format)
+%  Nature Communications â€” manuscript (single-column, submission format)
 %  Reservoir-computing readout geometry & in-silico stimulation in AD fMRI
 %
 %  Compile:  pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
-%  Scientific Reports accepts LaTeX at submission; this emulates the house
-%  style (superscript citations, naturemag reference list, coloured sans
-%  section headings, Methods after Discussion, double spacing + line numbers)
-%  in the standard article class rather than the wlscirep class, for
-%  portability (wlscirep.cls is not required and is not assumed present).
+%  Primary target: Nature Communications. NC accepts LaTeX at submission;
+%  this emulates the house style (superscript citations, naturemag reference
+%  list, Methods after Discussion, double spacing + line numbers) in the
+%  standard article class rather than the Springer-Nature sn-jnl class, for
+%  portability. Secondary target (Scientific Reports) is the same Nature
+%  Portfolio style, so only the heading styling would differ.
 % ============================================================================
 \documentclass[11pt]{article}
 
@@ -19,7 +20,7 @@
 % ---- layout -----------------------------------------------------------------
 \usepackage[letterpaper,margin=1in]{geometry}
 \usepackage{setspace}
-\doublespacing                         % Scientific Reports submission spacing
+\doublespacing                         % Nature Communications submission spacing
 \usepackage{lineno}                    % continuous line numbers (enabled below)
 
 % ---- graphics / tables / math -----------------------------------------------
@@ -34,16 +35,6 @@
               singlelinecheck=false,justification=justified}
 \renewcommand{\figurename}{Fig.}
 \usepackage{xcolor}
-% ---- Scientific Reports house colour + coloured sans section headings --------
-\definecolor{srblue}{RGB}{0,60,113}           % Scientific Reports heading blue
-\makeatletter
-\renewcommand\section{\@startsection{section}{1}{\z@}%
-  {-3.5ex \@plus -1ex \@minus -.2ex}{2.3ex \@plus.2ex}%
-  {\sffamily\Large\bfseries\color{srblue}}}
-\renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
-  {-3.25ex\@plus -1ex \@minus -.2ex}{1.5ex \@plus .2ex}%
-  {\sffamily\large\bfseries\color{srblue}}}
-\makeatother
 \usepackage{authblk}                          % author / affiliation block
 \usepackage[super,sort&compress]{natbib}      % superscript citations (Nature Portfolio style)
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
@@ -60,15 +51,15 @@
 \newcommand{\todo}[1]{\textcolor{red}{[\textbf{TODO:} #1]}}
 
 % ============================================================================
-\title{\sffamily\bfseries From read-out geometry to in-silico stimulation:
+\title{\bfseries From read-out geometry to in-silico stimulation:
 a distributed functional-connectivity signature of Alzheimer's disease}
 
 \author[1,*]{Cristiano Capone}
 \author[2]{Enza Cece}
 \author[1]{Andrea Ciardiello}
 \author[1]{Guido Gigante}
-\author[3]{Maurizio Mattia}
 \author[2]{Evaristo Cisbani}
+\author[3]{Maurizio Mattia}
 
 \affil[1]{National Center for Radiation Protection and Computational Physics,
 Istituto Superiore di Sanit\`a, 00161 Rome, Italy}
@@ -114,10 +105,10 @@ Resting-state functional connectivity (FC)
 , the inter-regional correlation structure of spontaneous BOLD activity, is
 among the most widely studied non-invasive readouts of this disruption, and AD
 is consistently associated with altered connectivity, prominently within the
-default-mode network~\cite{greicius2004,sheline2013}. Yet group-level FC
-differences are typically modest, spatially heterogeneous, and entangled with
-acquisition and physiological confounds, so that FC has proven a useful but
-imperfect biomarker~\cite{pievani2011,brier2012}. Although AD is generally
+default-mode network~\cite{greicius2004,sheline2013}. FC has thus emerged as a
+promising biomarker of Alzheimer's disease, although its diagnostic performance
+and reproducibility remain insufficient for routine clinical
+use~\cite{buckner2013}. Although AD is generally
 viewed as a distributed, network-level disorder, a more basic question remains
 open at the causal level: is the AD FC alteration \emph{reducible} to a small
 number of regions or connections, or is it functionally irreducible to them,
@@ -355,21 +346,22 @@ $\lVert\Delta\mathbf{W}\rVert$ of $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC
 read-out toward the CC template over all regions (``full-W'') moved both
 classifiers' scores into the CC range at small interpolation strength and
 reclassified the large majority of AD patients as CC
-(Fig.~\ref{fig:stim}A,C,D,F). In sharp contrast, applying the same correction to
+for the G-space read-out and, identically, for the FC-lag read-out
+(Fig.~\ref{fig:stim}A,B,D,E). In sharp contrast, applying the same correction to
 focal site sets, the single most-affected site, the five most affected, or the
 most-affected site together with its ten nearest neighbours, failed to revert
 the classification within physiological amplitude limits, shifting only a
-minority of patients even at much larger interpolation strengths
-(Fig.~\ref{fig:stim}B,E; summary in Fig.~\ref{fig:stim}I). Physiological
+minority of patients even at much larger interpolation strengths, again in both
+read-outs (Fig.~\ref{fig:stim}C,F). Physiological
 diagnostics confirmed that the focal strategies were already operating at or
 beyond plausible amplitudes: whereas the full-W correction left signal amplitude
 near baseline, focal corrections required large local amplification to achieve
-even partial effects (Fig.~\ref{fig:stim}G,H). An alternative focal
+even partial effects (fig.~S10). An alternative focal
 protocol, injecting an oscillation at the most-affected sites, tuned to the
 reservoir's intrinsic frequencies, showed the same limitation, single- or
 few-site stimulation moving the FC-lag score only weakly and only five-site
 stimulation at supra-physiological amplitude approaching the decision boundary
-(Fig.~\ref{fig:stim}J--L). Across both interpolation and oscillatory protocols,
+(Fig.~\ref{fig:singlecompare}A; fig.~S7). Across both interpolation and oscillatory protocols,
 no focal intervention reproduced the effect of the distributed correction,
 indicating that, within the fitted models, the AD FC signature behaves as
 functionally distributed and is not reduced to a small set of target sites.
@@ -384,14 +376,16 @@ functionally distributed and is not reduced to a small set of target sites.
   either over all $121$ sites (full-W) or over focal site sets selected by
   $\lVert\Delta W\rVert$ (top-5, top-1, top-1$+$10 geometric neighbours).
   (\textbf{A}) Baseline G-space LDA scores for CC (blue) and AD (red) with the
-  decision boundary (dashed); Mann--Whitney $p$ inset.
+  decision boundary (dashed); two-sided Mann--Whitney
+  $p=8.7\times10^{-8}$ (also inset).
   (\textbf{B}) G-space LDA score vs $\alpha$ for full-W correction (mean $\pm1\sigma$
   over AD patients); CC mean $\pm1\sigma$ shaded; full-W enters the CC range at
   low $\alpha$.
   (\textbf{C}) Same for the three focal strategies (top-5, top-1,
   top-1$+$10 geometric neighbours); none crosses the boundary within
   physiological amplitude.
-  (\textbf{D}--\textbf{F}) Analogous panels for the FC-lag LDA classifier.
+  (\textbf{D}--\textbf{F}) Analogous panels for the FC-lag LDA classifier
+  (baseline two-sided Mann--Whitney $p=8.0\times10^{-9}$).
   The contrast between B/E (full-W succeeds) and C/F (focal fails at any
   amplitude) establishes that the AD FC signature is not reducible to the
   most-deviant sites.}
@@ -406,7 +400,7 @@ amygdala (Fig.~\ref{fig:topsites}A,B), each selected among the top-five sites in
 a large fraction of AD patients, structures of the limbic and basal-ganglia
 circuitry implicated in Alzheimer's disease, with the brainstem and amygdala in
 particular harbouring some of the earliest neurofibrillary
-pathology~\cite{braak1991}. Critically, however, correcting even these
+pathology~\cite{braak1991,braak2011}. Critically, however, correcting even these
 maximally-deviant regions failed to revert the classification: the locus of the
 largest local change did not coincide with a sufficient intervention target. The
 disease signature is thus anatomically meaningful yet functionally distributed,
@@ -471,8 +465,10 @@ eigenmode $f_{\mathrm{eig}}$, the resonant drive far outperforming an off-resona
 one per unit amplitude (fig.~S7A,B). This frequency, $f_{\mathrm{eig}}\approx0.077$
 cycles/step, corresponds to $\approx0.026$\,Hz once expressed in physical time
 through the TR ($=3$\,s), a unit conversion, not a dependence of the resonance on
-TR, placing it in the infraslow band in which resting-state
-connectivity itself fluctuates, so the same fitted model specifies both a location
+TR, placing it in the well-established infraslow band in which resting-state
+connectivity itself
+fluctuates~\cite{fox2007,cordes2001,diantonio2026}, so the same fitted model
+specifies both a location
 (the subcortical/limbic targets of Fig.~\ref{fig:topsites}A,B) and an optimal driving
 frequency, a spatial \emph{and} spectral prescription that descriptive analyses
 cannot provide. This optimum is an \emph{interaction} of the two, however: a
@@ -488,67 +484,48 @@ simulation, though reclassification and that departure trade off, so full revers
 still demands a large perturbation (fig.~S8). At
 physiologically plausible amplitudes a focal drive does not, by itself, revert the
 classification (Fig.~\ref{fig:stim}); its significance is methodological, demonstrating that an
-identifiable generative model yields concrete, testable stimulation parameters. A direct comparison of
-focal protocols on a common classifier refines the picture. The
+identifiable generative model yields concrete, testable stimulation parameters. A
+direct comparison of focal protocols on a common classifier shows that the
 \emph{site-selection criterion} matters far more than the number of sites: a
-2-site drive matched to the two leading reservoir eigenmodes is more efficient
-than single-site resonant drive, but both, selected for modal excitation or
-disease norm, reclassify only $\sim$$50\%$ of patients. In contrast, choosing
-the target by its \emph{effect on the discriminant}, the site whose resonant
-drive moves the FC-lag score most toward CC, i.e.\ the projection of the
-stimulation effect onto the LDA, a criterion we call \emph{LDA-resonant}, 
-is markedly more effective: a single such
-population-average site (the \emph{population-average} LDA-resonant target)
-reclassifies $\sim$$65\%$ of patients, and \emph{personalising} the target
-(the \emph{per-patient} LDA-resonant site, chosen from each subject's own model) reverts
-essentially all of them ($\sim$$100\%$, driving the score past the CC mean;
-Fig.~\ref{fig:singlecompare}A). The most effective ``drive-toward-health'' sites are predominantly
-cortical, led by the left Default-network prefrontal cortex, with
-dorsal-attention and visual association cortex (fig.~S3A,B); the per-patient
-optimal targets are highly heterogeneous, $33$ distinct sites for the $40$
-patients, each selected by at most three (fig.~S4), spanning Default-network,
-visual and attention cortex as well as medial-temporal and subcortical
-structures, so no single global target is best for all.
-Comparing the interventions on the closed-loop generative simulation, measured as
-how far each perturbs the model's own free-run dynamics relative to the
-unstimulated model (fig.~S5), shows that reverting the classification inherently
-requires a large perturbation: the full exact read-out correction reverts the
-FC-lag classifier only with over-correction ($\alpha\!\gtrsim\!1.4$; the exact
-$\alpha=1$ replacement is insufficient because the reservoir state stays AD-driven,
-cf.\ Fig.~\ref{fig:stim}). Tellingly, the personalised LDA-resonant and the
-eigenmode-coupling single-site drives perturb the simulation \emph{near-identically}
-(correlation to the unstimulated model $\approx0.32$--$0.34$), yet only the
-discriminant-aligned LDA target converts that perturbation into full reclassification
-($100\%$ vs $\sim$$62\%$ for the eigenmode site): selecting the site by its effect
-on the discriminant, rather than by modal coupling alone, extracts more therapeutic
-effect per unit of dynamical perturbation, and does so by perturbing a single input
-site rather than rewriting all $121$ read-out weights.
-These reversions still require supra-physiological amplitudes and the
-personalised target is selected on each patient's own model (an upper bound on
-achievable personalisation); their significance is to show that an identifiable,
-\emph{linear} per-subject model converts ``where and how to stimulate to move a
-patient toward health'' into a directly computable, individualised prescription.
+2-site drive matched to the two leading reservoir eigenmodes and a single-site
+resonant drive at the most-deviant site, selected for modal excitation and
+disease norm respectively, both reclassify only $\sim$$50\%$ of patients.
+Choosing the target instead by its \emph{effect on the discriminant}, the site
+whose resonant drive moves the FC-lag score most toward CC, a criterion we call
+\emph{LDA-resonant}, is markedly more effective: a single population-average such
+site reclassifies $\sim$$65\%$ of patients, and personalising it per patient
+reverts essentially all of them (Fig.~\ref{fig:singlecompare}A). These targets
+are predominantly cortical, led by the left Default-network prefrontal cortex
+(fig.~S3A,B), and highly heterogeneous, $33$ distinct sites for the $40$ patients
+(fig.~S4), so no single global target is best for all. Tellingly, the
+personalised LDA-resonant and the eigenmode-coupling drives perturb the
+simulation \emph{near-identically} (correlation to the unstimulated model
+$\approx0.32$--$0.34$; fig.~S5), yet only the discriminant-aligned target
+converts that perturbation into full reclassification ($100\%$ vs
+$\sim$$62\%$): selecting the site by its effect on the discriminant extracts more
+therapeutic effect per unit of dynamical perturbation, and does so by perturbing
+a single input site rather than rewriting all $121$ read-out weights. These
+reversions still require supra-physiological amplitudes (fig.~S10); their
+significance is methodological, showing that an identifiable per-subject model
+turns ``where and how to stimulate'' into a directly computable prescription.
 
-To isolate what makes a \emph{single-site} intervention work, we contrasted the two
-ways of acting on one node at the same most-affected target
-(Fig.~\ref{fig:singlecompare}): the \emph{theoretical} read-out correction, which
-interpolates that node's read-out column toward the control mean
-($\mathbf{W}_{\mathrm{int}}=(1-\alpha)\mathbf{W}_p+\alpha\bar{\mathbf{W}}_{\mathrm{CC}}$),
-and the \emph{physical} resonant drive ($A\sin(2\pi f_{\mathrm{eig}}t)$). The
-theoretical single-column correction is essentially inert: even pushed to
-$\alpha=50$ it never reverts the classification (it stays at the $\sim$$18\%$
-baseline), while progressively distorting the simulation (distance from the
-unstimulated FC rising to $\sim$$0.6$), a single read-out weight has negligible
-leverage on the spatially distributed FC-lag signature. The physical resonant
-drive instead reclassifies patients by engaging the network-wide resonant mode, but
-\emph{where} it is applied is decisive: at the $\Delta W$ most-affected (subcortical)
-site it reaches only $\sim$$50$--$57\%$ even at high amplitude, whereas at each
-patient's discriminant-aligned (LDA-resonant) site it reverts \emph{all} of them
-(Fig.~\ref{fig:singlecompare}A). Either way its distance from the original FC jumps
-to $\sim$$0.7$ at the smallest effective amplitude and saturates
-(Fig.~\ref{fig:singlecompare}B,C). At one site, then, a read-out edit is inert and
-only a resonant drive at the right site cures, at a fixed, large perturbation cost
-that the closed-loop control below is designed to minimise.
+To isolate what makes a \emph{single-site} intervention work, we contrasted the
+two ways of acting on one node (Fig.~\ref{fig:singlecompare}): the
+\emph{theoretical} read-out correction, which interpolates that node's read-out
+column toward the control mean, and the \emph{physical} resonant drive
+($A\sin(2\pi f_{\mathrm{eig}}t)$). The single-column correction is essentially
+inert: even at $\alpha=50$ it never reverts the classification (flat at the
+$\sim$$18\%$ baseline) while progressively distorting the simulation, so a single
+read-out weight has negligible leverage on the distributed FC-lag signature. The
+resonant drive instead reclassifies by engaging the network-wide resonant mode,
+but \emph{where} it is applied is decisive: at the $\Delta W$ most-affected
+(subcortical) site it reaches only $\sim$$50$--$57\%$ even at high amplitude,
+whereas at each patient's discriminant-aligned site it reverts \emph{all} of them
+(Fig.~\ref{fig:singlecompare}A). Either way its distance from the original FC
+jumps to $\sim$$0.7$ at the smallest effective amplitude and saturates
+(Fig.~\ref{fig:singlecompare}B,C). At one site, then, a read-out edit is inert
+and only a resonant drive at the right site cures, at a fixed, large perturbation
+cost that the closed-loop control below is designed to minimise.
 
 \begin{figure}[tbp]
   \centering
@@ -594,12 +571,20 @@ that the closed-loop control below is designed to minimise.
   \label{fig:singlecompare}
 \end{figure}
 
+\subsection*{Effectiveness of state-dependent perturbation at single-subject
+level}
+
 Because the fitted model is a closed-loop dynamical system, the same FC-lag score
 that diagnoses a patient can serve as the feedback signal for a \emph{real-time,
 causally valid} adaptive intervention: rather than an offline oracle with access to
 the full future trajectory, we titrate the resonant drive's amplitude online, every
-few steps, from a sliding window of the model's own past output (Materials and
-Methods). At the fixed, personalised LDA-resonant site, this online controller
+few steps, from a sliding window of the model's own past output (Methods). The
+explicit window is a deliberately conservative choice: because the reservoir
+satisfies the echo-state property, the relevant past is already embedded in its
+instantaneous state, so an equivalent controller could read the biomarker
+directly from $\mathbf{x}(t)$ without buffering past
+output~\cite{albore2025search}.
+At the fixed, personalised LDA-resonant site, this online controller
 reclassifies $39/40$ ($97.5\%$) of AD patients, nearly matching the $100\%$ reached
 by a fixed open-loop drive, while cutting the mean stimulation amplitude by
 $\sim$$44\%$ ($A=6\to3.3$) and the departure from each subject's own dynamics by
@@ -624,11 +609,9 @@ fraction of these AD-side patients that stimulation moves across to the CC side.
 single \emph{population-average} resonant target, selected on the training patients
 alone, achieves a leakage-free net cure of $\sim$$78\%$, and each patient's
 \emph{personalised} LDA-resonant target moves essentially all AD-side patients
-across the boundary. The personalised figure still reflects a per-patient choice
-among $121$ candidate sites and should be read as an upper bound; the
-population-average result is the conservative, fully out-of-sample estimate. Either
-way, the single-site reclassification reflects a genuine, model-prescribed
-intervention effect rather than an artefact of classifier leakage.
+across the boundary (Methods). The single-site reclassification is therefore a
+genuine, model-prescribed intervention effect rather than an artefact of
+classifier leakage.
 
 \section*{Discussion}
 We fit identifiable, subject-specific reservoir-computing models of
@@ -680,7 +663,8 @@ The regions whose read-out departed most from the control template were
 predominantly subcortical and limbic, bilateral pallidum and nucleus accumbens,
 brainstem and amygdala, structures of the limbic and basal-ganglia circuitry,
 several of which (notably the brainstem and amygdala) harbour some of the
-earliest neurofibrillary pathology in Braak staging~\cite{braak1991}. These
+earliest neurofibrillary pathology in Braak
+staging~\cite{braak1991,braak2011}. These
 maximally-deviant regions were not, however, viable focal intervention targets:
 the locus of greatest pathological change and the locus of greatest therapeutic
 leverage dissociate cleanly. A plausible mechanistic account is that pathology
@@ -981,10 +965,11 @@ not a subject-specific fit. Frequencies were swept over $f\in[0,0.5]$ cycles/ste
 and amplitude up to \emph{supra-physiological} values, i.e.\ beyond the RMS of
 the endogenous teacher-forcing drive (the target scaled by the feedback gain
 $0.1$), so that the stimulated-to-baseline amplitude ratio
-$\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}>1$
-(Fig.~\ref{fig:stim}G). The state-level response of the linear
+$\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}>1$ (fig.~S10).
+The state-level response of the linear
 reservoir to a periodic drive is governed by the transfer function
 $(\mathrm{i}\omega\mathbf{I}-\mathbf{J})^{-1}\mathbf{J}_{\mathrm{in}}\mathbf{b}$,
+the same linear response as in~\cite{diantonio2026},
 which is large only when the drive frequency is near an eigenmode \emph{and} the
 spatial input pattern $\mathbf{b}$ overlaps that eigenmode; a single site thus
 resonates cleanly at $f_{\mathrm{eig}}$, whereas the summed pattern of several
@@ -1015,7 +1000,12 @@ embedding projection is a Gram/kernel form, each fold is exact linear algebra on
 the base-patient Gram matrix, with the reservoir simulated once per
 (patient,\,site). We report the \emph{net cure} rate: of the patients on the AD
 side of the train-only boundary at baseline, the fraction that stimulation moves
-to the CC side (fig.~\ref{fig:lopo}).
+to the CC side (fig.~\ref{fig:lopo}). The two targets bound the achievable
+effect from opposite sides: the \emph{personalised} figure still reflects a
+per-patient argmax over the $121$ candidate sites and should be read as an upper
+bound on achievable personalisation, whereas the \emph{population-average}
+result, a single global site selected on the training patients alone, is the
+conservative, fully out-of-sample estimate.
 
 \paragraph{Physiological diagnostics.}
 For every strategy and $\alpha$ we recorded the signal-amplitude ratio at
@@ -1093,7 +1083,7 @@ Analysis & Controls (CC) & AD & Cross-validation / unit \\
 Available pool & 145 subj / 561 ses & 41 subj / 151 ses & ,  \\
 Data overview, FC similarity (Fig.~1) & 561 sessions & 151 sessions & per session \\
 Reservoir fit \& FC validation (Fig.~2); G-space \& FC-lag classifiers
-(Fig.~3A--D); all in-silico stimulation (Figs~4--7, S2--S9)
+(Fig.~3A--D); all in-silico stimulation (Figs~4--6, S2--S10)
 & 36 subjects & 40 subjects & one session/subject; $40$ CC sessions sampled to
 balance $40$ AD ($36$ unique CC subjects); repeated stratified CV \\
 Cohort-size scaling (Fig.~S1) & up to 145 subj & up to 41 subj & balanced subsets,
@@ -1368,6 +1358,31 @@ sessions, train-only tangent reference) \\
   and the personalised target $\sim$$100\%$: the reclassification is a genuine,
   model-prescribed intervention effect, not an artefact of classifier leakage.}
   \label{fig:lopo}
+\end{figure}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=\linewidth]{figureS10_physio.pdf}
+  \caption{\textbf{Physiological diagnostics of the read-out interpolation:
+  distributed correction stays near the endogenous amplitude, focal correction
+  does not} ($N=40$ AD). At the stimulated sites we record the signal-amplitude
+  ratio $\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}$ between the
+  perturbed reconstruction $Y=\mathbf{X}\mathbf{W}_{\mathrm{int}}$ and the
+  unperturbed one, and the mean $|FC|$ at those sites (Methods,
+  ``Physiological diagnostics''); mean $\pm1\sigma$ over AD patients.
+  (\textbf{A}) Full-W correction: the amplitude ratio remains within a factor of
+  about two of baseline over the whole range $\alpha\in[0,2]$ (dashed line,
+  baseline), i.e.\ the distributed correction is achieved without driving the
+  signal outside its endogenous range.
+  (\textbf{B}) Focal corrections: the ratio instead grows approximately linearly
+  with $\alpha$, reaching $\sim$$16\times$ (top-5) and $\sim$$44\times$ (top-1)
+  baseline at the amplitudes needed for even partial effects, i.e.\ deep into
+  supra-physiological territory.
+  (\textbf{C}) Mean $|FC|$ at the stimulated sites versus relative dose.
+  Together these confirm that the failure of the focal strategies
+  (Fig.~\ref{fig:stim}C,F) is not a matter of insufficient dose: they are
+  already operating far beyond plausible amplitude bounds.}
+  \label{fig:physio}
 \end{figure}
 
 \end{document}
