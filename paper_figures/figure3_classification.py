@@ -20,7 +20,14 @@ Panels (2 x 2):
   A  BAL-ACC vs K      (at best sigma)     B  AUROC vs K      (at best sigma)
   C  BAL-ACC vs sigma  (at best K)         D  AUROC vs sigma  (at best K)
 
-Saves: figure3_classification.png / .pdf   and   figure3_classification_data.npz
+COMPUTE STEP ONLY -- this script produces the sweep data. The MANUSCRIPT
+Figure 3 (6 panels A-F, incl. the tangent-space benchmark ROC and the FC PCA
+point clouds) is rendered by  replot_figure3.py  from the .npz saved here.
+The figure this script draws is an outdated 4-panel version and is written to
+figure3_legacy_4panel.{png,pdf} so it can never overwrite the real figure.
+
+Saves: figure3_classification_data.npz  (consumed by replot_figure3.py)
+       figure3_legacy_4panel.png / .pdf  (legacy render, NOT used in the paper)
 """
 import os, sys
 sys.path.insert(0, "..")
@@ -351,7 +358,7 @@ fig.suptitle(
     fontsize=10.5, fontweight="bold", y=0.975)
 
 for ext in ("png", "pdf"):
-    out = f"figure3_classification.{ext}"
+    out = f"figure3_legacy_4panel.{ext}"     # NOT the manuscript figure
     fig.savefig(out, dpi=300, bbox_inches="tight", facecolor="white")
     print(f"Saved {out}")
 plt.close()
