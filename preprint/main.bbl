@@ -1,0 +1,280 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\providecommand{\bibinfo}[2]{#2}
+\providecommand{\eprint}[2][]{\url{#2}}
+
+\bibitem{seeley2009}
+\bibinfo{author}{Seeley, W.~W.}, \bibinfo{author}{Crawford, R.~K.},
+  \bibinfo{author}{Zhou, J.}, \bibinfo{author}{Miller, B.~L.} \&
+  \bibinfo{author}{Greicius, M.~D.}
+\newblock \bibinfo{title}{Neurodegenerative diseases target large-scale human
+  brain networks}.
+\newblock \emph{\bibinfo{journal}{Neuron}} \textbf{\bibinfo{volume}{62}},
+  \bibinfo{pages}{42--52} (\bibinfo{year}{2009}).
+
+\bibitem{delbeuck2003}
+\bibinfo{author}{Delbeuck, X.}, \bibinfo{author}{Van~der Linden, M.} \&
+  \bibinfo{author}{Collette, F.}
+\newblock \bibinfo{title}{Alzheimer's disease as a disconnection syndrome?}
+\newblock \emph{\bibinfo{journal}{Neuropsychology Review}}
+  \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{79--92}
+  (\bibinfo{year}{2003}).
+
+\bibitem{greicius2004}
+\bibinfo{author}{Greicius, M.~D.}, \bibinfo{author}{Srivastava, G.},
+  \bibinfo{author}{Reiss, A.~L.} \& \bibinfo{author}{Menon, V.}
+\newblock \bibinfo{title}{Default-mode network activity distinguishes
+  alzheimer's disease from healthy aging: evidence from functional mri}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of
+  Sciences}} \textbf{\bibinfo{volume}{101}}, \bibinfo{pages}{4637--4642}
+  (\bibinfo{year}{2004}).
+
+\bibitem{sheline2013}
+\bibinfo{author}{Sheline, Y.~I.} \& \bibinfo{author}{Raichle, M.~E.}
+\newblock \bibinfo{title}{Resting state functional connectivity in preclinical
+  alzheimer's disease}.
+\newblock \emph{\bibinfo{journal}{Biological Psychiatry}}
+  \textbf{\bibinfo{volume}{74}}, \bibinfo{pages}{340--347}
+  (\bibinfo{year}{2013}).
+
+\bibitem{buckner2013}
+\bibinfo{author}{Buckner, R.~L.}, \bibinfo{author}{Krienen, F.~M.} \&
+  \bibinfo{author}{Yeo, B. T.~T.}
+\newblock \bibinfo{title}{Opportunities and limitations of intrinsic functional
+  connectivity {MRI}}.
+\newblock \emph{\bibinfo{journal}{Nature Neuroscience}}
+  \textbf{\bibinfo{volume}{16}}, \bibinfo{pages}{832--837}
+  (\bibinfo{year}{2013}).
+
+\bibitem{fox2014}
+\bibinfo{author}{Fox, M.~D.} \emph{et~al.}
+\newblock \bibinfo{title}{Resting-state networks link invasive and noninvasive
+  brain stimulation across diverse psychiatric and neurological diseases}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of
+  Sciences}} \textbf{\bibinfo{volume}{111}}, \bibinfo{pages}{E4367--E4375}
+  (\bibinfo{year}{2014}).
+
+\bibitem{honey2009}
+\bibinfo{author}{Honey, C.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Predicting human resting-state functional
+  connectivity from structural connectivity}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of
+  Sciences}} \textbf{\bibinfo{volume}{106}}, \bibinfo{pages}{2035--2040}
+  (\bibinfo{year}{2009}).
+
+\bibitem{deco2011}
+\bibinfo{author}{Deco, G.}, \bibinfo{author}{Jirsa, V.~K.} \&
+  \bibinfo{author}{McIntosh, A.~R.}
+\newblock \bibinfo{title}{Emerging concepts for the dynamical organization of
+  resting-state activity in the brain}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Neuroscience}}
+  \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{43--56}
+  (\bibinfo{year}{2011}).
+
+\bibitem{sanzleon2013}
+\bibinfo{author}{Sanz~Leon, P.} \emph{et~al.}
+\newblock \bibinfo{title}{The virtual brain: a simulator of primate brain
+  network dynamics}.
+\newblock \emph{\bibinfo{journal}{Frontiers in Neuroinformatics}}
+  \textbf{\bibinfo{volume}{7}}, \bibinfo{pages}{10} (\bibinfo{year}{2013}).
+
+\bibitem{jirsa2017}
+\bibinfo{author}{Jirsa, V.~K.} \emph{et~al.}
+\newblock \bibinfo{title}{The virtual epileptic patient: individualized
+  whole-brain models of epilepsy spread}.
+\newblock \emph{\bibinfo{journal}{NeuroImage}} \textbf{\bibinfo{volume}{145}},
+  \bibinfo{pages}{377--388} (\bibinfo{year}{2017}).
+
+\bibitem{wang2019}
+\bibinfo{author}{Wang, P.} \emph{et~al.}
+\newblock \bibinfo{title}{Inversion of a large-scale circuit model reveals a
+  cortical hierarchy in the dynamic resting human brain}.
+\newblock \emph{\bibinfo{journal}{Science Advances}}
+  \textbf{\bibinfo{volume}{5}}, \bibinfo{pages}{eaat7854}
+  (\bibinfo{year}{2019}).
+
+\bibitem{jaeger2001}
+\bibinfo{author}{Jaeger, H.}
+\newblock \bibinfo{title}{The ``echo state'' approach to analysing and training
+  recurrent neural networks}.
+\newblock \bibinfo{type}{Tech. Rep.} \bibinfo{number}{GMD Report 148},
+  \bibinfo{institution}{German National Research Center for Information
+  Technology} (\bibinfo{year}{2001}).
+
+\bibitem{maass2002}
+\bibinfo{author}{Maass, W.}, \bibinfo{author}{Natschl{\"a}ger, T.} \&
+  \bibinfo{author}{Markram, H.}
+\newblock \bibinfo{title}{Real-time computing without stable states: a new
+  framework for neural computation based on perturbations}.
+\newblock \emph{\bibinfo{journal}{Neural Computation}}
+  \textbf{\bibinfo{volume}{14}}, \bibinfo{pages}{2531--2560}
+  (\bibinfo{year}{2002}).
+
+\bibitem{supekar2008}
+\bibinfo{author}{Supekar, K.}, \bibinfo{author}{Menon, V.},
+  \bibinfo{author}{Rubin, D.}, \bibinfo{author}{Musen, M.} \&
+  \bibinfo{author}{Greicius, M.~D.}
+\newblock \bibinfo{title}{Network analysis of intrinsic functional brain
+  connectivity in alzheimer's disease}.
+\newblock \emph{\bibinfo{journal}{PLoS Computational Biology}}
+  \textbf{\bibinfo{volume}{4}}, \bibinfo{pages}{e1000100}
+  (\bibinfo{year}{2008}).
+
+\bibitem{chen2011}
+\bibinfo{author}{Chen, G.} \emph{et~al.}
+\newblock \bibinfo{title}{Classification of alzheimer disease, mild cognitive
+  impairment, and normal cognitive status with large-scale network analysis
+  based on resting-state functional mr imaging}.
+\newblock \emph{\bibinfo{journal}{Radiology}} \textbf{\bibinfo{volume}{259}},
+  \bibinfo{pages}{213--221} (\bibinfo{year}{2011}).
+
+\bibitem{khazaee2015}
+\bibinfo{author}{Khazaee, A.}, \bibinfo{author}{Ebrahimzadeh, A.} \&
+  \bibinfo{author}{Babajani-Feremi, A.}
+\newblock \bibinfo{title}{Identifying patients with alzheimer's disease using
+  resting-state fmri and graph theory}.
+\newblock \emph{\bibinfo{journal}{Clinical Neurophysiology}}
+  \textbf{\bibinfo{volume}{126}}, \bibinfo{pages}{2132--2141}
+  (\bibinfo{year}{2015}).
+
+\bibitem{challis2015}
+\bibinfo{author}{Challis, E.} \emph{et~al.}
+\newblock \bibinfo{title}{Gaussian process classification of alzheimer's
+  disease and mild cognitive impairment from resting-state fmri}.
+\newblock \emph{\bibinfo{journal}{NeuroImage}} \textbf{\bibinfo{volume}{112}},
+  \bibinfo{pages}{232--243} (\bibinfo{year}{2015}).
+
+\bibitem{fox2007}
+\bibinfo{author}{Fox, M.~D.} \& \bibinfo{author}{Raichle, M.~E.}
+\newblock \bibinfo{title}{Spontaneous fluctuations in brain activity observed
+  with functional magnetic resonance imaging}.
+\newblock \emph{\bibinfo{journal}{Nature Reviews Neuroscience}}
+  \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{700--711}
+  (\bibinfo{year}{2007}).
+
+\bibitem{cordes2001}
+\bibinfo{author}{Cordes, D.} \emph{et~al.}
+\newblock \bibinfo{title}{Frequencies contributing to functional connectivity
+  in the cerebral cortex in ``resting-state'' data}.
+\newblock \emph{\bibinfo{journal}{American Journal of Neuroradiology}}
+  \textbf{\bibinfo{volume}{22}}, \bibinfo{pages}{1326--1333}
+  (\bibinfo{year}{2001}).
+
+\bibitem{diantonio2026}
+\bibinfo{author}{Di~Antonio, G.}, \bibinfo{author}{Gili, T.},
+  \bibinfo{author}{Gabrielli, A.} \& \bibinfo{author}{Mattia, M.}
+\newblock \bibinfo{title}{Linearizing and forecasting: A reservoir computing
+  route to digital twins of the brain}.
+\newblock \emph{\bibinfo{journal}{Advanced Science}}
+  \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{e17234}
+  (\bibinfo{year}{2026}).
+
+\bibitem{albore2025search}
+\bibinfo{author}{Albor{\'e}, N.}, \bibinfo{author}{Galluzzi, A.},
+  \bibinfo{author}{Pani, P.}, \bibinfo{author}{Ferraina, S.} \&
+  \bibinfo{author}{Mattia, M.}
+\newblock \bibinfo{title}{In search for the invisible: motor inhibition in
+  monkey premotor cortex and its {RNN} replicas}.
+\newblock \emph{\bibinfo{journal}{bioRxiv}} \bibinfo{pages}{2025--11}
+  (\bibinfo{year}{2025}).
+
+\bibitem{koch2022}
+\bibinfo{author}{Koch, G.} \emph{et~al.}
+\newblock \bibinfo{title}{Precuneus magnetic stimulation for alzheimer's
+  disease: a randomized, sham-controlled trial}.
+\newblock \emph{\bibinfo{journal}{Brain}} \textbf{\bibinfo{volume}{145}},
+  \bibinfo{pages}{3776--3786} (\bibinfo{year}{2022}).
+
+\bibitem{spiegler2016}
+\bibinfo{author}{Spiegler, A.}, \bibinfo{author}{Hansen, E. C.~A.},
+  \bibinfo{author}{Bernard, C.}, \bibinfo{author}{McIntosh, A.~R.} \&
+  \bibinfo{author}{Jirsa, V.~K.}
+\newblock \bibinfo{title}{Selective activation of resting-state networks
+  following focal stimulation in a connectome-based network model of the human
+  brain}.
+\newblock \emph{\bibinfo{journal}{eNeuro}} \textbf{\bibinfo{volume}{3}},
+  \bibinfo{pages}{ENEURO.0068--16.2016} (\bibinfo{year}{2016}).
+
+\bibitem{muldoon2016}
+\bibinfo{author}{Muldoon, S.~F.} \emph{et~al.}
+\newblock \bibinfo{title}{Stimulation-based control of dynamic brain networks}.
+\newblock \emph{\bibinfo{journal}{PLoS Computational Biology}}
+  \textbf{\bibinfo{volume}{12}}, \bibinfo{pages}{e1005076}
+  (\bibinfo{year}{2016}).
+
+\bibitem{kunze2016}
+\bibinfo{author}{Kunze, T.}, \bibinfo{author}{Hunold, A.},
+  \bibinfo{author}{Haueisen, J.}, \bibinfo{author}{Jirsa, V.} \&
+  \bibinfo{author}{Spiegler, A.}
+\newblock \bibinfo{title}{Transcranial direct current stimulation changes
+  resting state functional connectivity: a large-scale brain network modeling
+  study}.
+\newblock \emph{\bibinfo{journal}{NeuroImage}} \textbf{\bibinfo{volume}{140}},
+  \bibinfo{pages}{174--187} (\bibinfo{year}{2016}).
+
+\bibitem{deco2019}
+\bibinfo{author}{Deco, G.} \emph{et~al.}
+\newblock \bibinfo{title}{Awakening: predicting external stimulation to force
+  transitions between different brain states}.
+\newblock \emph{\bibinfo{journal}{Proceedings of the National Academy of
+  Sciences}} \textbf{\bibinfo{volume}{116}}, \bibinfo{pages}{18088--18097}
+  (\bibinfo{year}{2019}).
+
+\bibitem{braak1991}
+\bibinfo{author}{Braak, H.} \& \bibinfo{author}{Braak, E.}
+\newblock \bibinfo{title}{Neuropathological stageing of alzheimer-related
+  changes}.
+\newblock \emph{\bibinfo{journal}{Acta Neuropathologica}}
+  \textbf{\bibinfo{volume}{82}}, \bibinfo{pages}{239--259}
+  (\bibinfo{year}{1991}).
+
+\bibitem{braak2011}
+\bibinfo{author}{Braak, H.}, \bibinfo{author}{Thal, D.~R.},
+  \bibinfo{author}{Ghebremedhin, E.} \& \bibinfo{author}{Del~Tredici, K.}
+\newblock \bibinfo{title}{Stages of the pathologic process in {Alzheimer}
+  disease: age categories from 1 to 100 years}.
+\newblock \emph{\bibinfo{journal}{Journal of Neuropathology and Experimental
+  Neurology}} \textbf{\bibinfo{volume}{70}}, \bibinfo{pages}{960--969}
+  (\bibinfo{year}{2011}).
+
+\bibitem{raj2012}
+\bibinfo{author}{Raj, A.}, \bibinfo{author}{Kuceyeski, A.} \&
+  \bibinfo{author}{Weiner, M.}
+\newblock \bibinfo{title}{A network diffusion model of disease progression in
+  dementia}.
+\newblock \emph{\bibinfo{journal}{Neuron}} \textbf{\bibinfo{volume}{73}},
+  \bibinfo{pages}{1204--1215} (\bibinfo{year}{2012}).
+
+\bibitem{vogel2020}
+\bibinfo{author}{Vogel, J.~W.}, \bibinfo{author}{Iturria-Medina, Y.},
+  \bibinfo{author}{Strandberg, O.~T.} \emph{et~al.}
+\newblock \bibinfo{title}{Spread of pathological tau proteins through
+  communicating neurons in human alzheimer's disease}.
+\newblock \emph{\bibinfo{journal}{Nature Communications}}
+  \textbf{\bibinfo{volume}{11}}, \bibinfo{pages}{2612} (\bibinfo{year}{2020}).
+
+\bibitem{iaccarino2016}
+\bibinfo{author}{Iaccarino, H.~F.} \emph{et~al.}
+\newblock \bibinfo{title}{Gamma frequency entrainment attenuates amyloid load
+  and modifies microglia}.
+\newblock \emph{\bibinfo{journal}{Nature}} \textbf{\bibinfo{volume}{540}},
+  \bibinfo{pages}{230--235} (\bibinfo{year}{2016}).
+
+\bibitem{martorell2019}
+\bibinfo{author}{Martorell, A.~J.} \emph{et~al.}
+\newblock \bibinfo{title}{Multi-sensory gamma stimulation ameliorates
+  alzheimer's-associated pathology and improves cognition}.
+\newblock \emph{\bibinfo{journal}{Cell}} \textbf{\bibinfo{volume}{177}},
+  \bibinfo{pages}{256--271} (\bibinfo{year}{2019}).
+
+\bibitem{schaefer2018}
+\bibinfo{author}{Schaefer, A.} \emph{et~al.}
+\newblock \bibinfo{title}{Local-global parcellation of the human cerebral
+  cortex from intrinsic functional connectivity mri}.
+\newblock \emph{\bibinfo{journal}{Cerebral Cortex}}
+  \textbf{\bibinfo{volume}{28}}, \bibinfo{pages}{3095--3114}
+  (\bibinfo{year}{2018}).
+
+\end{thebibliography}

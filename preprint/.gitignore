@@ -1,0 +1,11 @@
+# LaTeX build artifacts (keep main.pdf and main.bbl, which are committed deliverables)
+*.aux
+*.log
+*.blg
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz

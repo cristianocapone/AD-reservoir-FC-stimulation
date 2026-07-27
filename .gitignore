@@ -61,6 +61,11 @@ summary_out/
 *.h5
 *.mat
 
+# ---- ADNI subject-ID / label maps (NOT redistributed: DUA) ----------------
+# These contain ADNI subject identifiers and diagnostic labels; keep them local.
+adni_date_map.json
+adni_group_lists.json
+
 # ---- Logs & scratch text --------------------------------------------------
 *.log
 *.err
