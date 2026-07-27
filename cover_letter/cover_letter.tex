@@ -30,20 +30,21 @@ disease,'' by Cristiano Capone, Enza Cece, Andrea Ciardiello, Guido Gigante,
 Evaristo Cisbani and Maurizio Mattia, for consideration as an Article in
 \textit{Nature Communications}.
 
-Network-level neuromodulation is most effective when a single, well-defined site
-can be engaged, yet Alzheimer's disease is widely regarded as a distributed
-network disorder. Whether its connectivity signature can be reduced to a focal,
-stimulable target has never been addressed causally, because doing so requires an
+Correcting abnormal brain-network dynamics can be attempted in two very different
+ways, by reshaping the connectivity graph itself or by injecting focal activity
+at a node, and these two interventions need not, and as we show do not, point to
+the same target. In Alzheimer's disease, widely regarded as a distributed network
+disorder, whether the connectivity signature can be reduced to a focal, stimulable
+target has never been addressed causally, because doing so requires an
 individualised generative model of brain dynamics that can be perturbed
 \emph{in silico}. We fit subject-specific, cross-subject-identifiable
 reservoir-computing models that reconstruct each individual's lagged functional
 connectivity and use them as a testbed for such counterfactual interventions.
 
-The central advance of our work is a clean conceptual distinction between two
-ways of intervening on such a model: perturbing the connectivity \emph{graph}
-(the fitted read-out kernel that defines the network's interactions) and
-perturbing \emph{activity} (a focal oscillatory drive injected at a node). We
-show these are fundamentally different interventions. Restoring control-like
+We make this distinction precise on the fitted model. Perturbing the connectivity
+\emph{graph} (the fitted read-out kernel that defines the network's interactions)
+and perturbing \emph{activity} (a focal oscillatory drive injected at a node)
+prove to be fundamentally different interventions. Restoring control-like
 dynamics by changing the graph is \emph{intrinsically distributed}: the required
 correction is a coordinated, multi-site change of the connectivity kernel that
 cannot be reproduced by editing any single node: a single-node graph edit is
