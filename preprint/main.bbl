@@ -112,6 +112,21 @@
   \textbf{\bibinfo{volume}{14}}, \bibinfo{pages}{2531--2560}
   (\bibinfo{year}{2002}).
 
+\bibitem{capone2018spont}
+\bibinfo{author}{Capone, C.}, \bibinfo{author}{Gigante, G.} \&
+  \bibinfo{author}{Del~Giudice, P.}
+\newblock \bibinfo{title}{Spontaneous activity emerging from an inferred
+  network model captures complex spatio-temporal dynamics of spike data}.
+\newblock \emph{\bibinfo{journal}{Scientific Reports}}
+  \textbf{\bibinfo{volume}{8}}, \bibinfo{pages}{17056} (\bibinfo{year}{2018}).
+
+\bibitem{capone2023simdata}
+\bibinfo{author}{Capone, C.} \emph{et~al.}
+\newblock \bibinfo{title}{Simulations approaching data: cortical slow waves in
+  inferred models of the whole hemisphere of mouse}.
+\newblock \emph{\bibinfo{journal}{Communications Biology}}
+  \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{266} (\bibinfo{year}{2023}).
+
 \bibitem{supekar2008}
 \bibinfo{author}{Supekar, K.}, \bibinfo{author}{Menon, V.},
   \bibinfo{author}{Rubin, D.}, \bibinfo{author}{Musen, M.} \&
