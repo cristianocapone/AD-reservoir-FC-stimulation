@@ -29,49 +29,34 @@ Capone, Enza Cece, Andrea Ciardiello, Guido Gigante,
 Evaristo Cisbani and Maurizio Mattia, for consideration as an Article in
 \textit{Nature Communications}.
 
-Correcting altered brain-network dynamics can be attempted in two very different
-ways, by reshaping the connectivity graph itself or by injecting focal activity
-at a node, and these two interventions need not, and as we show do not, point to
-the same target. In Alzheimer's disease, widely regarded as a distributed network
-disorder, whether the connectivity signature can be reduced to a focal, stimulable
-target has never been addressed causally, because doing so requires an
-individualised generative model of brain dynamics that can be perturbed
+Altered brain-network dynamics can be corrected in two very different ways, by
+reshaping the connectivity \emph{graph} or by injecting focal \emph{activity} at a
+node, and these interventions need not point to the same target. Testing this
+causally in Alzheimer's disease, widely regarded as a distributed network
+disorder, requires an individualised generative model that can be perturbed
 \emph{in silico}. We fit subject-specific, cross-subject-identifiable
-reservoir-computing models that reconstruct each individual's lagged functional
-connectivity and use them as a testbed for such counterfactual interventions.
+reservoir-computing models of each patient's lagged functional connectivity and
+use them as a testbed for such counterfactual interventions.
 
-We make this distinction precise on the fitted model. Perturbing the connectivity
-\emph{graph} (the fitted read-out kernel that defines the network's interactions)
-and perturbing \emph{activity} (a focal oscillatory drive injected at a node)
-prove to be fundamentally different interventions. Restoring control-like
-dynamics by changing the graph is \emph{intrinsically distributed}: the required
-correction is a coordinated, multi-site change of the connectivity kernel that
-cannot be reproduced by editing any single node: a single-node graph edit is
-inert. A focal activity perturbation, by contrast, \emph{can} be effective from a
-single, physically realisable site.
+On the fitted model the two interventions behave very differently. A graph
+correction that restores control-like dynamics is intrinsically distributed, a
+coordinated multi-site change of the connectivity kernel that a single-node edit
+cannot reproduce, whereas a focal activity drive is effective from one physically
+realisable site. Crucially, that optimal site is \emph{not} where the graph is
+most altered: the most graph-changed nodes (weakly-connected subcortical regions)
+and the effective stimulation sites (well-connected cortical regions) are largely
+disjoint. The dissociation follows from connectivity itself, the most affected
+nodes are the most weakly coupled and hence poor actuators, so the target must be
+chosen by its effect on the dynamics, not by where the graph change concentrates.
+A real-time closed-loop controller then reaches comparable efficacy at
+substantially lower dose using only causally available information.
 
-Crucially, the site at which focal activity stimulation is optimal is \emph{not}
-the site at which the graph is most altered. The ``graph'' sites (those with the
-largest change in the connectivity kernel, predominantly weakly-connected
-subcortical nodes) and the ``activity'' sites (those optimal for focal
-stimulation, predominantly well-connected cortical nodes) are largely disjoint.
-This dissociation is governed by the connectivity properties of the graph itself:
-the most graph-perturbed nodes are the most weakly coupled, and therefore poor
-actuators, whereas the nodes that provide therapeutic leverage are those best
-positioned to redistribute a corrective perturbation network-wide. The optimal
-target must therefore be chosen by its effect on the network's dynamics, not by
-where the change in the graph concentrates. We further show that a real-time
-closed-loop controller attains comparable efficacy at substantially lower dose
-using only causally available information, the in-silico analogue of adaptive
-neuromodulation.
-
-These results reframe a central question in targeted neuromodulation, ``where
-should we stimulate?'', as a question about the interaction between intervention
-modality and network connectivity, answerable only with an individualised,
-perturbable model. We believe this distinction between graph and activity
-perturbation, grounded in the graph's connectivity properties, will interest the
-broad readership of \textit{Nature Communications} across network neuroscience,
-computational modelling and neuromodulation, well beyond Alzheimer's disease.
+These results recast a central question in targeted neuromodulation, ``where
+should we stimulate?'', as one about the interaction between intervention modality
+and network connectivity, answerable only with an individualised, perturbable
+model. We believe this will interest the broad readership of \textit{Nature
+Communications} across network neuroscience, computational modelling and
+neuromodulation, beyond Alzheimer's disease.
 
 The manuscript is original, is not under consideration elsewhere, and all authors
 have approved its submission. The data derive from the Alzheimer's Disease
