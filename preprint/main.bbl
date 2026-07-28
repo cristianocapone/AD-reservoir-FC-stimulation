@@ -127,6 +127,15 @@
 \newblock \emph{\bibinfo{journal}{Communications Biology}}
   \textbf{\bibinfo{volume}{6}}, \bibinfo{pages}{266} (\bibinfo{year}{2023}).
 
+\bibitem{capone2019slowosc}
+\bibinfo{author}{Capone, C.}, \bibinfo{author}{Pastorelli, E.},
+  \bibinfo{author}{Golosio, B.} \& \bibinfo{author}{Paolucci, P.~S.}
+\newblock \bibinfo{title}{Sleep-like slow oscillations improve visual
+  classification through synaptic homeostasis and memory association in a
+  thalamo-cortical model}.
+\newblock \emph{\bibinfo{journal}{Scientific Reports}}
+  \textbf{\bibinfo{volume}{9}}, \bibinfo{pages}{8990} (\bibinfo{year}{2019}).
+
 \bibitem{supekar2008}
 \bibinfo{author}{Supekar, K.}, \bibinfo{author}{Menon, V.},
   \bibinfo{author}{Rubin, D.}, \bibinfo{author}{Musen, M.} \&
