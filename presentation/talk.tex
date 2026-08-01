@@ -1,0 +1,82 @@
+% Dependency-free 16:9 slide deck (one landscape page per slide).
+% Uses only graphicx / geometry / xcolor — no beamer, no package installs.
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[paperwidth=25.6cm,paperheight=14.4cm,margin=1.1cm]{geometry} % 16:9
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+\renewcommand{\familydefault}{\sfdefault}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\graphicspath{{../paper_figures/}}
+
+\definecolor{teal}{RGB}{14,140,127}
+\definecolor{ctrl}{RGB}{21,101,192}
+\definecolor{adred}{RGB}{198,40,40}
+\definecolor{ink}{RGB}{22,32,47}
+\color{ink}
+
+\newcounter{sld}
+\newcommand{\pageno}{\par\vspace{0.15cm}\hfill{\scriptsize\color{gray!70}\thesld}}
+\newcommand{\eyebrow}[1]{{\footnotesize\color{teal}\textbf{\uppercase{#1}}}\par\vspace{0.2cm}}
+
+% a figure slide: title, figure, one-line caption
+\newcommand{\figslide}[3]{%
+  \stepcounter{sld}%
+  \noindent{\large\color{teal}\textbf{#1}}\par\vspace{0.25cm}%
+  \begin{center}\includegraphics[width=0.82\linewidth,height=0.66\paperheight,keepaspectratio]{#2}\end{center}%
+  \vfill{\small #3}\par\pageno\clearpage}
+
+\begin{document}
+
+% 1 TITLE
+\stepcounter{sld}
+\vspace*{2.2cm}
+\eyebrow{Personalised models of resting-state fMRI \textperiodcentered\ Alzheimer's disease}
+{\fontsize{30}{34}\selectfont\bfseries Optimal stimulation sites\\ are not the most affected}\par
+\vspace{1.4cm}
+{\small\color{ink!85} C.~Capone \quad E.~Cece \quad A.~Ciardiello \quad G.~Gigante \quad E.~Cisbani \quad M.~Mattia}\par
+\vspace{0.15cm}{\small\color{gray} Istituto Superiore di Sanit\`a, Rome}
+\clearpage
+
+% 2 PROBLEM
+\stepcounter{sld}
+\vspace*{2.6cm}
+\begin{center}
+{\Large Alzheimer's is a \textcolor{adred}{distributed} network disorder.}\\[0.5cm]
+{\Large Yet targeted neuromodulation needs a \textbf{focal} target.}\\[1.1cm]
+{\fontsize{26}{30}\selectfont\bfseries\color{teal} Where should we stimulate?}
+\end{center}
+\pageno\clearpage
+
+% 3-8 FIGURE SLIDES
+\figslide{Resting-state fMRI: controls and patients}{figure1_data}%
+  {Individual resting-state fMRI from cognitively unimpaired controls and AD patients.}
+
+\figslide{A perturbable digital twin of each patient}{figure2_model}%
+  {A personalised reservoir model whose free-running dynamics \textbf{reproduce the patient's own} resting-state activity.}
+
+\figslide{Reading the disease from the model}{figure3_classification}%
+  {The fitted model parameters separate AD from controls --- a \textit{target} for intervention, not a diagnostic end.}
+
+\figslide{Correcting the connectivity reverts the signature}{figure4_stimulation}%
+  {Shifting the whole connectivity toward controls works; \textcolor{adred}{focal edits fail at any amplitude} --- the correction is distributed.}
+
+\figslide{The best target is not the most affected site}{figure5_topsites}%
+  {\textcolor{adred}{Most-changed} connectivity sites and \textcolor{teal}{effective} stimulation targets are largely disjoint.}
+
+\figslide{One site, and closed-loop control}{figure6_singlecompare}%
+  {A resonant drive at each patient's discriminant-aligned site reverts the classification; closed-loop titration reaches it at lower dose.}
+
+% 9 TAKEAWAY
+\stepcounter{sld}
+\vspace*{2.6cm}
+\begin{center}
+{\fontsize{24}{30}\selectfont\bfseries Stimulate where the network \textcolor{teal}{responds} ---}\\[0.3cm]
+{\fontsize{24}{30}\selectfont\bfseries not where it is most \textcolor{adred}{affected}.}\\[1.2cm]
+{\normalsize\color{ink!85} Model-informed, personalised targeting turns ``where to stimulate'' into a computable prescription.}
+\end{center}
+\pageno\clearpage
+
+\end{document}
