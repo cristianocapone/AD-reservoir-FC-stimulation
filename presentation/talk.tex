@@ -1,82 +1,123 @@
 % Dependency-free 16:9 slide deck (one landscape page per slide).
+% Mixes evocative concept figures (figs/) with real paper figures (../paper_figures/).
 % Uses only graphicx / geometry / xcolor — no beamer, no package installs.
 \documentclass[11pt]{article}
 \usepackage[T1]{fontenc}
-\usepackage[paperwidth=25.6cm,paperheight=14.4cm,margin=1.1cm]{geometry} % 16:9
+\usepackage[paperwidth=25.6cm,paperheight=14.4cm,margin=1.05cm]{geometry} % 16:9
 \usepackage{graphicx}
 \usepackage{xcolor}
 \usepackage[hidelinks]{hyperref}
 \renewcommand{\familydefault}{\sfdefault}
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
-\graphicspath{{../paper_figures/}}
+\graphicspath{{../paper_figures/}{figs/}}
 
 \definecolor{teal}{RGB}{14,140,127}
 \definecolor{ctrl}{RGB}{21,101,192}
 \definecolor{adred}{RGB}{198,40,40}
 \definecolor{ink}{RGB}{22,32,47}
 \color{ink}
+\renewcommand{\labelitemi}{\raisebox{0.15em}{\footnotesize\textcolor{teal}{\textbullet}}}
 
 \newcounter{sld}
-\newcommand{\pageno}{\par\vspace{0.15cm}\hfill{\scriptsize\color{gray!70}\thesld}}
-\newcommand{\eyebrow}[1]{{\footnotesize\color{teal}\textbf{\uppercase{#1}}}\par\vspace{0.2cm}}
+\newcommand{\pageno}{\vfill\hfill{\scriptsize\color{gray!70}\thesld}}
 
-% a figure slide: title, figure, one-line caption
-\newcommand{\figslide}[3]{%
+% figure (left) + bullets (right)
+\newcommand{\slidefb}[3]{%
   \stepcounter{sld}%
-  \noindent{\large\color{teal}\textbf{#1}}\par\vspace{0.25cm}%
-  \begin{center}\includegraphics[width=0.82\linewidth,height=0.66\paperheight,keepaspectratio]{#2}\end{center}%
-  \vfill{\small #3}\par\pageno\clearpage}
+  {\large\color{teal}\textbf{#1}}\par\vspace{0.30cm}%
+  \noindent
+  \begin{minipage}[c]{0.635\linewidth}\centering
+    \includegraphics[width=\linewidth,height=0.66\paperheight,keepaspectratio]{#2}%
+  \end{minipage}\hfill
+  \begin{minipage}[c]{0.33\linewidth}
+    \raggedright#3%
+  \end{minipage}%
+  \pageno\clearpage}
+
+\newcommand{\bul}[1]{{\normalsize\begin{itemize}\setlength\itemsep{0.7em}#1\end{itemize}}}
 
 \begin{document}
 
 % 1 TITLE
-\stepcounter{sld}
-\vspace*{2.2cm}
-\eyebrow{Personalised models of resting-state fMRI \textperiodcentered\ Alzheimer's disease}
+\stepcounter{sld}\vspace*{2.2cm}
+{\footnotesize\color{teal}\textbf{PERSONALISED MODELS OF RESTING-STATE fMRI \textperiodcentered\ ALZHEIMER'S DISEASE}}\par\vspace{0.35cm}
 {\fontsize{30}{34}\selectfont\bfseries Optimal stimulation sites\\ are not the most affected}\par
-\vspace{1.4cm}
+\vspace{1.3cm}
 {\small\color{ink!85} C.~Capone \quad E.~Cece \quad A.~Ciardiello \quad G.~Gigante \quad E.~Cisbani \quad M.~Mattia}\par
 \vspace{0.15cm}{\small\color{gray} Istituto Superiore di Sanit\`a, Rome}
 \clearpage
 
-% 2 PROBLEM
-\stepcounter{sld}
-\vspace*{2.6cm}
+% 2 MOTIVATION (concept)
+\slidefb{Where should we stimulate?}{concept_motivation}{%
+  \bul{%
+    \item Alzheimer's disrupts connectivity \textbf{brain-wide}
+    \item Neuromodulation works best at a \textbf{single site}
+    \item Is the signature reducible to a \textcolor{teal}{focal target}?}}
+
+% 3 DIGITAL TWIN (concept)
+\slidefb{A perturbable digital twin}{concept_twin}{%
+  \bul{%
+    \item One personalised model \textbf{per patient}
+    \item Its free-running dynamics \textbf{reproduce} the patient's own
+    \item We can now intervene \textcolor{teal}{in silico}}}
+
+% 4 MODEL FAITHFUL (paper fig 2)
+\slidefb{The model is faithful and individual}{figure2_model}{%
+  \bul{%
+    \item Reconstructs each subject's connectivity
+    \item Identifiable \textbf{across} subjects
+    \item A generative surrogate we can \textcolor{teal}{modify}}}
+
+% 5 CLASSIFICATION (paper fig 3)
+\slidefb{Reading the disease from the model}{figure3_classification}{%
+  \bul{%
+    \item Model parameters separate \textcolor{ctrl}{controls} from \textcolor{adred}{AD}
+    \item Modest accuracy --- below structural atrophy
+    \item A \textcolor{teal}{target} for stimulation, not a diagnostic}}
+
+% 6 TWO INTERVENTIONS (concept)
+\slidefb{Two ways to intervene}{concept_interventions}{%
+  \bul{%
+    \item \textbf{Graph}: reshape the connectivity itself
+    \item \textbf{Activity}: a focal drive at one node
+    \item They need not point to the \textcolor{teal}{same target}}}
+
+% 7 RESULT 1 (paper fig 4)
+\slidefb{Correcting connectivity reverts the signature}{figure4_stimulation}{%
+  \bul{%
+    \item Shifting the \textbf{whole} graph $\rightarrow$ reclassified as control
+    \item \textcolor{adred}{Focal edits fail} at any amplitude
+    \item The correction is \textcolor{teal}{distributed}}}
+
+% 8 RESULT 2 (paper fig 5 -> topsites)
+\slidefb{The best target is not the most affected site}{figure5_topsites}{%
+  \bul{%
+    \item \textcolor{adred}{Most-changed} sites: deep, subcortical
+    \item \textcolor{teal}{Effective} targets: cortical, well-connected
+    \item The two sets are \textbf{largely disjoint}}}
+
+% 9 WHY (concept)
+\slidefb{It follows from the connectivity}{concept_hubs}{%
+  \bul{%
+    \item \textcolor{adred}{Most-affected} nodes are weakly connected
+    \item Weak nodes are \textbf{poor actuators}
+    \item \textcolor{teal}{Hubs} spread the correction network-wide}}
+
+% 10 RESULT 3 (paper fig 6 -> singlecompare)
+\slidefb{One site, and closed-loop control}{figure6_singlecompare}{%
+  \bul{%
+    \item Resonant drive at the \textcolor{teal}{right site} cures the patient
+    \item A single read-out edit is \textbf{inert}
+    \item Closed-loop titration $\rightarrow$ \textbf{lower dose}}}
+
+% 11 TAKEAWAY
+\stepcounter{sld}\vspace*{2.7cm}
 \begin{center}
-{\Large Alzheimer's is a \textcolor{adred}{distributed} network disorder.}\\[0.5cm]
-{\Large Yet targeted neuromodulation needs a \textbf{focal} target.}\\[1.1cm]
-{\fontsize{26}{30}\selectfont\bfseries\color{teal} Where should we stimulate?}
-\end{center}
-\pageno\clearpage
-
-% 3-8 FIGURE SLIDES
-\figslide{Resting-state fMRI: controls and patients}{figure1_data}%
-  {Individual resting-state fMRI from cognitively unimpaired controls and AD patients.}
-
-\figslide{A perturbable digital twin of each patient}{figure2_model}%
-  {A personalised reservoir model whose free-running dynamics \textbf{reproduce the patient's own} resting-state activity.}
-
-\figslide{Reading the disease from the model}{figure3_classification}%
-  {The fitted model parameters separate AD from controls --- a \textit{target} for intervention, not a diagnostic end.}
-
-\figslide{Correcting the connectivity reverts the signature}{figure4_stimulation}%
-  {Shifting the whole connectivity toward controls works; \textcolor{adred}{focal edits fail at any amplitude} --- the correction is distributed.}
-
-\figslide{The best target is not the most affected site}{figure5_topsites}%
-  {\textcolor{adred}{Most-changed} connectivity sites and \textcolor{teal}{effective} stimulation targets are largely disjoint.}
-
-\figslide{One site, and closed-loop control}{figure6_singlecompare}%
-  {A resonant drive at each patient's discriminant-aligned site reverts the classification; closed-loop titration reaches it at lower dose.}
-
-% 9 TAKEAWAY
-\stepcounter{sld}
-\vspace*{2.6cm}
-\begin{center}
-{\fontsize{24}{30}\selectfont\bfseries Stimulate where the network \textcolor{teal}{responds} ---}\\[0.3cm]
-{\fontsize{24}{30}\selectfont\bfseries not where it is most \textcolor{adred}{affected}.}\\[1.2cm]
+{\fontsize{23}{29}\selectfont\bfseries Stimulate where the network \textcolor{teal}{responds} ---}\\[0.3cm]
+{\fontsize{23}{29}\selectfont\bfseries not where it is most \textcolor{adred}{affected}.}\\[1.2cm]
 {\normalsize\color{ink!85} Model-informed, personalised targeting turns ``where to stimulate'' into a computable prescription.}
 \end{center}
-\pageno\clearpage
+\clearpage
 
 \end{document}
