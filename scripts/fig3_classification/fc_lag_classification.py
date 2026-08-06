@@ -48,7 +48,7 @@ import warnings as _w; _w.filterwarnings("ignore")
 RNG_SEED  = 42
 N_SITES   = 121
 MAX_LAG   = 5
-TS_ROOT   = "./timeseries"
+TS_ROOT   = os.environ.get("TS_ROOT","./timeseries")
 K_VALUES  = [5, 10, 15, 17, 20, 22, 25, 28, 30, 40, 50, 75]
 CACHE_FILE = "fc_lag_features_cache.npz"
 OUT_DIR   = "."

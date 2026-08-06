@@ -35,7 +35,7 @@ sys.path.insert(0, ".")
 from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; TIMES_SKIP=10
-ff=0.1; N_HIDDEN=2000; SIGMA=0.025; SR=0.95; TS_ROOT="./timeseries"; OUT="paper_figures"
+ff=0.1; N_HIDDEN=2000; SIGMA=0.025; SR=0.95; TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"
 KPC_GRID=np.array([10,25,50,75,100,150,200])
 M_GRID  =np.array([1,2,3,5,8,12,20,30,40,50])
 N_REP=4; TEST_FRAC=0.30

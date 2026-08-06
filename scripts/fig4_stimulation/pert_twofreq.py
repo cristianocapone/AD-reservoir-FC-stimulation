@@ -1,3 +1,9 @@
+# --- path bootstrap (auto-added): import shared modules from scripts/common ---
+import sys as _sys, pathlib as _pathlib
+for _p in _pathlib.Path(__file__).resolve().parents:
+    if (_p / "scripts" / "common").is_dir():
+        _sys.path.insert(0, str(_p / "scripts" / "common")); break
+# --- end bootstrap ---
 """
 pert_twofreq.py — test two ideas at a FIXED site (eigenmode site 71):
   (1) does driving at the most CC/AD-discriminative mode frequency (f_disc)
@@ -22,7 +28,7 @@ sys.path.insert(0,"."); from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; TIMES_SKIP=10
 ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; K_LDA=25; MAX_LAG=2
-TS_ROOT="./timeseries"; OUT="paper_figures"; SITE=71
+TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"; SITE=71
 AMPS=np.array([0.0,1.0,2.0,4.0,6.0,8.0,10.0])
 
 print("Loading data + reservoir ...")

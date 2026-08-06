@@ -49,7 +49,7 @@ plt.rcParams.update({
 })
 CC_COL = "#2196F3"; AD_COL = "#E91E63"
 
-TS_ROOT      = "../timeseries"
+TS_ROOT      = os.environ.get("TS_ROOT","../timeseries")
 RNG_SEED     = 42
 N_CC_SAMP    = 40
 N_SITES      = 121

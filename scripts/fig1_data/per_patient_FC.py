@@ -28,7 +28,7 @@ N_CC_SAMPLE = 40
 N_SITES     = 121
 N_PC_MODEL  = 50
 TIMES_SKIP  = 10
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR     = "./summary_out"
 os.makedirs(OUT_DIR, exist_ok=True)
 

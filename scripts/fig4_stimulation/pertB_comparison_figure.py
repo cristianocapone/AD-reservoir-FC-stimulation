@@ -44,7 +44,7 @@ ff          = 0.1
 N_HIDDEN    = 2000
 SIGMA       = 0.05
 SR          = 0.95
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR     = "."
 
 ALPHA_GRIDS = {

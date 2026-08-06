@@ -1,3 +1,9 @@
+# --- path bootstrap (auto-added): import shared modules from scripts/common ---
+import sys as _sys, pathlib as _pathlib
+for _p in _pathlib.Path(__file__).resolve().parents:
+    if (_p / "scripts" / "common").is_dir():
+        _sys.path.insert(0, str(_p / "scripts" / "common")); break
+# --- end bootstrap ---
 """
 pert_ampfreq_grid.py — per-patient 2D (amplitude x frequency) stimulation scan.
 At each patient's personalised LDA-resonant site, drive A*sin(2*pi*f*t) and record:
@@ -19,7 +25,7 @@ sys.path.insert(0,"."); from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; TIMES_SKIP=10
 ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; K_LDA=25; MAX_LAG=2; DRIVE_STEPS=5
-TS_ROOT="./timeseries"; OUT="paper_figures"
+TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"
 AMPS=np.array([0.0,0.5,1.0,1.5,2.0,3.0,4.0,6.0])
 iu=np.triu_indices(N_SITES,1)
 

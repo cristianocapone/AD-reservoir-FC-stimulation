@@ -2,7 +2,7 @@
 from collections import defaultdict
 
 N_SITES = 121
-TS_ROOT = "./timeseries"
+TS_ROOT = os.environ.get("TS_ROOT","./timeseries")
 
 pid_sessions = defaultdict(list)
 for grp in ["CN","AD"]:

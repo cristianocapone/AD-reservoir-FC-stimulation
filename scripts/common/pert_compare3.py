@@ -43,7 +43,7 @@ from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; K_PC=200; TIMES_SKIP=10
 ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; K_LDA=25; MAX_LAG=2
-TS_ROOT="./timeseries"; OUT="paper_figures"; A_REF=4.0
+TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"; A_REF=4.0
 ALPHAS=np.linspace(0,5,11); AMPS=np.linspace(0,10,11)
 
 def load_labels(path="./timeseries/parcel_labels.txt"):

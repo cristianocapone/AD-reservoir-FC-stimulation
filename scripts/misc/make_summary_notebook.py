@@ -55,7 +55,7 @@ from scipy.stats import gaussian_kde
 warnings.filterwarnings("ignore")
 
 ROOT    = "."
-TS_ROOT = "./timeseries"
+TS_ROOT = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR = "./summary_out"
 os.makedirs(OUT_DIR, exist_ok=True)
 

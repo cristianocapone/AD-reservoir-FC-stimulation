@@ -30,7 +30,7 @@ from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; K_PC=200; TIMES_SKIP=10
 ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; K_LDA=25; MAX_LAG=2; DRIVE_STEPS=5
-TS_ROOT="./timeseries"; OUT="paper_figures"
+TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"
 ALPHAS=np.linspace(0,2,11)                              # full Delta-W to alpha=2 (Fig 4 range; reverts at ~1.5-2)
 AMPS=np.array([0,0.1,0.25,0.5,0.75,1,1.5,2,3,5,10.])    # finer low end to resolve the resonant onset
 iu=np.triu_indices(N_SITES,1)

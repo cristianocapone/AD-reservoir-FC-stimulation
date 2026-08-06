@@ -30,7 +30,7 @@ K_PC        = 200
 TIMES_SKIP  = 10
 ff          = 0.1
 N_HIDDEN    = 2000
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 
 NOISE_VALS  = [0.025, 0.05, 0.10, 0.50]
 K_MAX       = 15   # k-sweep range for LOPO LDA

@@ -52,7 +52,7 @@ TIMES_SKIP  = 10
 ff          = 0.1
 N_HIDDEN    = 2000
 NOISE_SIZE  = 0.025
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR     = "."
 K_LDA       = 2
 

@@ -63,7 +63,7 @@ SIGMA          = 0.05        # condition-B optimum
 K_LDA          = 25          # condition-B optimum
 SR             = 0.95
 SIM_MAX_STABLE = 1e4
-TS_ROOT        = "./timeseries"
+TS_ROOT        = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR        = "."
 
 ALPHA_GRIDS = {

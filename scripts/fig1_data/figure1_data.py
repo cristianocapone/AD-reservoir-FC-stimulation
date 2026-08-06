@@ -29,7 +29,7 @@ TR          = 3.0
 trial_dur   = 139
 N_PC_MODEL  = 50
 TIMES_SKIP  = 10
-TS_ROOT     = "../timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","../timeseries")
 OUT_DIR     = "."
 
 CC_COL = "#2196F3"

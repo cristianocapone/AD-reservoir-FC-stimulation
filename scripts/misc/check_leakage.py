@@ -40,7 +40,7 @@ noise_size  = 0.025
 TIMES_SKIP  = 10
 ff          = 0.1
 N_HIDDEN    = 2000
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 
 # ── LDA ───────────────────────────────────────────────────────────────────────
 class _LDA:

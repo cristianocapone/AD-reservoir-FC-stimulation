@@ -1,3 +1,9 @@
+# --- path bootstrap (auto-added): import shared modules from scripts/common ---
+import sys as _sys, pathlib as _pathlib
+for _p in _pathlib.Path(__file__).resolve().parents:
+    if (_p / "scripts" / "common").is_dir():
+        _sys.path.insert(0, str(_p / "scripts" / "common")); break
+# --- end bootstrap ---
 """
 replot_persdist.py — distribution over patients of the personalised LDA-resonant
 single-site target (from pert_compare3_data.npz). No experiment re-run.

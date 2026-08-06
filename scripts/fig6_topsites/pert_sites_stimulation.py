@@ -67,7 +67,7 @@ SIGMA      = 0.05
 K_LDA      = 25
 SR         = 0.95
 MAX_LAG    = 2        # lags 0, 1, 2  → 36 542 features
-TS_ROOT    = "./timeseries"
+TS_ROOT    = os.environ.get("TS_ROOT","./timeseries")
 
 # Alpha grids — choose so each strategy's interesting region is well sampled
 ALPHAS_FW  = np.array([0, 0.1, 0.25, 0.5, 0.75, 1.0, 1.5, 2.0])

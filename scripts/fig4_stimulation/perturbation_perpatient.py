@@ -52,7 +52,7 @@ ff          = 0.1
 N_HIDDEN    = 2000
 NOISE_SIZE  = 0.025        # per-patient W noise (same as 85% classification)
 K_LDA       = 2            # best k at noise=0.025 (from noise_ba_sweep.py)
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR     = "."          # save PNGs in the root (same as original notebook)
 
 ALPHA_THERAPEUTIC = [0.0, 0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0]

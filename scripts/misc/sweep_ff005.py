@@ -26,7 +26,7 @@ K_PC             = 200
 M_ARCH           = 600
 noise_size       = 0.025
 TIMES_SKIP       = 10
-TS_ROOT          = "./timeseries"
+TS_ROOT          = os.environ.get("TS_ROOT","./timeseries")
 
 # ── LDA ──────────────────────────────────────────────────────────────────────
 class _LDA:

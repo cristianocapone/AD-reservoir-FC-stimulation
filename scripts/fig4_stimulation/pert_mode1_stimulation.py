@@ -58,7 +58,7 @@ SIGMA      = 0.05
 K_LDA      = 25
 SR         = 0.95
 MAX_LAG    = 2
-TS_ROOT    = "./timeseries"
+TS_ROOT    = os.environ.get("TS_ROOT","./timeseries")
 PHYSIO     = 4.0
 
 ALPHAS = np.array([0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 7.5, 10, 12.5, 15, 17.5, 20])

@@ -63,7 +63,7 @@ SIGMA       = 0.05
 K_LDA       = 25
 SR          = 0.95
 MAX_LAG_FL  = 2
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 LAG0_D      = N_SITES * (N_SITES - 1) // 2
 LAGK_D      = N_SITES ** 2
 

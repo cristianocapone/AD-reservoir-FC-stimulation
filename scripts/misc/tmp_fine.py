@@ -2,7 +2,7 @@
 from collections import defaultdict
 from sklearn.metrics import roc_auc_score
 
-RNG_SEED = 42; N_SITES = 121; MAX_LAG = 5; TS_ROOT = "./timeseries"
+RNG_SEED = 42; N_SITES = 121; MAX_LAG = 5; TS_ROOT = os.environ.get("TS_ROOT","./timeseries")
 
 def lagged_corrcoef(S, lag):
     if lag == 0:

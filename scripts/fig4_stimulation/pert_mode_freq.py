@@ -1,3 +1,9 @@
+# --- path bootstrap (auto-added): import shared modules from scripts/common ---
+import sys as _sys, pathlib as _pathlib
+for _p in _pathlib.Path(__file__).resolve().parents:
+    if (_p / "scripts" / "common").is_dir():
+        _sys.path.insert(0, str(_p / "scripts" / "common")); break
+# --- end bootstrap ---
 """
 pert_mode_freq.py — test the "mode, not site" hypothesis.
 (A) Site-robustness at the dominant-mode frequency f1: from cached red_full
@@ -20,7 +26,7 @@ import warnings; warnings.filterwarnings("ignore")
 sys.path.insert(0,"."); from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; TIMES_SKIP=10
-ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; TS_ROOT="./timeseries"; OUT="paper_figures"
+ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"
 
 # ── (A) site-robustness from cached scan ─────────────────────────────────────
 d=np.load("pert_compare3_data.npz",allow_pickle=True)

@@ -42,7 +42,7 @@ plt.rcParams.update({
 
 # ── parameters (match the stimulation analyses) ───────────────────────────────
 RNG_SEED = 42; N_CC_SAMP = 40; N_SITES = 121; N_PC_MODEL = 50; TIMES_SKIP = 10
-ff = 0.1; N_HIDDEN = 2000; SIGMA = 0.05; SR = 0.95; TS_ROOT = "../timeseries"
+ff = 0.1; N_HIDDEN = 2000; SIGMA = 0.05; SR = 0.95; TS_ROOT = os.environ.get("TS_ROOT","../timeseries")
 
 FW_COL, T5_COL, T1_COL, GEO_COL = "#2E7D32", "#E65100", "#6A1B9A", "#00838F"
 

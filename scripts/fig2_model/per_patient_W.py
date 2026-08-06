@@ -39,7 +39,7 @@ K_PC             = 200
 noise_size       = 0.025
 TIMES_SKIP       = 10
 ff               = 0.1
-TS_ROOT          = "./timeseries"
+TS_ROOT          = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR          = "./summary_out"
 os.makedirs(OUT_DIR, exist_ok=True)
 

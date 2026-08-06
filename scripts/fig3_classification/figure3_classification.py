@@ -69,7 +69,7 @@ ff         = 0.1
 N_HIDDEN   = 2000
 SR         = 0.95
 MAX_LAG    = 2
-TS_ROOT    = "../timeseries"
+TS_ROOT    = os.environ.get("TS_ROOT","../timeseries")
 
 SIGMA_GRID = np.array([0.003, 0.007, 0.015, 0.025, 0.05, 0.1, 0.25, 0.5])
 K_GRID     = np.array([2, 3, 5, 8, 10, 15, 20, 25, 30, 40, 50])

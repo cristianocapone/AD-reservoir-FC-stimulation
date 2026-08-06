@@ -49,7 +49,7 @@ K_PC        = 200        # SVD components of X used for W→G projection
 TIMES_SKIP  = 10
 ff          = 0.1
 N_HIDDEN    = 2000
-TS_ROOT     = "./timeseries"
+TS_ROOT     = os.environ.get("TS_ROOT","./timeseries")
 OUT_DIR     = "."
 
 SIGMA_GRID  = [0.001, 0.003, 0.007, 0.015, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.0]

@@ -27,7 +27,7 @@ sys.path.insert(0, ".")
 from res import RESERVOIRE_SIMPLE
 
 RNG_SEED=42; N_CC_SAMP=40; N_SITES=121; N_PC_MODEL=50; TIMES_SKIP=10
-ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; TS_ROOT="./timeseries"; OUT="paper_figures"
+ff=0.1; N_HIDDEN=2000; SIGMA=0.05; SR=0.95; TS_ROOT=os.environ.get("TS_ROOT","./timeseries"); OUT="paper_figures"
 
 def load_labels(path="./timeseries/parcel_labels.txt"):
     lab={}

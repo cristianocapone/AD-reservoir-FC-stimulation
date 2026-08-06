@@ -53,7 +53,7 @@ SIGMA      = 0.05
 K_LDA      = 25
 SR         = 0.95
 MAX_LAG    = 2
-TS_ROOT    = "./timeseries"
+TS_ROOT    = os.environ.get("TS_ROOT","./timeseries")
 
 AMPS    = np.array([0, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0, 2.0, 5.0])
 K_SITES = np.array([1, 2, 5])   # number of top sites stimulated simultaneously

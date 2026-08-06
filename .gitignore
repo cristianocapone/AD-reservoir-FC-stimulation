@@ -93,3 +93,5 @@ paper/*.synctex.gz
 
 # Pre-rerun backup of contaminated-cohort results (local only)
 archive_contaminated_run_*/
+
+timeseries_clean/

@@ -46,7 +46,7 @@ SIGMA      = 0.05
 SR         = 0.95
 K_LDA      = 25
 MAX_LAG    = 2
-TS_ROOT    = "./timeseries"
+TS_ROOT    = os.environ.get("TS_ROOT","./timeseries")
 OUT        = "paper_figures"
 
 K_SITES = [1, 5]
