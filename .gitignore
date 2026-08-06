@@ -90,3 +90,6 @@ paper/*.synctex.gz
 !paper_figures/*.pdf
 !paper/
 !paper/*.pdf
+
+# Pre-rerun backup of contaminated-cohort results (local only)
+archive_contaminated_run_*/
