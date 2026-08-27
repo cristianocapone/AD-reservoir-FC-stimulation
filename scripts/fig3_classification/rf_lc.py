@@ -61,11 +61,11 @@ OUT_DIR    = "."
 CACHE_FILE = "g_space_cache.npz"
 
 K_USE   = 15          # LDA optimal from klda_sweep
-K_MAX   = 38          # max PCs to keep in cache (= N_FIXED-2 at N=40)
-N_GRID  = [4, 6, 8, 10, 12, 15, 18, 20, 25, 30, 35, 40]
+K_MAX   = 31          # max PCs to keep in cache (= N_FIXED-2 at N=33)
+N_GRID  = [4, 6, 8, 10, 12, 15, 18, 20, 25, 30, 33]
 N_REPS  = 30
 K_SWEEP = [5, 10, 15, 20, 25, 30, 35, 38]   # for experiment B
-N_FIXED = 40
+N_FIXED = 33   # clean cohort: 33 verified AD patients
 
 # RF configurations
 RF_DEFAULT = RandomForestClassifier(

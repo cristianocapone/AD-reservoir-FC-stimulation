@@ -30,7 +30,13 @@ from tqdm import tqdm
 warnings.filterwarnings('ignore')
 
 WORK_DIR  = os.path.dirname(os.path.abspath(__file__))
-DATA_ROOT = os.path.join(WORK_DIR, 'data', 'timeseries')
+# repo root = two levels up from scripts/<bucket>/ ; allow TS_ROOT_GSR override
+_REPO = os.path.dirname(os.path.dirname(WORK_DIR))
+if os.environ.get('TS_ROOT_GSR'):
+    DATA_ROOT = os.path.abspath(os.environ['TS_ROOT_GSR'])
+else:
+    DATA_ROOT = os.path.join(_REPO, 'timeseries_GSR')
+_UNUSED = os.path.join(WORK_DIR, 'data', 'timeseries')
 if not os.path.isdir(DATA_ROOT):                       # fall back to repo-root data
     DATA_ROOT = os.path.join(WORK_DIR, 'timeseries_GSR')   # GSR preproc (paper benchmark)
     if not os.path.isdir(DATA_ROOT):
@@ -39,8 +45,7 @@ OUT       = os.path.join(WORK_DIR, 'tangent_fc_results')
 
 N_OUTER    = 5
 N_INNER    = 5
-FOLDS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                          'tangent_fc_folds.npz')
+FOLDS_FILE = os.path.join(_REPO, os.environ.get('FOLDS_NAME','tangent_fc_folds.npz'))
 
 
 def generate_folds(y, g, n_outer, n_inner, seed_out=42, seed_in=0):

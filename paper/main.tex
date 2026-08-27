@@ -107,6 +107,12 @@ responsive.
 Alzheimer's disease (AD) is increasingly understood as a disorder of brain
 networks rather than of isolated regions, in which the progressive disruption of
 large-scale functional interactions parallels cognitive decline~\cite{seeley2009,delbeuck2003}.
+That the disruption is essentially \emph{distributed} is apparent already in
+metabolic imaging: the inter-regional correlation of FDG-PET uptake decreases
+progressively, and approximately linearly, along the transition from normal
+aging through mild cognitive impairment to AD, so that the loss of correlation
+tracks proximity to disease onset rather than damage confined to a few
+regions~\cite{pagani2016,pagani2017}.
 Resting-state functional connectivity (FC)
 , the inter-regional correlation structure of spontaneous BOLD activity, is
 among the most widely studied non-invasive readouts of this disruption, and AD
@@ -206,9 +212,9 @@ below.
   parcels in a CC (blue) and an AD (red) session.
   (\textbf{C}) Mean functional connectivity (FC; Pearson $r$ over parcel pairs)
   per session, CC vs AD. The two distributions do not differ significantly
-  (two-sided Mann--Whitney $U$ over all $557$ CC and $145$ AD sessions,
-  $p=0.08$; the panel shows a balanced $40$-session CC subsample), a weak trend
-  toward higher mean FC in AD, consistent with the subtle, spatially diffuse
+  (two-sided Mann--Whitney $U$ over all $163$ CC and $104$ AD sessions,
+  $p=0.55$; the panel shows a $39$-session CC subsample), with at most a slight
+  numerical excess in AD, consistent with the subtle, spatially diffuse
   group difference described below.
   (\textbf{D},\textbf{E}) Group-mean FC matrices (Schaefer-100 cortical parcels,
   network-sorted) for CC (D) and AD (E); white lines delimit the seven
@@ -285,14 +291,14 @@ cohorts~\cite{supekar2008,chen2011,khazaee2015,challis2015}. As a benchmark, an
 independent tangent-space (Riemannian) FC classifier with a linear support-vector
 machine, evaluated under \emph{nested} $5\times5$ patient-level cross-validation
 with a train-only tangent reference, so that no test information enters the
-feature construction, reached AUROC $0.75\pm0.12$ (out-of-fold $0.71$;
+feature construction, reached AUROC $0.77\pm0.16$ (out-of-fold $0.76$;
 Fig.~\ref{fig:classification}, dotted band and ROC in
 Fig.~\ref{fig:classification}E). The reservoir-based read-outs therefore lie in the
 same modest range as this leakage-free FC benchmark, at its lower end but well
 within its (wide) cross-validation spread, consistent with their being compact
 per-subject parameterisations rather than classifiers optimised for discrimination.
 As a further control we classified the \emph{experimental} lagged FC directly,
-i.e.\ the lagged correlations of the empirical parcel BOLD ($143$ CC, $40$ AD
+i.e.\ the lagged correlations of the empirical parcel BOLD ($46$ CC, $34$ AD
 patients; same Gram-SVD embedding and leave-one-patient-out LDA/RF as the
 model-based FC-lag): this reached comparable accuracy (AUROC $\approx0.71$,
 peaking at $K\!\approx\!20$--$25$ and at lag~$2$), showing that reading out the
@@ -315,7 +321,7 @@ reach a similar ceiling is itself consistent with a modest, distributed disease
 signal rather than a sharply localised one. Importantly, accuracy had not
 saturated at the present sample size: a learning-curve analysis over the number
 of patients used for fitting showed AUROC still rising with cohort size, and an
-empirical extrapolation projects $\sim$0.76 AUROC at $N=100$ and $\sim$0.80 at
+empirical extrapolation projects $\sim$0.83 AUROC at $N=100$ and $\sim$0.87 at
 $N=200$ patients per group (Fig.~\ref{fig:scaling}), indicating that the modest
 accuracy reflects sample size rather than a ceiling of the representation.
 
@@ -336,7 +342,7 @@ accuracy reflects sample size rather than a ceiling of the representation.
   (\textbf{C},\textbf{D}) Balanced accuracy (C) and AUROC (D) vs read-out
   regularisation noise $\sigma$ (at the reference $K$).
   Grey dotted line, chance ($0.5$); dark dotted line with band, an independent
-  tangent-space (Riemannian) FC $+$ linear-SVM classifier (AUROC $0.75\pm0.12$,
+  tangent-space (Riemannian) FC $+$ linear-SVM classifier (AUROC $0.77\pm0.16$,
   mean $\pm$ SD over a \emph{nested} $5\times5$ patient-level CV with a train-only
   tangent reference and fixed, saved fold indices for reproducibility), a strong,
   leakage-free FC baseline. Both reservoir-based feature spaces plateau near
@@ -592,15 +598,15 @@ shared anatomical hub.
   site among the top-five (orange) or as the single most-affected site (top-1,
   purple). The leading sites are subcortical and limbic, bilateral pallidum and
   nucleus accumbens, the brainstem and the amygdala.
-  (\textbf{C}) Overlap between the two site sets: of the $35$ distinct
-  pathology sites (top-5 union across patients) and $33$ distinct therapy sites
-  (top-1 per patient), only $11$ sites ($\sim$$31\%$ and $\sim$$33\%$ of each
-  set, respectively) are shared; the great majority of each set is exclusive to
+  (\textbf{C}) Overlap between the two site sets: of the $29$ distinct
+  pathology sites (top-5 union across patients) and $25$ distinct therapy sites
+  (top-1 per patient), only $1$ site ($\sim$$3\%$ and $\sim$$4\%$ of each
+  set, respectively) is shared; each set is almost entirely exclusive to
   that criterion.
   (\textbf{D}) Glass-brain markers at the therapy sites, coloured and sized by
   top-1 selection frequency: predominantly cortical and, unlike the pathology
   sites, without a shared anatomical hub, each site is selected by at most three
-  of the $40$ patients.
+  of the $33$ patients.
   (\textbf{E}) Therapy selection frequency: the leading therapy sites are the
   left Default-network prefrontal cortex and visual association cortex, with no
   site selected by more than three patients.}
@@ -846,7 +852,7 @@ sessions to match the $40$ AD subjects passing quality control; grouping by
 subject (one session each) gives $36$ CC and $40$ AD subjects. The full pool
 ($145$ CC and $41$ AD subjects; $561$ and $151$ sessions) was used for the
 cohort-size scaling and for the tangent-space SVM benchmark. The latter used the
-globally signal-regressed sessions ($557$ CC $+$ $145$ AD sessions passing a
+globally signal-regressed sessions ($163$ CC $+$ $104$ AD sessions passing a
 $>$$100$-volume filter) under \emph{nested} $5\times5$ subject-grouped
 cross-validation: Ledoit--Wolf covariances projected to the tangent space at a
 \emph{train-only} reference mean, then standardised, PCA-reduced, and classified
@@ -1146,16 +1152,17 @@ session.}
 \hline
 Analysis & Controls (CC) & AD & Cross-validation / unit \\
 \hline
-Available pool & 145 subj / 561 ses & 41 subj / 151 ses & ,  \\
-Data overview, FC similarity (Fig.~1) & 561 sessions & 151 sessions & per session \\
+Available pool & 46 subj / 163 ses & 34 subj / 104 ses & ,  \\
+Data overview, FC similarity (Fig.~1) & 163 sessions & 104 sessions & per session \\
 Reservoir fit \& FC validation (Fig.~2); G-space \& FC-lag classifiers
 (Fig.~3A--D); all in-silico stimulation (Figs~4--6, S2--S10)
-& 36 subjects & 40 subjects & one session/subject; $40$ CC sessions sampled to
-balance $40$ AD ($36$ unique CC subjects); repeated stratified CV \\
-Cohort-size scaling (Fig.~S1) & up to 145 subj & up to 41 subj & balanced subsets,
+& 38 subjects & 33 subjects & one session/subject; $40$ CC sessions sampled
+from the $48$ verified CC subjects ($38$ passing the volume filter); repeated
+stratified CV \\
+Cohort-size scaling (Fig.~S1) & up to 46 subj & up to 34 subj & balanced subsets,
 leave-one-patient-out \\
-Tangent-space SVM benchmark (Fig.~3E,F) & 557 sessions (143 subj) & 145 sessions
-(40 subj) & GSR preprocessing; nested $5\times5$ subject-grouped CV ($702$
+Tangent-space SVM benchmark (Fig.~3E,F) & 163 sessions (46 subj) & 104 sessions
+(34 subj) & GSR preprocessing; nested $5\times5$ subject-grouped CV ($267$
 sessions, train-only tangent reference) \\
 \hline
 \end{tabular}
@@ -1170,8 +1177,8 @@ sessions, train-only tangent reference) \\
   $\pm$ SD over resampled subsets). A saturating power law $m(N)=A-B\,N^{-C}$ is
   fit to each metric (blue line; shaded $68\%$ band from the fit covariance) and
   extrapolated beyond the current cohort (orange region). Accuracy has not
-  saturated at $N=40$: the extrapolation projects AUROC $\approx0.76$ at $N=100$
-  and $\approx0.80$ at $N=200$ (orange markers), indicating that the modest
+  saturated at $N=33$: the extrapolation projects AUROC $\approx0.83$ at $N=100$
+  and $\approx0.87$ at $N=200$ (orange markers), indicating that the modest
   present accuracy is sample-size-limited rather than an intrinsic ceiling of the
   read-out representation.}
   \label{fig:scaling}
@@ -1229,7 +1236,7 @@ sessions, train-only tangent reference) \\
   \includegraphics[width=\linewidth]{figureS5_persdist.pdf}
   \caption{\textbf{Per-patient top-1 stimulation site: comparison of the three
   selection criteria} (same seeded reservoir; glass brain on top, selection-%
-  frequency histogram below; $N=40$ AD patients).
+  frequency histogram below; $N=33$ AD patients).
   (\textbf{A}) \emph{$\Delta W$} (most relevant in the read-out; the single-site
   $\Delta W$ stimulation): the site of largest $\|W_{\mathrm{CC}}-W_p\|$. These
   targets cluster on a few \emph{subcortical} structures shared across patients
@@ -1255,7 +1262,7 @@ sessions, train-only tangent reference) \\
   \includegraphics[width=\linewidth]{figureS6_fidelity.pdf}
   \caption{\textbf{How much each intervention perturbs the simulation, for a given
   therapeutic effect: full exact $\Delta W$, personalised LDA-resonant, and
-  eigenmode-site resonant stimulation} ($N=40$ AD). The perturbation is the Pearson
+  eigenmode-site resonant stimulation} ($N=33$ AD). The perturbation is the Pearson
   correlation (FC off-diagonals) between the \emph{closed-loop free-run} simulated
   FC under stimulation (generative protocol of Fig.~\ref{fig:model}: drive $5$
   steps, then free-run) and the \emph{unstimulated} model's own free-run FC, so it
@@ -1300,7 +1307,7 @@ sessions, train-only tangent reference) \\
   \centering
   \includegraphics[width=\linewidth]{figureS7_modefreq.pdf}
   \caption{\textbf{Why site and resonance both matter: a drivable mode is not the
-  same as a disease-discriminative one} ($N=40$ AD). Because a resonant drive
+  same as a disease-discriminative one} ($N=33$ AD). Because a resonant drive
   reshapes the FC network-wide (fig.~S5), one might hope that the frequency/mode
   alone determines the effect. It does not. (\textbf{A}) Driving each of the $121$
   sites at the dominant-mode frequency $f_1$ ($A=4$): the per-site reclassification
@@ -1345,7 +1352,7 @@ sessions, train-only tangent reference) \\
   \centering
   \includegraphics[width=\linewidth]{figureS8_oscfreq.pdf}
   \caption{\textbf{Frequency prescription and high-amplitude dose-response of
-  focal oscillatory stimulation} ($N=40$ AD). A sinusoidal drive
+  focal oscillatory stimulation} ($N=33$ AD). A sinusoidal drive
   $A\sin(2\pi f t)$ is injected at the top-$k$ most-affected ($\Delta W$) sites and
   the FC-lag score re-evaluated (lower\,$=$\,more control-like).
   (\textbf{A}) Frequency tuning at moderate amplitude ($A=4$): mean $\pm$ SEM for
@@ -1374,7 +1381,7 @@ sessions, train-only tangent reference) \\
   \includegraphics[width=\linewidth]{figureS9_ampfreq.pdf}
   \caption{\textbf{Per-patient amplitude$\times$frequency stimulation landscape:
   trading off reclassification against departure from the unstimulated simulation}
-  ($N=40$ AD). Each patient is driven at its personalised LDA-resonant site over an
+  ($N=33$ AD). Each patient is driven at its personalised LDA-resonant site over an
   $8\times10$ grid of amplitude $A$ and frequency $f$; we record the FC-lag score
   (reclassified if below the boundary; classifier space) and the distance to the
   \emph{unstimulated} simulation, $1-\mathrm{corr}$ between the stimulated and
@@ -1402,7 +1409,7 @@ sessions, train-only tangent reference) \\
   \centering
   \includegraphics[width=\linewidth]{figure_lopo_target.pdf}
   \caption{\textbf{The therapeutic reclassification survives a leakage-free
-  (leave-one-AD-patient-out) discriminant} ($N=40$ AD). The FC-lag embedding,
+  (leave-one-AD-patient-out) discriminant} ($N=33$ AD). The FC-lag embedding,
   the LDA discriminant, its decision threshold and the site-selection criterion
   are all rebuilt from the training patients only and applied to each held-out
   AD patient (Methods). Two targets are compared: the
@@ -1431,7 +1438,7 @@ sessions, train-only tangent reference) \\
   \includegraphics[width=\linewidth]{figureS10_physio.pdf}
   \caption{\textbf{Physiological diagnostics of the read-out interpolation:
   distributed correction stays near the endogenous amplitude, focal correction
-  does not} ($N=40$ AD). At the stimulated sites we record the signal-amplitude
+  does not} ($N=33$ AD). At the stimulated sites we record the signal-amplitude
   ratio $\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}$ between the
   perturbed reconstruction $Y=\mathbf{X}\mathbf{W}_{\mathrm{int}}$ and the
   unperturbed one, and the mean $|FC|$ at those sites (Methods,

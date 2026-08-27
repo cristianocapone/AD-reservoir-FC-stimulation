@@ -22,6 +22,23 @@
   \textbf{\bibinfo{volume}{13}}, \bibinfo{pages}{79--92}
   (\bibinfo{year}{2003}).
 
+\bibitem{pagani2016}
+\bibinfo{author}{Pagani, M.} \emph{et~al.}
+\newblock \bibinfo{title}{Predicting the transition from normal aging to
+  {A}lzheimer's disease: a statistical mechanistic evaluation of {FDG-PET}
+  data}.
+\newblock \emph{\bibinfo{journal}{NeuroImage}} \textbf{\bibinfo{volume}{141}},
+  \bibinfo{pages}{282--290} (\bibinfo{year}{2016}).
+
+\bibitem{pagani2017}
+\bibinfo{author}{Pagani, M.} \emph{et~al.}
+\newblock \bibinfo{title}{Progressive disintegration of brain networking from
+  normal aging to {A}lzheimer disease: analysis of independent components of
+  {$^{18}$F-FDG PET} data}.
+\newblock \emph{\bibinfo{journal}{Journal of Nuclear Medicine}}
+  \textbf{\bibinfo{volume}{58}}, \bibinfo{pages}{1132--1139}
+  (\bibinfo{year}{2017}).
+
 \bibitem{greicius2004}
 \bibinfo{author}{Greicius, M.~D.}, \bibinfo{author}{Srivastava, G.},
   \bibinfo{author}{Reiss, A.~L.} \& \bibinfo{author}{Menon, V.}

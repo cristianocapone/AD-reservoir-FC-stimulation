@@ -95,3 +95,5 @@ paper/*.synctex.gz
 archive_contaminated_run_*/
 
 timeseries_clean/
+timeseries_GSR_clean/
+timeseries_clean_all/
