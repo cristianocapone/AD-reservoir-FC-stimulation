@@ -444,7 +444,10 @@ amygdala (Fig.~\ref{fig:topsites}A,B). These are, however, also among the most
 weakly inter-connected nodes of the parcellation, where a shared reservoir basis
 constrains the per-subject read-out least; the ranking should thus be read as
 indicating where the correction kernel carries its largest weights, not as an
-independently validated map of Alzheimer pathology.
+independently validated map of Alzheimer pathology. The dissociation is not,
+however, an artefact of the mixed atlas: restricted to the $100$ cortical parcels
+alone the same relation holds ($\rho=-0.88$, $p=5\times10^{-33}$), and the
+cortical most-affected sites and cortical targets share no parcel.
 
 This failure of the pathology-guided approach motivated a change of selection
 criterion. Rather than targeting the site of maximal read-out deviation, we
@@ -848,10 +851,16 @@ Region-wise BOLD time series were denoised by regression of $24$ head-motion
 parameters and mean white-matter and cerebrospinal-fluid signals, and
 band-pass filtered to $0.01$--$\SI{0.10}{\hertz}$. To balance the two groups
 during reservoir fitting, classification and stimulation we sampled $40$ CC
-sessions to match the $40$ AD subjects passing quality control; grouping by
-subject (one session each) gives $36$ CC and $40$ AD subjects. The full pool
-($145$ CC and $41$ AD subjects; $561$ and $151$ sessions) was used for the
-cohort-size scaling and for the tangent-space SVM benchmark. The latter used the
+sessions from the $48$ verified CC subjects; grouping by subject (one session
+each) and applying the volume filter gives $38$ CC and $33$ AD subjects. The full
+pool ($46$ CC and $34$ AD subjects; $163$ and $104$ sessions) was used for the
+cohort-size scaling and for the tangent-space SVM benchmark.
+Diagnostic labels come from ADNI's own diagnosis query and are independently
+corroborated by cognition: matching each scan to the nearest MMSE visit (median
+gap $15$ days) gives $28.7\pm1.4$ for CC and $22.7\pm2.8$ for AD (two-sided
+Mann--Whitney $p=1.6\times10^{-13}$), and the FC-lag discriminant is unrelated to
+age (Spearman $\rho=+0.10$), education ($\rho=-0.09$) or sex ($\rho=-0.16$; all
+$p>0.15$), so the separation is not a demographic artefact. The latter used the
 globally signal-regressed sessions ($163$ CC $+$ $104$ AD sessions passing a
 $>$$100$-volume filter) under \emph{nested} $5\times5$ subject-grouped
 cross-validation: Ledoit--Wolf covariances projected to the tangent space at a

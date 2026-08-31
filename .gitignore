@@ -97,3 +97,7 @@ archive_contaminated_run_*/
 timeseries_clean/
 timeseries_GSR_clean/
 timeseries_clean_all/
+
+# ABIDE generality-test outputs (large caches; figures/results committed selectively)
+abide_generality/*.npz
+clinical_results/
