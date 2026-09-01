@@ -1,6 +1,6 @@
 TITLE
 
-Optimal stimulation sites are not the most affected: personalised models of resting-state fMRI in Alzheimer's disease
+Optimal stimulation sites are not the most affected: personalised fMRI models of Alzheimer's disease
 
 
 ABSTRACT
