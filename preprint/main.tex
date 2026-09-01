@@ -1001,6 +1001,36 @@ decision boundary. We report a heuristic reference amplitude of $\alpha=4$ for
 summary comparisons; it is a convenient common operating point, not a
 biophysically calibrated limit, and the full dose-response is shown throughout.
 
+\paragraph{Target selection (LDA-resonant).}
+Stimulation targets were selected by their effect on the disease discriminant
+rather than by the magnitude of their read-out deviation. Each of the $121$ sites
+was driven in turn by a sinusoid $A\sin(2\pi f_{\mathrm{eig}}t)$ at the
+reservoir's resonant frequency and a fixed reference amplitude ($A=4$ in input
+units), injected during the teacher-forced pass with $\mathbf{W}$ unchanged, and
+the resulting reconstruction was re-scored by the FC-lag classifier. The per-site
+\emph{reduction} is the drop in FC-lag score relative to the unstimulated run, so
+that positive values move the patient toward the control distribution. Two
+targets follow: a single population-average target, the site maximising the
+reduction averaged over AD patients, and a \emph{personalised} target, the site
+maximising the reduction for that individual. ``LDA-resonant'' refers to the
+personalised target unless stated otherwise.
+
+\paragraph{Online closed-loop control.}
+The closed-loop controller titrates the drive amplitude in real time at each
+patient's fixed personalised LDA-resonant site, using only information available
+causally from the model's own past output. The drive
+$A(t)\sin(2\pi f_{\mathrm{eig}}t)$ begins after a short transient ($5$ steps) at
+$A=6$, the amplitude used by the fixed open-loop protocol. Every $20$ free-run
+steps the FC-lag score is recomputed from a sliding window of the preceding $20$
+reservoir states; if that score lies on the control side of the decision
+threshold the amplitude is decremented by $1$ (floor $0$), and if reclassification
+is lost it is incremented by $1$ (ceiling $6$). The controller therefore descends
+to the smallest dose that still maintains reclassification. No oracle access to
+the future trajectory or to the full-length reconstruction is used at any point.
+The reported dose is the mean amplitude over the run, and a patient counts as
+reclassified when the FC-lag score of the complete closed-loop reconstruction
+lies on the control side of the threshold.
+
 \paragraph{Oscillatory stimulation.}
 As an alternative focal protocol, a sinusoid $A\sin(2\pi f t)$ (amplitude $A$ in
 input units, in the same units as $\mathbf{J}_{\mathrm{in}}\mathbf{u}$ and
