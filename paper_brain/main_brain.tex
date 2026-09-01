@@ -5,7 +5,7 @@
 %  Compile:  pdflatex main ; bibtex main ; pdflatex main ; pdflatex main
 %  Primary target: Nature Communications. NC accepts LaTeX at submission;
 %  this emulates the house style (superscript citations, naturemag reference
-%  list, Methods after Discussion, double spacing + line numbers) in the
+%  list, Methods before Results per Brain, double spacing + line numbers) in the
 %  standard article class rather than the Springer-Nature sn-jnl class, for
 %  portability. Secondary target (Scientific Reports) is the same Nature
 %  Portfolio style, so only the heading styling would differ.
@@ -842,8 +842,7 @@ A natural concern is that this reclassification could be inflated by fitting the
 discriminant on the same patients it scores. We therefore re-evaluated the entire
 pipeline under leave-one-AD-patient-out cross-validation: the FC-lag embedding,
 the LDA discriminant, its decision threshold, \emph{and} the site-selection
-criterion were all rebuilt from the training patients only and then applied to the
-held-out patient (Methods; fig.~\ref{fig:lopo}). The therapeutic effect
+criterion were all rebuilt from the training patients only and then applied to the held-out patient (Supplementary Methods; fig.~\ref{fig:lopo}). The therapeutic effect
 survives. Honest cross-validation does raise the baseline (unstimulated)
 misclassification of AD as CC from $17.5\%$ to $42.5\%$, so that only $23$ of the
 $40$ AD patients lie on the AD side of the boundary without stimulation, consistent
@@ -851,8 +850,7 @@ with the modest classifier accuracy; we therefore quantify the effect as the net
 fraction of these AD-side patients that stimulation moves across to the CC side. A
 single \emph{population-average} resonant target, selected on the training patients
 alone, achieves a leakage-free net cure of $\sim$$78\%$, and each patient's
-\emph{personalised} LDA-resonant target moves essentially all AD-side patients
-across the boundary (Methods). The single-site reclassification is therefore a
+\emph{personalised} LDA-resonant target moves essentially all AD-side patients across the boundary (Supplementary Methods). The single-site reclassification is therefore a
 genuine, model-prescribed intervention effect rather than an artefact of
 classifier leakage.
 
@@ -1412,8 +1410,7 @@ sessions, train-only tangent reference) \\
   \caption{\textbf{The therapeutic reclassification survives a leakage-free
   (leave-one-AD-patient-out) discriminant} ($N=33$ AD). The FC-lag embedding,
   the LDA discriminant, its decision threshold and the site-selection criterion
-  are all rebuilt from the training patients only and applied to each held-out
-  AD patient (Methods). Two targets are compared: the
+  are all rebuilt from the training patients only and applied to each held-out AD patient (Supplementary Methods). Two targets are compared: the
   \emph{population-average} site (one global site, selected on the training AD
   patients; conservative, no per-test-patient choice) and the \emph{personalised}
   per-patient LDA-resonant site (an upper bound, a per-patient argmax over the
@@ -1442,8 +1439,7 @@ sessions, train-only tangent reference) \\
   does not} ($N=33$ AD). At the stimulated sites we record the signal-amplitude
   ratio $\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}$ between the
   perturbed reconstruction $Y=\mathbf{X}\mathbf{W}_{\mathrm{int}}$ and the
-  unperturbed one, and the mean $|FC|$ at those sites (Methods,
-  ``Physiological diagnostics''); mean $\pm1\sigma$ over AD patients.
+  unperturbed one, and the mean $|FC|$ at those sites (Supplementary Methods, ``Physiological diagnostics''); mean $\pm1\sigma$ over AD patients.
   (\textbf{A}) Full-W correction: the amplitude ratio remains within a factor of
   about two of baseline over the whole range $\alpha\in[0,2]$ (dashed line,
   baseline), i.e.\ the distributed correction is achieved without driving the
