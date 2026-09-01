@@ -79,27 +79,45 @@ Istituto Superiore di Sanit\`a, 00161 Rome, Italy}
 % ----------------------------------------------------------------------------
 \begin{abstract}
 \noindent
-Resting-state functional connectivity (FC) is altered in Alzheimer's disease
-(AD), widely regarded as a distributed network process; whether its signature
-reduces to a few focal sites has not been tested causally, a question central to
-targeted neuromodulation. We fit subject-specific, cross-subject-identifiable
-models whose free-running dynamics reproduce those of each individual patient.
-The fitted model parameters classify AD from controls at modest accuracy, below
-that of structural atrophy; we build on the functional model nonetheless, because
-dynamics, not tissue loss, are what stimulation can act on. Changing a virtual
-patient's model connectivity toward the control template reverts its AD
-classification, establishing in silico that the disease signature is correctable,
-yet the required correction is \emph{intrinsically distributed}: a coordinated,
-multi-site change of the model connectivity that no single-node edit reproduces.
-Where, then, should a physically realisable focal drive act? A single-site drive
-at the node whose connectivity is most altered fails to revert the classification
-even at supra-physiological amplitudes, whereas selecting each patient's site by
-its \emph{effect on the disease discriminant} achieves near-complete, individualised
-reclassification from one site, and a real-time closed-loop controller reaches
-comparable efficacy at lower dose using only causally available information.
-Optimal targets are cortical and heterogeneous: the site to stimulate is not
-where connectivity is most altered but where the network is most therapeutically
-responsive.
+Resting-state functional connectivity is altered in Alzheimer's disease, which is
+widely regarded as a distributed network disorder. Neuromodulation nonetheless
+requires a focal target, and targets have been chosen anatomically, where
+degeneration and network disruption are greatest. Whether that criterion is the
+right one has never been tested causally, because it requires asking a
+counterfactual question of an individual patient's brain: what would happen to
+this person's connectivity if a given site were corrected or driven?
+
+We fit subject-specific, cross-subject-identifiable reservoir-computing models to
+resting-state functional MRI from cognitively unimpaired controls and patients
+with Alzheimer's disease, such that each model's free-running dynamics reproduce
+that individual's own activity. Diagnostic labels were taken from the study's own
+diagnosis query and corroborated against cognition. Each fitted model was then
+perturbed in silico, either by shifting its connectivity toward the control
+template or by injecting a focal oscillatory drive at a single region, and the
+resulting change in a functional-connectivity discriminant was recorded.
+
+Shifting a virtual patient's connectivity toward the control template reverted its
+classification, establishing that the disease signature is correctable in
+principle; the required correction was, however, intrinsically distributed, a
+coordinated multi-region change that no single-node edit reproduced. A focal drive
+delivered at the region whose connectivity was most altered failed to revert the
+classification at any amplitude, whereas a drive at the region selected by its
+effect on the disease discriminant reverted almost every patient. The two sets of
+regions were essentially disjoint, and shared no region when the comparison was
+restricted to cortex. The most-altered regions were the most weakly connected, and
+therefore poor actuators, while therapeutic leverage lay at well-connected
+cortical regions. Optimal targets were heterogeneous across patients, and a
+real-time closed-loop controller achieved comparable efficacy at substantially
+lower dose using only causally available information.
+
+The region that is most affected is not the region that is most worth
+stimulating, and the two are separated by network connectivity rather than by
+anatomy. Because the effective target is patient-specific and is identifiable only
+from an individualised generative model, anatomically guided targeting may be
+systematically mis-specified, and target selection for neuromodulation in
+Alzheimer's disease should be model-informed and individualised. These are
+in-silico results: no patient was stimulated, and complete reversal required
+supra-physiological amplitudes.
 \end{abstract}
 
 % ============================================================================
@@ -182,6 +200,186 @@ cost further. The key finding is not merely that the signature is distributed,
 but that the locus of maximal pathology and the locus of maximal therapeutic
 effect dissociate: the former is subcortical and limbic; the latter is cortical
 and patient-specific.
+
+\section*{Materials and methods}
+
+
+\paragraph{Data and preprocessing.}
+Resting-state functional MRI sessions were downloaded from the Alzheimer's
+Disease Neuroimaging Initiative (ADNI) database
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}), comprising cognitively
+unimpaired controls (CC) and patients with Alzheimer's disease (AD). Each session
+comprised $140$ volumes (repetition time $\mathrm{TR}=\SI{3.0}{\second}$,
+$\sim$\SI{7}{\minute}). Images were minimally preprocessed and parcellated into
+$N_{\mathrm{p}}=121$ regions of interest, the $100$ cortical parcels of the
+Schaefer 7-network atlas~\cite{schaefer2018} plus $21$ Harvard--Oxford
+subcortical labels. All $121$ parcels (cortical and subcortical) enter the
+reservoir fit, the classifiers and the stimulation analyses throughout; the
+network-sorted group-mean FC matrices of Fig.~\ref{fig:data}D,E display the
+$100$ cortical parcels only, for which the Yeo 7-network assignment is defined.
+Region-wise BOLD time series were denoised by regression of $24$ head-motion
+parameters and mean white-matter and cerebrospinal-fluid signals, and
+band-pass filtered to $0.01$--$\SI{0.10}{\hertz}$. To balance the two groups
+during reservoir fitting, classification and stimulation we sampled $40$ CC
+sessions from the $48$ verified CC subjects; grouping by subject (one session
+each) and applying the volume filter gives $38$ CC and $33$ AD subjects. The full
+pool ($46$ CC and $34$ AD subjects; $163$ and $104$ sessions) was used for the
+cohort-size scaling and for the tangent-space SVM benchmark.
+Diagnostic labels come from ADNI's own diagnosis query and are independently
+corroborated by cognition: matching each scan to the nearest MMSE visit (median
+gap $15$ days) gives $28.7\pm1.4$ for CC and $22.7\pm2.8$ for AD (two-sided
+Mann--Whitney $p=1.6\times10^{-13}$), and the FC-lag discriminant is unrelated to
+age (Spearman $\rho=+0.10$), education ($\rho=-0.09$) or sex ($\rho=-0.16$; all
+$p>0.15$), so the separation is not a demographic artefact. The latter used the
+globally signal-regressed sessions ($163$ CC $+$ $104$ AD sessions passing a
+$>$$100$-volume filter) under \emph{nested} $5\times5$ subject-grouped
+cross-validation: Ledoit--Wolf covariances projected to the tangent space at a
+\emph{train-only} reference mean, then standardised, PCA-reduced, and classified
+by a linear SVM or logistic regression, with the embedding dimension, penalty and
+classifier chosen in the inner loop and evaluated on held-out subjects in the
+outer loop.
+Sessions were grouped by subject, and per-subject quantities used the first
+available session unless otherwise stated; Table~\ref{tab:cohorts} summarises the
+cohort used in every analysis.
+
+\paragraph{Population principal-component projection.}
+All region time series were pooled and mean-centred, and the leading
+$N_{\mathrm{PC}}=50$ eigenvectors $\mathbf{V}_{50}$ of the
+$N_{\mathrm{p}}\times N_{\mathrm{p}}$ covariance were retained. For each session
+with signal $\mathbf{s}\in\mathbb{R}^{N_{\mathrm{p}}\times T}$ we defined the
+PCA-reconstructed \emph{target}
+$\hat{\mathbf{s}} = \mathbf{V}_{50}\mathbf{V}_{50}^{\!\top}\mathbf{s}$, which
+removes idiosyncratic high-order variance while preserving the dominant
+spatiotemporal structure. Empirical functional connectivity (FC) was the
+Pearson correlation matrix of $\hat{\mathbf{s}}$. The $N_{\mathrm{PC}}=50$
+projection defines only the reservoir's training \emph{target}; the read-out and
+all FC quantities remain in the full $N_{\mathrm{p}}=121$ region space, so the
+regional dimensionality is never reduced below $121$.
+
+\paragraph{Reservoir model.}
+We used a fixed random recurrent network of $N=2000$ rate units with state
+$\mathbf{x}(t)$, internal weights $\mathbf{J}$ (Gaussian, rescaled to spectral
+radius $0.95$), and fixed random input weights $\mathbf{J}_{\mathrm{in}}$
+($\sigma_{\mathrm{in}}=0.01$; the subscript ``in'' distinguishes these untrained
+input weights from the trained read-out $\mathbf{W}$). The network is a
+\emph{linear}, deterministic reservoir: the update below is linear in
+$\mathbf{x}$ and no endogenous noise is injected into the dynamics
+(regularisation noise enters only the read-out fit, Eq.~2). Units evolved in
+discrete time ($\mathrm{d}t=0.005$) as
+\begin{equation}
+\mathbf{x}(t+\mathrm{d}t) = e^{-\mathrm{d}t/\tau}\,\mathbf{x}(t)
+  + \bigl(1-e^{-\mathrm{d}t/\tau}\bigr)
+    \bigl(\mathbf{J}\,\mathbf{x}(t) + \mathbf{J}_{\mathrm{in}}\,\mathbf{u}(t)\bigr),
+\end{equation}
+with a short membrane time constant $\tau$ (effectively instantaneous update),
+and a linear read-out $\mathbf{y}(t)=\mathbf{W}^{\!\top}\mathbf{x}(t)$ in the
+$N_{\mathrm{p}}=121$-dimensional region space. The same reservoir (identical
+$\mathbf{J},\mathbf{J}_{\mathrm{in}}$) was reused for every session.
+
+\paragraph{Read-out fitting.}
+For each session the reservoir was teacher-forced by feeding the target as
+input, $\mathbf{u}(t)=f\,\hat{\mathbf{s}}(t)$ with feedback gain $f=0.1$, and
+the hidden states $\mathbf{X}\in\mathbb{R}^{T_{\mathrm{eff}}\times N}$ were
+collected after discarding the first $10$ steps. The read-out
+$\mathbf{W}\in\mathbb{R}^{N\times N_{\mathrm{p}}}$ was obtained by
+ridge-like regularised least squares with additive Gaussian noise of scale
+$\sigma$ in the regressor,
+\begin{equation}
+\mathbf{W} = \bigl(\mathbf{X}+\mathbf{E}\bigr)^{+}\,\mathbf{Y},
+\qquad E_{ij}\sim\mathcal{N}(0,\sigma^{2}),
+\end{equation}
+where $\mathbf{Y}$ is the time-aligned target and $(\cdot)^{+}$ the
+Moore--Penrose pseudoinverse. The noise scale $\sigma$ acts as the
+ridge-regularisation parameter of the read-out fit (larger $\sigma$, stronger
+regularisation); $\sigma=0.025$ unless swept
+(Fig.~\ref{fig:classification}).
+
+\paragraph{Closed-loop reconstruction.}
+The model has two operating modes. In \emph{teacher-forced} (open-loop) mode the
+real target drives the input, $\mathbf{u}(t)=f\,\hat{\mathbf{s}}(t)$; this mode is
+used to fit $\mathbf{W}$ and to compute the classifier features. In
+\emph{closed-loop} (free-run) mode the read-out feeds back its own output,
+$\mathbf{u}(t)=f\,\mathbf{y}(t)$, generating an autonomous reconstruction. To
+validate the generative model (Fig.~\ref{fig:model}) the reservoir was reset and
+run closed-loop: the real target drove the network for the first $5$ steps, after
+which it free-ran for the remainder of the session. The
+simulated reconstruction $\mathbf{Y}_{\mathrm{sim}}$ and its (lagged) FC were
+compared to the empirical signals. Subject identifiability was quantified by
+the matrix of correlations between simulated subject $i$ and empirical subject
+$j$, comparing the same-subject (diagonal) and cross-subject (off-diagonal)
+distributions. Both intervention families are evaluated consistently in both
+modes: a read-out interpolation ($\mathbf{W}_{\mathrm{int}}$) and an input
+oscillation ($A\sin$) each alter the same reservoir, and each is scored by the
+classifiers on the teacher-forced FC-lag features \emph{and} assessed for its
+departure from baseline on the closed-loop free-run FC
+(Fig.~\ref{fig:singlecompare}, figs.~S5,~S8); the two are therefore compared on a
+common footing, not one in open- and the other in closed-loop.
+
+\paragraph{Read-out ``G-space''.}
+Each read-out was projected onto the row space of its own reservoir states:
+with $\mathbf{V}_{k}$ the top $K_{\mathrm{PC}}=200$ right singular vectors of
+$\mathbf{X}$, the projected read-out is
+$\widetilde{\mathbf{W}}=\mathbf{W}^{\!\top}\mathbf{V}_{k}\mathbf{V}_{k}^{\!\top}$,
+vectorised to $\mathbf{w}_i$. Stacking patients, centring, and taking the SVD
+of the centred matrix yielded patient coordinates (``G-scores'') in a
+low-dimensional read-out-archetype space; the first $K$ components were used for
+classification. The projection rank $K_{\mathrm{PC}}=200$ and the
+low-dimensional sufficiency of the archetype basis are justified by a
+training/test reconstruction-error analysis over $(K_{\mathrm{PC}},M)$
+(fig.~S2).
+
+\paragraph{Lagged-FC features.}
+From the reconstructed signals $\mathbf{Y}=\mathbf{W}^{\!\top}\mathbf{X}$ we
+computed lagged correlation matrices for lags $0$--$2$ (zero-lag upper triangle
+plus full lag-$1$ and lag-$2$ matrices), concatenated into a feature vector per
+patient. A Gram-matrix SVD across patients (the transductive embedding) gave the
+``FC-lag'' coordinates, of which the first $K$ were used.
+
+\paragraph{Classification.}
+CC vs AD was classified with two algorithms on each embedding: a balanced
+Fisher linear discriminant (LDA; majority class sub-sampled to the minority
+within each training set) and a random forest (RF; $300$ trees, $\sqrt{\cdot}$
+features, minimum leaf size $3$, balanced class weights). Performance was
+estimated by repeated stratified $5$-fold cross-validation ($80/20$ train/test,
+$10$ repeats), reporting balanced accuracy and the area under the ROC curve
+(AUROC) as the mean $\pm$ standard deviation over folds. We swept the embedding
+dimension $K\in[2,50]$ and the read-out noise $\sigma\in[0.003,0.5]$; reference
+slices were chosen by the marginal-mean AUROC across classifiers and the
+complementary axis. The SVD embeddings were built transductively (across all
+patients) while the classifiers were trained and tested on disjoint folds.
+
+\paragraph{In-silico stimulation.}
+The model was used as a counterfactual testbed by shifting each AD read-out
+toward the CC-mean read-out,
+$\mathbf{W}_{\mathrm{int}} = (1-\alpha)\,\mathbf{W}_{\mathrm{AD}}
+ + \alpha\,\bar{\mathbf{W}}_{\mathrm{CC}}$, applied either to all $121$ columns
+(sites; full-W) or to focal subsets. Here $\alpha$ is the read-out interpolation
+strength: $\alpha=0$ leaves the unmodified AD read-out, $\alpha=1$ replaces it
+entirely by the CC-mean read-out $\bar{\mathbf{W}}_{\mathrm{CC}}$, and $\alpha>1$
+is over-correction. We nonetheless explore $\alpha>1$ because the exact $\alpha=1$
+replacement can be insufficient: the reconstruction is closed-loop, so the
+reservoir state driven by the AD input keeps the FC partly AD-like even under the
+CC read-out, and crossing the decision boundary can require pushing past
+$\bar{\mathbf{W}}_{\mathrm{CC}}$ (cf.\ fig.~S5). ($\alpha$ is distinct from the
+oscillation amplitude $A$ below.) Focal sites were ranked per patient by the
+column norm of $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}-
+\mathbf{W}_{\mathrm{AD}}$: the top-$5$, the top-$1$, and the top-$1$ site plus
+its $10$ nearest neighbours in MNI space (parcel centroids from the atlas). For
+each $\alpha$ the perturbed read-out was re-scored by both classifiers, and the
+AD$\rightarrow$CC reclassification rate was the fraction crossing the CC/AD
+decision boundary. We report a heuristic reference amplitude of $\alpha=4$ for
+summary comparisons; it is a convenient common operating point, not a
+biophysically calibrated limit, and the full dose-response is shown throughout.
+
+\paragraph{Further methods.}
+Full specifications of the oscillatory-stimulation protocol, the
+leakage-free (leave-one-patient-out) target selection, and the physiological
+diagnostics are given in the Supplementary Methods.
+
+\paragraph{Statistics and software.}
+Group comparisons used two-sided Mann--Whitney $U$ tests; distributions are
+shown as violins with medians or as mean $\pm$ SD/IQR as stated. Analyses were
+implemented in Python (NumPy, scikit-learn, nilearn, Matplotlib).
 
 \section*{Results}
 
@@ -737,25 +935,11 @@ A distinctive feature of the framework is that it prescribes not only where but
 how to stimulate. The driving frequency that most efficiently moved a target
 toward the control distribution coincided with the model's intrinsic resonance
 (fig.~S7), connecting our results to the broader principle of
-frequency-specific neuromodulation. Stimulation efficacy is well known to depend
-on frequency, and entraining endogenous rhythms is an active therapeutic
-strategy in AD, most prominently $40$\,Hz ``gamma'' sensory and electrical
-stimulation, which reduces pathology and improves function in mouse models and
-early human studies~\cite{iaccarino2016,martorell2019}. Our prescription operates
-at a far slower, infraslow timescale, the band in which resting-state
-connectivity fluctuates, rather than in the gamma range, reflecting the
-BOLD-derived nature of the model; we therefore make no claim about a specific
-deliverable protocol. The conceptual contribution is that an identifiable,
+frequency-specific neuromodulation. Entraining endogenous rhythms is an active therapeutic strategy in AD, most prominently $40$\,Hz ``gamma'' stimulation~\cite{iaccarino2016,martorell2019}. Our prescription operates in the far slower infraslow band in which resting-state connectivity fluctuates, reflecting the BOLD-derived model; we make no claim about a specific deliverable protocol. The conceptual contribution is that an identifiable,
 subject-specific model turns ``at what frequency should one stimulate?'' into a
 computable quantity tied to the network's own dynamics, complementing
 connectome-model approaches that predict the spatial spread of
-stimulation~\cite{spiegler2016,kunze2016}. A practical advantage is that, because
-the reservoir dynamics and the read-out are \emph{linear}, the response to a
-periodic drive, and hence the optimal stimulation site and frequency, follows
-directly from the system's transfer function and eigenspectrum, rather than from
-an exhaustive search: the resonance we observe is precisely the peak of this
-linear frequency response. The model thus affords a closed-form, analytically
-tractable prescription of optimal stimulation parameters. Notably, this optimum is
+stimulation~\cite{spiegler2016,kunze2016}. Because the reservoir dynamics and the read-out are \emph{linear}, the optimal site and frequency follow directly from the system's transfer function and eigenspectrum rather than from an exhaustive search: the observed resonance is the peak of this linear frequency response, so the prescription is closed-form and analytically tractable. Notably, this optimum is
 an \emph{interaction} of site and resonance that no single-factor heuristic
 captures: a resonant drive reshapes the FC network-wide, yet the reclassification
 still depends strongly on the site (fig.~S6A), the disease-discriminative modes are
@@ -765,14 +949,7 @@ frequency, alone or combined with the resonance, does not help (fig.~S6C,D).
 Selecting the target by its \emph{effect on the discriminant under a resonant
 drive} (the LDA-resonant criterion) is what jointly resolves drivability and
 direction, and is why it outperforms modal-coupling or disease-deviation selection.
-Reassuringly, when the
-target is selected for its effect on the disease discriminant, the leading
-``drive-toward-health'' site falls in the Default-network prefrontal cortex
-(fig.~S3), a hub of the network most consistently disrupted in
-AD~\cite{greicius2004,sheline2013} and a prime locus for non-invasive
-neuromodulation, e.g.\ precuneus/Default-network stimulation
-trials~\cite{koch2022}, lending biological plausibility to the model-derived
-prescription. The heterogeneity of the per-patient optimal targets further argues
+Reassuringly, the leading ``drive-toward-health'' site falls in the Default-network prefrontal cortex (fig.~S3), a hub consistently disrupted in AD~\cite{greicius2004,sheline2013} and a locus for non-invasive neuromodulation~\cite{koch2022}, lending biological plausibility. The heterogeneity of the per-patient optimal targets further argues
 that effective targeting must be individualised rather than one-size-fits-all,
 consistent with connectivity-guided personalised stimulation~\cite{fox2014}.
 Because the fitted model is a dynamical system, the same biomarker that scores a
@@ -785,24 +962,9 @@ patients reclassified under both protocols) relative to a fixed open-loop drive
 (Fig.~\ref{fig:singlecompare}), the in-silico counterpart of adaptive
 (closed-loop) neuromodulation, in which a causally available, minimal-dose
 perturbation that crosses the diagnostic boundary, rather than a
-supra-physiological open-loop drive, is sought. We emphasise, however, that these are \emph{model-level} prescriptions:
-the reservoir is fit to infraslow BOLD connectivity, not electrophysiology, so an
-``intervention'' here is an abstract input to the regional FC dynamics, and its
-optimal spatial pattern and (infraslow) frequency should be read as targets at the
-level of regional drive, not as cellular or oscillatory mechanisms. With that
-caveat, the focal, slowly-modulated character maps in spirit onto closed-loop,
-biomarker-guided neuromodulation; translating it to any specific
-technology, and validating it against electrophysiological or longitudinal
-outcomes, is left to future work.
+supra-physiological open-loop drive, is sought. These are \emph{model-level} prescriptions: the reservoir is fit to infraslow BOLD connectivity, not electrophysiology, so an ``intervention'' is an abstract input to regional FC dynamics, to be read as a target for regional drive rather than a cellular or oscillatory mechanism. Translating it to a specific technology, and validating it against electrophysiological or longitudinal outcomes, is left to future work.
 
-More broadly, the study illustrates a general methodology: an identifiable
-individualised generative surrogate of a subject's dynamics, fit once, can serve
-simultaneously as a biomarker substrate and as a counterfactual testbed. Because
-the read-out is a compact per-subject parameterisation, the same fitted object
-that classifies the disease can be perturbed to ask what would reverse it, a
-loop from decoding to intervention that is difficult to close with descriptive
-analyses alone, and that transfers directly to other conditions and to
-stimulation planning.
+More broadly, an identifiable individualised generative surrogate, fit once, serves simultaneously as a biomarker substrate and as a counterfactual testbed: the same fitted object that classifies the disease can be perturbed to ask what would reverse it, closing a loop from decoding to intervention that descriptive analyses cannot.
 
 Several limitations qualify these conclusions. The cohort is cross-sectional and
 of modest size, and the classifiers, while honestly cross-validated, reach only
@@ -832,175 +994,75 @@ signature follows the predicted spread of pathology along network connections,
 rather than merely co-localising with the most-affected hubs, would turn the
 reconciliation proposed above into a falsifiable hypothesis.
 
-\section*{Methods}
+\paragraph{Ethics.}
+This work is a secondary analysis of de-identified, publicly available human
+imaging data obtained from ADNI. The ADNI study was approved by the
+institutional review boards of all participating sites, and all participants
+(or their authorised representatives) provided written informed consent at
+enrolment; no new data were acquired for the present study.
 
-\paragraph{Data and preprocessing.}
-Resting-state functional MRI sessions were downloaded from the Alzheimer's
+\section*{Acknowledgements}
+Data used in preparation of this article were obtained from the Alzheimer's
 Disease Neuroimaging Initiative (ADNI) database
-(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}), comprising cognitively
-unimpaired controls (CC) and patients with Alzheimer's disease (AD). Each session
-comprised $140$ volumes (repetition time $\mathrm{TR}=\SI{3.0}{\second}$,
-$\sim$\SI{7}{\minute}). Images were minimally preprocessed and parcellated into
-$N_{\mathrm{p}}=121$ regions of interest, the $100$ cortical parcels of the
-Schaefer 7-network atlas~\cite{schaefer2018} plus $21$ Harvard--Oxford
-subcortical labels. All $121$ parcels (cortical and subcortical) enter the
-reservoir fit, the classifiers and the stimulation analyses throughout; the
-network-sorted group-mean FC matrices of Fig.~\ref{fig:data}D,E display the
-$100$ cortical parcels only, for which the Yeo 7-network assignment is defined.
-Region-wise BOLD time series were denoised by regression of $24$ head-motion
-parameters and mean white-matter and cerebrospinal-fluid signals, and
-band-pass filtered to $0.01$--$\SI{0.10}{\hertz}$. To balance the two groups
-during reservoir fitting, classification and stimulation we sampled $40$ CC
-sessions from the $48$ verified CC subjects; grouping by subject (one session
-each) and applying the volume filter gives $38$ CC and $33$ AD subjects. The full
-pool ($46$ CC and $34$ AD subjects; $163$ and $104$ sessions) was used for the
-cohort-size scaling and for the tangent-space SVM benchmark.
-Diagnostic labels come from ADNI's own diagnosis query and are independently
-corroborated by cognition: matching each scan to the nearest MMSE visit (median
-gap $15$ days) gives $28.7\pm1.4$ for CC and $22.7\pm2.8$ for AD (two-sided
-Mann--Whitney $p=1.6\times10^{-13}$), and the FC-lag discriminant is unrelated to
-age (Spearman $\rho=+0.10$), education ($\rho=-0.09$) or sex ($\rho=-0.16$; all
-$p>0.15$), so the separation is not a demographic artefact. The latter used the
-globally signal-regressed sessions ($163$ CC $+$ $104$ AD sessions passing a
-$>$$100$-volume filter) under \emph{nested} $5\times5$ subject-grouped
-cross-validation: Ledoit--Wolf covariances projected to the tangent space at a
-\emph{train-only} reference mean, then standardised, PCA-reduced, and classified
-by a linear SVM or logistic regression, with the embedding dimension, penalty and
-classifier chosen in the inner loop and evaluated on held-out subjects in the
-outer loop.
-Sessions were grouped by subject, and per-subject quantities used the first
-available session unless otherwise stated; Table~\ref{tab:cohorts} summarises the
-cohort used in every analysis.
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). As such, the
+investigators within the ADNI contributed to the design and implementation of
+ADNI and/or provided data but did not participate in the analysis or writing of
+this report. A complete listing of ADNI investigators can be found at
+\href{https://adni.loni.usc.edu/wp-content/uploads/how_to_apply/ADNI_Acknowledgement_List.pdf}%
+{adni.loni.usc.edu/wp-content/uploads/how\_to\_apply/ADNI\_Acknowledgement\_List.pdf}.
 
-\paragraph{Population principal-component projection.}
-All region time series were pooled and mean-centred, and the leading
-$N_{\mathrm{PC}}=50$ eigenvectors $\mathbf{V}_{50}$ of the
-$N_{\mathrm{p}}\times N_{\mathrm{p}}$ covariance were retained. For each session
-with signal $\mathbf{s}\in\mathbb{R}^{N_{\mathrm{p}}\times T}$ we defined the
-PCA-reconstructed \emph{target}
-$\hat{\mathbf{s}} = \mathbf{V}_{50}\mathbf{V}_{50}^{\!\top}\mathbf{s}$, which
-removes idiosyncratic high-order variance while preserving the dominant
-spatiotemporal structure. Empirical functional connectivity (FC) was the
-Pearson correlation matrix of $\hat{\mathbf{s}}$. The $N_{\mathrm{PC}}=50$
-projection defines only the reservoir's training \emph{target}; the read-out and
-all FC quantities remain in the full $N_{\mathrm{p}}=121$ region space, so the
-regional dimensionality is never reduced below $121$.
+\section*{Funding}
+Data collection and sharing for ADNI was funded by the ADNI (National Institutes
+of Health grant U01~AG024904) and DOD ADNI (Department of Defense award number
+W81XWH-12-2-0012).
+This work has been partially supported by the National Plan for Complementary
+Investments to the NRRP, project ``D34H---Digital Driven Diagnostics, prognostics
+and therapeutics for sustainable Health care'' (project code: PNC0000001), Spoke
+3, funded by the Italian Ministry of University and Research.
 
-\paragraph{Reservoir model.}
-We used a fixed random recurrent network of $N=2000$ rate units with state
-$\mathbf{x}(t)$, internal weights $\mathbf{J}$ (Gaussian, rescaled to spectral
-radius $0.95$), and fixed random input weights $\mathbf{J}_{\mathrm{in}}$
-($\sigma_{\mathrm{in}}=0.01$; the subscript ``in'' distinguishes these untrained
-input weights from the trained read-out $\mathbf{W}$). The network is a
-\emph{linear}, deterministic reservoir: the update below is linear in
-$\mathbf{x}$ and no endogenous noise is injected into the dynamics
-(regularisation noise enters only the read-out fit, Eq.~2). Units evolved in
-discrete time ($\mathrm{d}t=0.005$) as
-\begin{equation}
-\mathbf{x}(t+\mathrm{d}t) = e^{-\mathrm{d}t/\tau}\,\mathbf{x}(t)
-  + \bigl(1-e^{-\mathrm{d}t/\tau}\bigr)
-    \bigl(\mathbf{J}\,\mathbf{x}(t) + \mathbf{J}_{\mathrm{in}}\,\mathbf{u}(t)\bigr),
-\end{equation}
-with a short membrane time constant $\tau$ (effectively instantaneous update),
-and a linear read-out $\mathbf{y}(t)=\mathbf{W}^{\!\top}\mathbf{x}(t)$ in the
-$N_{\mathrm{p}}=121$-dimensional region space. The same reservoir (identical
-$\mathbf{J},\mathbf{J}_{\mathrm{in}}$) was reused for every session.
+\section*{Author contributions}
+C.C. designed the study, performed the analyses and in-silico experiments, and
+wrote the manuscript. E.Ci. conceived the initial idea of a digital-twin model of
+Alzheimer's disease patients. E.Ce. downloaded and selected the original imaging
+data. A.C. and G.G. provided feedback on the experiments and on the manuscript.
+M.M., the senior author, provided feedback on several of the experiments and on
+the manuscript. All authors read and approved the final manuscript.
+(Author initials: C.C., Cristiano Capone; E.Ce., Enza Cece; A.C., Andrea
+Ciardiello; G.G., Guido Gigante; E.Ci., Evaristo Cisbani; M.M., Maurizio Mattia.)
 
-\paragraph{Read-out fitting.}
-For each session the reservoir was teacher-forced by feeding the target as
-input, $\mathbf{u}(t)=f\,\hat{\mathbf{s}}(t)$ with feedback gain $f=0.1$, and
-the hidden states $\mathbf{X}\in\mathbb{R}^{T_{\mathrm{eff}}\times N}$ were
-collected after discarding the first $10$ steps. The read-out
-$\mathbf{W}\in\mathbb{R}^{N\times N_{\mathrm{p}}}$ was obtained by
-ridge-like regularised least squares with additive Gaussian noise of scale
-$\sigma$ in the regressor,
-\begin{equation}
-\mathbf{W} = \bigl(\mathbf{X}+\mathbf{E}\bigr)^{+}\,\mathbf{Y},
-\qquad E_{ij}\sim\mathcal{N}(0,\sigma^{2}),
-\end{equation}
-where $\mathbf{Y}$ is the time-aligned target and $(\cdot)^{+}$ the
-Moore--Penrose pseudoinverse. The noise scale $\sigma$ acts as the
-ridge-regularisation parameter of the read-out fit (larger $\sigma$, stronger
-regularisation); $\sigma=0.025$ unless swept
-(Fig.~\ref{fig:classification}).
+\section*{Competing interests}
+The authors declare no competing interests.
 
-\paragraph{Closed-loop reconstruction.}
-The model has two operating modes. In \emph{teacher-forced} (open-loop) mode the
-real target drives the input, $\mathbf{u}(t)=f\,\hat{\mathbf{s}}(t)$; this mode is
-used to fit $\mathbf{W}$ and to compute the classifier features. In
-\emph{closed-loop} (free-run) mode the read-out feeds back its own output,
-$\mathbf{u}(t)=f\,\mathbf{y}(t)$, generating an autonomous reconstruction. To
-validate the generative model (Fig.~\ref{fig:model}) the reservoir was reset and
-run closed-loop: the real target drove the network for the first $5$ steps, after
-which it free-ran for the remainder of the session. The
-simulated reconstruction $\mathbf{Y}_{\mathrm{sim}}$ and its (lagged) FC were
-compared to the empirical signals. Subject identifiability was quantified by
-the matrix of correlations between simulated subject $i$ and empirical subject
-$j$, comparing the same-subject (diagonal) and cross-subject (off-diagonal)
-distributions. Both intervention families are evaluated consistently in both
-modes: a read-out interpolation ($\mathbf{W}_{\mathrm{int}}$) and an input
-oscillation ($A\sin$) each alter the same reservoir, and each is scored by the
-classifiers on the teacher-forced FC-lag features \emph{and} assessed for its
-departure from baseline on the closed-loop free-run FC
-(Fig.~\ref{fig:singlecompare}, figs.~S5,~S8); the two are therefore compared on a
-common footing, not one in open- and the other in closed-loop.
+% ============================================================================
 
-\paragraph{Read-out ``G-space''.}
-Each read-out was projected onto the row space of its own reservoir states:
-with $\mathbf{V}_{k}$ the top $K_{\mathrm{PC}}=200$ right singular vectors of
-$\mathbf{X}$, the projected read-out is
-$\widetilde{\mathbf{W}}=\mathbf{W}^{\!\top}\mathbf{V}_{k}\mathbf{V}_{k}^{\!\top}$,
-vectorised to $\mathbf{w}_i$. Stacking patients, centring, and taking the SVD
-of the centred matrix yielded patient coordinates (``G-scores'') in a
-low-dimensional read-out-archetype space; the first $K$ components were used for
-classification. The projection rank $K_{\mathrm{PC}}=200$ and the
-low-dimensional sufficiency of the archetype basis are justified by a
-training/test reconstruction-error analysis over $(K_{\mathrm{PC}},M)$
-(fig.~S2).
+\section*{Data availability}
+The imaging data analysed here were downloaded from the Alzheimer's Disease
+Neuroimaging Initiative (ADNI) database
+(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). ADNI data are available
+to qualified researchers upon registration and acceptance of the ADNI Data Use
+Agreement; in accordance with that agreement, the raw and derived imaging data
+are not redistributed here. The exact cohorts and sample sizes used in every
+analysis are listed in Table~\ref{tab:cohorts}. All analysis and
+figure-generation code is openly available at
+\href{https://github.com/cristianocapone/AD-reservoir-FC-stimulation}%
+{github.com/cristianocapone/AD-reservoir-FC-stimulation}.
 
-\paragraph{Lagged-FC features.}
-From the reconstructed signals $\mathbf{Y}=\mathbf{W}^{\!\top}\mathbf{X}$ we
-computed lagged correlation matrices for lags $0$--$2$ (zero-lag upper triangle
-plus full lag-$1$ and lag-$2$ matrices), concatenated into a feature vector per
-patient. A Gram-matrix SVD across patients (the transductive embedding) gave the
-``FC-lag'' coordinates, of which the first $K$ were used.
+\clearpage
+% , , , , , , , , , , , , , , , , , , , , , , , , , --
+%  References (BibTeX).  All entries live in refs.bib.
+%  Only cited works are printed (\nocite{*} removed for submission).
+%  naturemag.bst = Nature house reference style (superscript citations via
+%  natbib [super]); verify every entry (volume/issue/pages/DOI) against the
+%  publisher record before submission.
+% , , , , , , , , , , , , , , , , , , , , , , , , , --
+\bibliographystyle{unsrt}
+\bibliography{refs}
 
-\paragraph{Classification.}
-CC vs AD was classified with two algorithms on each embedding: a balanced
-Fisher linear discriminant (LDA; majority class sub-sampled to the minority
-within each training set) and a random forest (RF; $300$ trees, $\sqrt{\cdot}$
-features, minimum leaf size $3$, balanced class weights). Performance was
-estimated by repeated stratified $5$-fold cross-validation ($80/20$ train/test,
-$10$ repeats), reporting balanced accuracy and the area under the ROC curve
-(AUROC) as the mean $\pm$ standard deviation over folds. We swept the embedding
-dimension $K\in[2,50]$ and the read-out noise $\sigma\in[0.003,0.5]$; reference
-slices were chosen by the marginal-mean AUROC across classifiers and the
-complementary axis. The SVD embeddings were built transductively (across all
-patients) while the classifiers were trained and tested on disjoint folds.
-
-\paragraph{In-silico stimulation.}
-The model was used as a counterfactual testbed by shifting each AD read-out
-toward the CC-mean read-out,
-$\mathbf{W}_{\mathrm{int}} = (1-\alpha)\,\mathbf{W}_{\mathrm{AD}}
- + \alpha\,\bar{\mathbf{W}}_{\mathrm{CC}}$, applied either to all $121$ columns
-(sites; full-W) or to focal subsets. Here $\alpha$ is the read-out interpolation
-strength: $\alpha=0$ leaves the unmodified AD read-out, $\alpha=1$ replaces it
-entirely by the CC-mean read-out $\bar{\mathbf{W}}_{\mathrm{CC}}$, and $\alpha>1$
-is over-correction. We nonetheless explore $\alpha>1$ because the exact $\alpha=1$
-replacement can be insufficient: the reconstruction is closed-loop, so the
-reservoir state driven by the AD input keeps the FC partly AD-like even under the
-CC read-out, and crossing the decision boundary can require pushing past
-$\bar{\mathbf{W}}_{\mathrm{CC}}$ (cf.\ fig.~S5). ($\alpha$ is distinct from the
-oscillation amplitude $A$ below.) Focal sites were ranked per patient by the
-column norm of $\Delta\mathbf{W}=\bar{\mathbf{W}}_{\mathrm{CC}}-
-\mathbf{W}_{\mathrm{AD}}$: the top-$5$, the top-$1$, and the top-$1$ site plus
-its $10$ nearest neighbours in MNI space (parcel centroids from the atlas). For
-each $\alpha$ the perturbed read-out was re-scored by both classifiers, and the
-AD$\rightarrow$CC reclassification rate was the fraction crossing the CC/AD
-decision boundary. We report a heuristic reference amplitude of $\alpha=4$ for
-summary comparisons; it is a convenient common operating point, not a
-biophysically calibrated limit, and the full dose-response is shown throughout.
-
+% ============================================================================
+\clearpage
+\beginsupplement
+\section*{Supplementary Information}
+\subsection*{Supplementary Methods}
 \paragraph{Oscillatory stimulation.}
 As an alternative focal protocol, a sinusoid $A\sin(2\pi f t)$ (amplitude $A$ in
 input units, in the same units as $\mathbf{J}_{\mathrm{in}}\mathbf{u}$ and
@@ -1066,76 +1128,6 @@ stimulated sites, $\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}$,
 and the mean absolute FC at those sites, to verify that reclassification (where
 it occurred) was achieved within plausible amplitude bounds.
 
-\paragraph{Statistics and software.}
-Group comparisons used two-sided Mann--Whitney $U$ tests; distributions are
-shown as violins with medians or as mean $\pm$ SD/IQR as stated. Analyses were
-implemented in Python (NumPy, scikit-learn, nilearn, Matplotlib).
-
-\paragraph{Ethics.}
-This work is a secondary analysis of de-identified, publicly available human
-imaging data obtained from ADNI. The ADNI study was approved by the
-institutional review boards of all participating sites, and all participants
-(or their authorised representatives) provided written informed consent at
-enrolment; no new data were acquired for the present study.
-
-\paragraph{Data and code availability.}
-The imaging data analysed here were downloaded from the Alzheimer's Disease
-Neuroimaging Initiative (ADNI) database
-(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). ADNI data are available
-to qualified researchers upon registration and acceptance of the ADNI Data Use
-Agreement; in accordance with that agreement, the raw and derived imaging data
-are not redistributed here. The exact cohorts and sample sizes used in every
-analysis are listed in Table~\ref{tab:cohorts}. All analysis and
-figure-generation code is openly available at
-\href{https://github.com/cristianocapone/AD-reservoir-FC-stimulation}%
-{github.com/cristianocapone/AD-reservoir-FC-stimulation}.
-
-\paragraph{Acknowledgments.}
-Data used in preparation of this article were obtained from the Alzheimer's
-Disease Neuroimaging Initiative (ADNI) database
-(\href{https://adni.loni.usc.edu}{adni.loni.usc.edu}). As such, the
-investigators within the ADNI contributed to the design and implementation of
-ADNI and/or provided data but did not participate in the analysis or writing of
-this report. A complete listing of ADNI investigators can be found at
-\href{https://adni.loni.usc.edu/wp-content/uploads/how_to_apply/ADNI_Acknowledgement_List.pdf}%
-{adni.loni.usc.edu/wp-content/uploads/how\_to\_apply/ADNI\_Acknowledgement\_List.pdf}.
-Data collection and sharing for ADNI was funded by the ADNI (National Institutes
-of Health grant U01~AG024904) and DOD ADNI (Department of Defense award number
-W81XWH-12-2-0012).
-This work has been partially supported by the National Plan for Complementary
-Investments to the NRRP, project ``D34H---Digital Driven Diagnostics, prognostics
-and therapeutics for sustainable Health care'' (project code: PNC0000001), Spoke
-3, funded by the Italian Ministry of University and Research.
-
-\paragraph{Author contributions.}
-C.C. designed the study, performed the analyses and in-silico experiments, and
-wrote the manuscript. E.Ci. conceived the initial idea of a digital-twin model of
-Alzheimer's disease patients. E.Ce. downloaded and selected the original imaging
-data. A.C. and G.G. provided feedback on the experiments and on the manuscript.
-M.M., the senior author, provided feedback on several of the experiments and on
-the manuscript. All authors read and approved the final manuscript.
-(Author initials: C.C., Cristiano Capone; E.Ce., Enza Cece; A.C., Andrea
-Ciardiello; G.G., Guido Gigante; E.Ci., Evaristo Cisbani; M.M., Maurizio Mattia.)
-
-\paragraph{Competing interests.}
-The authors declare no competing interests.
-
-% ============================================================================
-\clearpage
-% , , , , , , , , , , , , , , , , , , , , , , , , , --
-%  References (BibTeX).  All entries live in refs.bib.
-%  Only cited works are printed (\nocite{*} removed for submission).
-%  naturemag.bst = Nature house reference style (superscript citations via
-%  natbib [super]); verify every entry (volume/issue/pages/DOI) against the
-%  publisher record before submission.
-% , , , , , , , , , , , , , , , , , , , , , , , , , --
-\bibliographystyle{naturemag}
-\bibliography{refs}
-
-% ============================================================================
-\clearpage
-\beginsupplement
-\section*{Supplementary Information}
 
 \subsection*{Supplementary Note S1: Structural versus functional discrimination}
 On the same subjects and atlas, parcel-wise grey-matter volume classified AD from

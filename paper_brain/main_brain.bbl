@@ -1,0 +1,260 @@
+\begin{thebibliography}{10}
+
+\bibitem{seeley2009}
+William~W. Seeley, Richard~K. Crawford, Juan Zhou, Bruce~L. Miller, and
+  Michael~D. Greicius.
+\newblock Neurodegenerative diseases target large-scale human brain networks.
+\newblock {\em Neuron}, 62(1):42--52, 2009.
+
+\bibitem{delbeuck2003}
+Xavier Delbeuck, Martial Van~der Linden, and Fabienne Collette.
+\newblock Alzheimer's disease as a disconnection syndrome?
+\newblock {\em Neuropsychology Review}, 13(2):79--92, 2003.
+
+\bibitem{pagani2016}
+Marco Pagani, Alessandro Giuliani, Johanna {\"O}berg, Andrea Chincarini, Silvia
+  Morbelli, Andrea Brugnolo, Dario Arnaldi, Agnese Picco, Matteo Bauckneht,
+  Ambra Buschiazzo, Gianmario Sambuceti, and Flavio Nobili.
+\newblock Predicting the transition from normal aging to {A}lzheimer's disease:
+  a statistical mechanistic evaluation of {FDG-PET} data.
+\newblock {\em NeuroImage}, 141:282--290, 2016.
+
+\bibitem{pagani2017}
+Marco Pagani, Alessandro Giuliani, Johanna {\"O}berg, Fabrizio De~Carli, Silvia
+  Morbelli, Nicola Girtler, Dario Arnaldi, Jennifer Accardo, Matteo Bauckneht,
+  Francesca Bongioanni, Andrea Chincarini, Gianmario Sambuceti, Cathrine
+  Jonsson, and Flavio Nobili.
+\newblock Progressive disintegration of brain networking from normal aging to
+  {A}lzheimer disease: analysis of independent components of {$^{18}$F-FDG PET}
+  data.
+\newblock {\em Journal of Nuclear Medicine}, 58(7):1132--1139, 2017.
+
+\bibitem{greicius2004}
+Michael~D. Greicius, Gaurav Srivastava, Allan~L. Reiss, and Vinod Menon.
+\newblock Default-mode network activity distinguishes alzheimer's disease from
+  healthy aging: evidence from functional mri.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  101(13):4637--4642, 2004.
+
+\bibitem{sheline2013}
+Yvette~I. Sheline and Marcus~E. Raichle.
+\newblock Resting state functional connectivity in preclinical alzheimer's
+  disease.
+\newblock {\em Biological Psychiatry}, 74(5):340--347, 2013.
+
+\bibitem{buckner2013}
+Randy~L. Buckner, Fenna~M. Krienen, and B.~T.~Thomas Yeo.
+\newblock Opportunities and limitations of intrinsic functional connectivity
+  {MRI}.
+\newblock {\em Nature Neuroscience}, 16(7):832--837, 2013.
+
+\bibitem{fox2014}
+Michael~D. Fox, Randy~L. Buckner, Hesheng Liu, M.~Mallar Chakravarty, Andres~M.
+  Lozano, and Alvaro Pascual-Leone.
+\newblock Resting-state networks link invasive and noninvasive brain
+  stimulation across diverse psychiatric and neurological diseases.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  111(41):E4367--E4375, 2014.
+
+\bibitem{honey2009}
+Christopher~J. Honey, Olaf Sporns, Leila Cammoun, Xavier Gigandet,
+  Jean-Philippe Thiran, Reto Meuli, and Patric Hagmann.
+\newblock Predicting human resting-state functional connectivity from
+  structural connectivity.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  106(6):2035--2040, 2009.
+
+\bibitem{deco2011}
+Gustavo Deco, Viktor~K. Jirsa, and Anthony~R. McIntosh.
+\newblock Emerging concepts for the dynamical organization of resting-state
+  activity in the brain.
+\newblock {\em Nature Reviews Neuroscience}, 12(1):43--56, 2011.
+
+\bibitem{sanzleon2013}
+Paula Sanz~Leon, Stuart~A. Knock, M.~Marmaduke Woodman, Lia Domide, Jochen
+  Mersmann, Anthony~R. McIntosh, and Viktor Jirsa.
+\newblock The virtual brain: a simulator of primate brain network dynamics.
+\newblock {\em Frontiers in Neuroinformatics}, 7:10, 2013.
+
+\bibitem{jirsa2017}
+Viktor~K. Jirsa, Timoth{\'e}e Proix, Dionysios Perdikis, M.~Marmaduke Woodman,
+  Huifang Wang, et~al.
+\newblock The virtual epileptic patient: individualized whole-brain models of
+  epilepsy spread.
+\newblock {\em NeuroImage}, 145:377--388, 2017.
+
+\bibitem{wang2019}
+Peng Wang, Ru~Kong, Xiaolu Kong, Rapha{\"e}l Li{\'e}geois, Csaba Orban, Gustavo
+  Deco, Martijn~P. van~den Heuvel, and B.~T.~Thomas Yeo.
+\newblock Inversion of a large-scale circuit model reveals a cortical hierarchy
+  in the dynamic resting human brain.
+\newblock {\em Science Advances}, 5(1):eaat7854, 2019.
+
+\bibitem{jaeger2001}
+Herbert Jaeger.
+\newblock The ``echo state'' approach to analysing and training recurrent
+  neural networks.
+\newblock Technical Report GMD Report 148, German National Research Center for
+  Information Technology, 2001.
+
+\bibitem{maass2002}
+Wolfgang Maass, Thomas Natschl{\"a}ger, and Henry Markram.
+\newblock Real-time computing without stable states: a new framework for neural
+  computation based on perturbations.
+\newblock {\em Neural Computation}, 14(11):2531--2560, 2002.
+
+\bibitem{capone2018spont}
+Cristiano Capone, Guido Gigante, and Paolo Del~Giudice.
+\newblock Spontaneous activity emerging from an inferred network model captures
+  complex spatio-temporal dynamics of spike data.
+\newblock {\em Scientific Reports}, 8:17056, 2018.
+
+\bibitem{capone2023simdata}
+Cristiano Capone, Chiara De~Luca, Giulia De~Bonis, Robin Gutzen, Irene Bernava,
+  Elena Pastorelli, Francesco Simula, Cosimo Lupo, Leonardo Tonielli, Francesco
+  Resta, Anna~Letizia Allegra~Mascaro, Francesco Pavone, Michael Denker, and
+  Pier~Stanislao Paolucci.
+\newblock Simulations approaching data: cortical slow waves in inferred models
+  of the whole hemisphere of mouse.
+\newblock {\em Communications Biology}, 6:266, 2023.
+
+\bibitem{capone2019slowosc}
+Cristiano Capone, Elena Pastorelli, Bruno Golosio, and Pier~Stanislao Paolucci.
+\newblock Sleep-like slow oscillations improve visual classification through
+  synaptic homeostasis and memory association in a thalamo-cortical model.
+\newblock {\em Scientific Reports}, 9:8990, 2019.
+
+\bibitem{schaefer2018}
+Alexander Schaefer, Ru~Kong, Evan~M. Gordon, Timothy~O. Laumann, Xi-Nian Zuo,
+  Avram~J. Holmes, Simon~B. Eickhoff, and B.~T.~Thomas Yeo.
+\newblock Local-global parcellation of the human cerebral cortex from intrinsic
+  functional connectivity mri.
+\newblock {\em Cerebral Cortex}, 28(9):3095--3114, 2018.
+
+\bibitem{supekar2008}
+Kaustubh Supekar, Vinod Menon, Daniel Rubin, Mark Musen, and Michael~D.
+  Greicius.
+\newblock Network analysis of intrinsic functional brain connectivity in
+  alzheimer's disease.
+\newblock {\em PLoS Computational Biology}, 4(6):e1000100, 2008.
+
+\bibitem{chen2011}
+Gang Chen, B.~Douglas Ward, Chunming Xie, Wenjun Li, Zhilin Wu, Jennifer~L.
+  Jones, Malgorzata Franczak, Piero Antuono, and Shi-Jiang Li.
+\newblock Classification of alzheimer disease, mild cognitive impairment, and
+  normal cognitive status with large-scale network analysis based on
+  resting-state functional mr imaging.
+\newblock {\em Radiology}, 259(1):213--221, 2011.
+
+\bibitem{khazaee2015}
+Ali Khazaee, Ata Ebrahimzadeh, and Abbas Babajani-Feremi.
+\newblock Identifying patients with alzheimer's disease using resting-state
+  fmri and graph theory.
+\newblock {\em Clinical Neurophysiology}, 126(11):2132--2141, 2015.
+
+\bibitem{challis2015}
+Edward Challis, Peter Hurley, Laura Serra, Marco Bozzali, Seb Oliver, and Mara
+  Cercignani.
+\newblock Gaussian process classification of alzheimer's disease and mild
+  cognitive impairment from resting-state fmri.
+\newblock {\em NeuroImage}, 112:232--243, 2015.
+
+\bibitem{fox2007}
+Michael~D. Fox and Marcus~E. Raichle.
+\newblock Spontaneous fluctuations in brain activity observed with functional
+  magnetic resonance imaging.
+\newblock {\em Nature Reviews Neuroscience}, 8(9):700--711, 2007.
+
+\bibitem{cordes2001}
+Dietmar Cordes, Victor~M. Haughton, Konstantinos Arfanakis, John~D. Carew,
+  Patrick~A. Turski, Chad~H. Moritz, Michelle~A. Quigley, and M.~Elizabeth
+  Meyerand.
+\newblock Frequencies contributing to functional connectivity in the cerebral
+  cortex in ``resting-state'' data.
+\newblock {\em American Journal of Neuroradiology}, 22(7):1326--1333, 2001.
+
+\bibitem{diantonio2026}
+Gabriele Di~Antonio, Tommaso Gili, Andrea Gabrielli, and Maurizio Mattia.
+\newblock Linearizing and forecasting: A reservoir computing route to digital
+  twins of the brain.
+\newblock {\em Advanced Science}, 13:e17234, 2026.
+
+\bibitem{albore2025search}
+Nicola Albor{\'e}, Andrea Galluzzi, Pierpaolo Pani, Stefano Ferraina, and
+  Maurizio Mattia.
+\newblock In search for the invisible: motor inhibition in monkey premotor
+  cortex and its {RNN} replicas.
+\newblock {\em bioRxiv}, pages 2025--11, 2025.
+
+\bibitem{koch2022}
+Giacomo Koch, Elias~P. Casula, Sonia Bonn{\`i}, Ilaria Borghi, Martina Assogna,
+  et~al.
+\newblock Precuneus magnetic stimulation for alzheimer's disease: a randomized,
+  sham-controlled trial.
+\newblock {\em Brain}, 145(11):3776--3786, 2022.
+
+\bibitem{spiegler2016}
+Andreas Spiegler, Enrique C.~A. Hansen, Christophe Bernard, Anthony~R.
+  McIntosh, and Viktor~K. Jirsa.
+\newblock Selective activation of resting-state networks following focal
+  stimulation in a connectome-based network model of the human brain.
+\newblock {\em eNeuro}, 3(5):ENEURO.0068--16.2016, 2016.
+
+\bibitem{muldoon2016}
+Sarah~Feldt Muldoon, Fabio Pasqualetti, Shi Gu, Matthew Cieslak, Scott~T.
+  Grafton, Jean~M. Vettel, and Danielle~S. Bassett.
+\newblock Stimulation-based control of dynamic brain networks.
+\newblock {\em PLoS Computational Biology}, 12(9):e1005076, 2016.
+
+\bibitem{kunze2016}
+Tim Kunze, Alexander Hunold, Jens Haueisen, Viktor Jirsa, and Andreas Spiegler.
+\newblock Transcranial direct current stimulation changes resting state
+  functional connectivity: a large-scale brain network modeling study.
+\newblock {\em NeuroImage}, 140:174--187, 2016.
+
+\bibitem{deco2019}
+Gustavo Deco, Josephine Cruzat, Joana Cabral, Enzo Tagliazucchi, Helmut Laufs,
+  Nikos~K. Logothetis, and Morten~L. Kringelbach.
+\newblock Awakening: predicting external stimulation to force transitions
+  between different brain states.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  116(36):18088--18097, 2019.
+
+\bibitem{braak1991}
+Heiko Braak and Eva Braak.
+\newblock Neuropathological stageing of alzheimer-related changes.
+\newblock {\em Acta Neuropathologica}, 82(4):239--259, 1991.
+
+\bibitem{braak2011}
+Heiko Braak, Dietmar~R. Thal, Estifanos Ghebremedhin, and Kelly Del~Tredici.
+\newblock Stages of the pathologic process in {Alzheimer} disease: age
+  categories from 1 to 100 years.
+\newblock {\em Journal of Neuropathology and Experimental Neurology},
+  70(11):960--969, 2011.
+
+\bibitem{raj2012}
+Ashish Raj, Amy Kuceyeski, and Michael Weiner.
+\newblock A network diffusion model of disease progression in dementia.
+\newblock {\em Neuron}, 73(6):1204--1215, 2012.
+
+\bibitem{vogel2020}
+Jacob~W. Vogel, Yasser Iturria-Medina, Olof~T. Strandberg, et~al.
+\newblock Spread of pathological tau proteins through communicating neurons in
+  human alzheimer's disease.
+\newblock {\em Nature Communications}, 11:2612, 2020.
+
+\bibitem{iaccarino2016}
+Hannah~F. Iaccarino, Annabelle~C. Singer, Anthony~J. Martorell, Andrii Rudenko,
+  Fan Gao, Tyler~Z. Gillingham, et~al.
+\newblock Gamma frequency entrainment attenuates amyloid load and modifies
+  microglia.
+\newblock {\em Nature}, 540(7632):230--235, 2016.
+
+\bibitem{martorell2019}
+Anthony~J. Martorell, Abigail~L. Paulson, Ho-Jun Suk, Fatema Abdurrob,
+  Gabrielle~T. Drummond, et~al.
+\newblock Multi-sensory gamma stimulation ameliorates alzheimer's-associated
+  pathology and improves cognition.
+\newblock {\em Cell}, 177(2):256--271, 2019.
+
+\end{thebibliography}

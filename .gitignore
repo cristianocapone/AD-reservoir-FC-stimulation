@@ -101,3 +101,7 @@ timeseries_clean_all/
 # ABIDE generality-test outputs (large caches; figures/results committed selectively)
 abide_generality/*.npz
 clinical_results/
+paper_brain/*.aux
+paper_brain/*.log
+paper_brain/*.out
+paper_brain/*.blg
