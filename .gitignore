@@ -79,7 +79,6 @@ adni_group_lists.json
 
 # ---- LaTeX build artefacts (keep .tex, .bib, and the built main.pdf) ------
 paper/*.aux
-paper/*.bbl
 paper/*.blg
 paper/*.out
 paper/*.log
@@ -101,10 +100,12 @@ timeseries_clean_all/
 # ABIDE generality-test outputs (large caches; figures/results committed selectively)
 abide_generality/*.npz
 clinical_results/
-paper_brain/*.aux
-paper_brain/*.log
-paper_brain/*.out
-paper_brain/*.blg
 
-# Cover letters name submission targets; keep local, not public
-cover_letter/
+# Only the current (Brain) cover letter is public; older ones stay local
+cover_letter/*
+!cover_letter/cover_letter_brain.tex
+!cover_letter/cover_letter_brain.pdf
+
+archive_paper_nature/
+
+presentation/
