@@ -105,3 +105,6 @@ paper_brain/*.aux
 paper_brain/*.log
 paper_brain/*.out
 paper_brain/*.blg
+
+# Cover letters name submission targets; keep local, not public
+cover_letter/
