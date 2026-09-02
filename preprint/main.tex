@@ -110,11 +110,11 @@ progressively, and approximately linearly, along the transition from normal
 aging through mild cognitive impairment to AD, so that the loss of correlation
 tracks proximity to disease onset rather than damage confined to a few
 regions~\cite{pagani2016,pagani2017}.
-Resting-state functional connectivity (FC)
-, the inter-regional correlation structure of spontaneous BOLD activity, is
+Resting-state functional connectivity (FC), the inter-regional correlation
+structure of spontaneous BOLD activity, is
 among the most widely studied non-invasive readouts of this disruption, and AD
 is consistently associated with altered connectivity, prominently within the
-default-mode network~\cite{greicius2004,sheline2013}. FC has thus emerged as a
+default-mode network (DMN)~\cite{greicius2004,sheline2013}. FC has thus emerged as a
 promising biomarker of Alzheimer's disease, although its diagnostic performance
 and reproducibility remain insufficient for routine clinical
 use~\cite{buckner2013}. Although AD is generally
@@ -154,9 +154,7 @@ individual connectivity, including its temporal (lagged) structure.
 
 Building on this model, we develop the paper along a single arc, from reading
 out the disease to intervening on it. First, we show that two complementary
-read-outs of the fitted models, the geometry of the read-out weights across
-patients and the lagged FC of the model's own reconstruction, classify AD from
-controls with comparable, modest accuracy, robust to the choice of classifier
+read-outs of the fitted models, the geometry of the read-out weights across patients (``G-space'') and the lagged FC of the model's own reconstruction (``FC-lag''), classify AD from controls with comparable, modest accuracy, robust to the choice of classifier
 and dimensionality. We emphasise that functional connectivity is not the
 strongest diagnostic read-out available: structural markers such as regional
 grey-matter atrophy separate AD from controls more accurately
@@ -234,8 +232,7 @@ most similar to its own data FC, the AD model lying closest to the AD data and
 the CC model to the CC data (Fig.~\ref{fig:model}E). The four group-mean matrices
 are globally very similar (all pairwise $r>0.93$), so this ordering is only a weak
 group-level effect; the decisive evidence for individual identifiability is the
-within- versus across-subject contrast. Crucially, reconstructions
-were subject-specific rather than generic: the correlation between a subject's
+within- versus across-subject contrast. The reconstructions were subject-specific rather than generic: the correlation between a subject's
 simulated and empirical FC was far higher within- than across-subjects
 (Fig.~\ref{fig:model}F,G,H), establishing that the fitted models are
 individually identifiable. The model also reproduced the temporal structure of
@@ -358,8 +355,7 @@ accuracy reflects sample size rather than a ceiling of the representation.
 
 \subsection*{In-silico stimulation: pathology site versus therapeutic target}
 Finally, we used the model to ask whether the AD signature can be reverted by
-intervention and, crucially, \emph{which} focal target, if any, makes a
-single-site stimulation effective. We addressed this in two stages; as the
+intervention and \emph{which} focal target, if any, makes single-site stimulation effective. We addressed this in two stages; as the
 analysis below establishes, the sites where the AD read-out deviates most from
 controls are not the sites where stimulation is most therapeutically effective.
 Throughout, ``most-affected'' sites are those with the largest per-site read-out
@@ -569,13 +565,7 @@ cost that the closed-loop control below is designed to minimise.
 \end{figure}
 
 Having established that the therapeutic target is defined by its effect on the
-discriminant rather than by pathological deviation, we can compare the two site
-sets directly (Fig.~\ref{fig:topsites}C--E): the $29$ distinct sites ever
-appearing in a patient's pathology top-5 and the $25$ distinct per-patient
-therapy sites (personalised LDA-resonant targets) identified across the $33$ AD
-patients share only $1$ site, the great majority of each set is exclusive to
-its own criterion, and the therapy sites, unlike the pathology sites, have no
-shared anatomical hub.
+discriminant rather than by pathological deviation, we can compare the two site sets directly (Fig.~\ref{fig:topsites}C--E). Across the $33$ AD patients, the $29$ distinct sites ever appearing in a patient's pathology top-5 and the $25$ distinct per-patient therapy sites (personalised LDA-resonant targets) share only $1$ site. The great majority of each set is exclusive to its own criterion, and the therapy sites, unlike the pathology sites, have no shared anatomical hub.
 
 \begin{figure}[tbp]
   \centering
@@ -753,16 +743,7 @@ prescription. The heterogeneity of the per-patient optimal targets further argue
 that effective targeting must be individualised rather than one-size-fits-all,
 consistent with connectivity-guided personalised stimulation~\cite{fox2014}.
 Because the fitted model is a dynamical system, the same biomarker that scores a
-patient can also \emph{close the loop} in real time: titrating the drive's
-amplitude online against a sliding-window FC-lag estimate, using only the model's
-own past output rather than an offline oracle, reclassifies $\sim$$79\%$ of patients
-(approaching the $\sim$$88\%$ open-loop rate) while cutting both the stimulation
-dose ($\sim$$31\%$) and the departure from their own dynamics ($\sim$$5\%$ among
-patients reclassified under both protocols) relative to a fixed open-loop drive
-(Fig.~\ref{fig:singlecompare}), the in-silico counterpart of adaptive
-(closed-loop) neuromodulation, in which a causally available, minimal-dose
-perturbation that crosses the diagnostic boundary, rather than a
-supra-physiological open-loop drive, is sought. We emphasise, however, that these are \emph{model-level} prescriptions:
+patient can also \emph{close the loop} in real time. Titrating the drive's amplitude online against a sliding-window FC-lag estimate, using only the model's own past output rather than an offline oracle, reclassifies $\sim$$79\%$ of patients (approaching the $\sim$$88\%$ open-loop rate) while cutting both the stimulation dose ($\sim$$31\%$) and the departure from their own dynamics ($\sim$$5\%$ among patients reclassified under both protocols) relative to a fixed open-loop drive (Fig.~\ref{fig:singlecompare}). This is the in-silico counterpart of adaptive (closed-loop) neuromodulation, which seeks a minimal, causally available perturbation that crosses the diagnostic boundary rather than a supra-physiological open-loop drive. We emphasise, however, that these are \emph{model-level} prescriptions:
 the reservoir is fit to infraslow BOLD connectivity, not electrophysiology, so an
 ``intervention'' here is an abstract input to the regional FC dynamics, and its
 optimal spatial pattern and (infraslow) frequency should be read as targets at the
