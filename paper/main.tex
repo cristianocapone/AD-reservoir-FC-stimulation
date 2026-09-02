@@ -802,49 +802,29 @@ pipeline under leave-one-AD-patient-out cross-validation: the FC-lag embedding,
 the LDA discriminant, its decision threshold, \emph{and} the site-selection
 criterion were all rebuilt from the training patients only and then applied to the held-out patient (Supplementary Methods; fig.~\ref{fig:lopo}). The therapeutic effect
 survives. Honest cross-validation does raise the baseline (unstimulated)
-misclassification of AD as CC from $21\%$ to $39\%$, so that only $20$ of the $33$ AD patients lie on the AD side of the boundary without stimulation, consistent
-with the modest classifier accuracy; we therefore quantify the effect as the net
-fraction of these AD-side patients that stimulation moves across to the CC side. A
-single \emph{population-average} resonant target, selected on the training patients
-alone, achieves a leakage-free net cure of $\sim$$25\%$, and each patient's
-\emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across it ($100\%$ at $A=10$) (Supplementary Methods). The single-site reclassification is therefore a
-genuine, model-prescribed intervention effect rather than an artefact of
-classifier leakage.
+misclassification of AD as CC from $21\%$ to $39\%$, so that only $20$ of the $33$ AD patients lie on the AD side of the boundary without stimulation, consistent with the modest classifier accuracy; we therefore quantify the effect as the net fraction of these AD-side patients moved to the CC side. A single \emph{population-average} resonant target, selected on the training patients alone, achieves a leakage-free net cure of $\sim$$25\%$, whereas each patient's \emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across ($100\%$ at $A=10$; Supplementary Methods). The single-site reclassification is therefore a genuine, model-prescribed effect rather than an artefact of classifier leakage, and the gap between them is itself the signature of target heterogeneity: no one site serves the group, which is why the population-average target recovers only a minority. The personalised figure is nonetheless an upper bound, since each patient's site is chosen by argmax under the same discriminant that then scores it; the efficacy of a deployable protocol lies between the two arms and is not settled here.
 
 \section*{Discussion}
 We fit identifiable, subject-specific reservoir-computing models of
 resting-state functional connectivity and used them both to read out and to
-intervene on the Alzheimer's signature. Two complementary read-outs of the
-fitted models, the geometry of the read-out weights across patients and the
-lagged FC of the model's own reconstruction, classified AD from controls with
-comparable, modest accuracy. The central finding of the stimulation analysis is
+intervene on the Alzheimer's signature. Two complementary read-outs, the geometry of the read-out weights and the lagged FC of the model's own reconstruction, classified AD from controls with comparable, modest accuracy. The central finding of the stimulation analysis is
 a dissociation between the anatomy of pathology and the anatomy of effective
 intervention. Targeting the sites of greatest read-out deviation from controls, 
-predominantly subcortical and limbic, fails to revert the classification even at
-supra-physiological amplitudes, confirming that the FC signature is not
-concentrated in those regions. Selecting the target instead by its effect on the
+predominantly subcortical and limbic, fails to revert the classification even at supra-physiological amplitudes. Selecting the target instead by its effect on the
 disease discriminant under a resonant drive (the LDA-resonant criterion) achieves complete reclassification from a single, individualised site. Whether this dissociation reflects the
 biology of AD or the representational geometry of the model is a question our
 framework raises but cannot, on its own, settle.
 
 This conclusion is consistent with the view of AD as a network, or
 ``disconnection'', disorder rather than a regionally circumscribed
-one~\cite{delbeuck2003,seeley2009}, and extends it with a causal, counterfactual
-argument that observational group comparisons cannot make: within an
-individualised generative model, targeting where the pathology is greatest is
-not equivalent to targeting where stimulation is most effective. The practical
+one~\cite{delbeuck2003,seeley2009}, and extends it with a causal, counterfactual argument that observational group comparisons cannot make. The practical
 implication for neuromodulation is twofold. First, a single-target intervention
 \emph{can} revert a distributed connectivity deficit, but only when the target
 is selected for its effect on the disease discriminant rather than for its
 pathological magnitude; this distinction is not accessible without a per-patient
 generative model. Second, the effective site is highly patient-specific (25
 distinct parcels across the 33 AD patients), so no single anatomical landmark
-serves all individuals: personalised, model-informed targeting is required. For patients whose optimal site
-is inaccessible or whose response at a single site is insufficient, the present
-framework also provides a way to design distributed, multi-site or network-shaped
-stimulation strategies in silico before any intervention, complementing
-model-based approaches that predict stimulation spread in whole-brain
-models~\cite{spiegler2016,muldoon2016,kunze2016,deco2019}.
+serves all individuals: personalised, model-informed targeting is required. For patients whose optimal site is inaccessible or whose single-site response is insufficient, the framework also allows distributed or multi-site strategies to be designed in silico before any intervention, complementing model-based approaches that predict stimulation spread~\cite{spiegler2016,muldoon2016,kunze2016,deco2019}.
 
 The anatomy of the read-out deviations is suggestive, though it should be read
 with care. The regions whose read-out departed most from the control template
@@ -892,11 +872,7 @@ of modest size, and the classifiers, while honestly cross-validated, reach only
 moderate accuracy and embed each subject relative to the group (a transductive
 embedding); per-subject read-outs were estimated from limited data, adding
 fitting noise that we characterised but did not eliminate. The therapy-target
-reclassification is not, however, an artefact of this transductive fit: it
-survives a fully leave-one-AD-patient-out reconstruction of the embedding,
-discriminant, threshold and target selection, once the effect is read as the net
-fraction of AD-side patients moved to control, above an honest (higher) baseline
-(fig.~\ref{fig:lopo}). The reservoir is a
+reclassification is not, however, an artefact of this transductive fit: it survives a fully leave-one-AD-patient-out rebuild of the embedding, discriminant, threshold and target selection (fig.~\ref{fig:lopo}). The reservoir is a
 phenomenological rather than biophysical model, with fixed random recurrent
 weights, and our ``stimulation'' is an idealised modification of the read-out or
 its input rather than a literal physical protocol; the mapping between in-silico

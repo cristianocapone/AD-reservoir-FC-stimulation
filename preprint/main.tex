@@ -643,12 +643,7 @@ held-out patient (Methods; fig.~\ref{fig:lopo}). The therapeutic effect
 survives. Honest cross-validation does raise the baseline (unstimulated)
 misclassification of AD as CC from $21\%$ to $39\%$, so that only $20$ of the $33$ AD patients lie on the AD side of the boundary without stimulation, consistent
 with the modest classifier accuracy; we therefore quantify the effect as the net
-fraction of these AD-side patients that stimulation moves across to the CC side. A
-single \emph{population-average} resonant target, selected on the training patients
-alone, achieves a leakage-free net cure of $\sim$$25\%$, and each patient's
-\emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across it ($100\%$ at $A=10$) (Methods). The single-site reclassification is therefore a
-genuine, model-prescribed intervention effect rather than an artefact of
-classifier leakage.
+fraction of these AD-side patients that stimulation moves across to the CC side. A single \emph{population-average} resonant target, selected on the training patients alone, achieves a leakage-free net cure of $\sim$$25\%$, whereas each patient's \emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across ($100\%$ at $A=10$; Methods). The single-site reclassification is therefore a genuine, model-prescribed effect rather than an artefact of classifier leakage, and the gap between the two targets is itself the signature of target heterogeneity: no one site serves the group, which is precisely why the population-average target recovers only a minority. The personalised figure is nonetheless an upper bound, since each patient's site is chosen by argmax under the same discriminant that then scores it; the efficacy of a deployable protocol lies between the two arms and is not settled here.
 
 \section*{Discussion}
 We fit identifiable, subject-specific reservoir-computing models of
