@@ -839,13 +839,12 @@ pipeline under leave-one-AD-patient-out cross-validation: the FC-lag embedding,
 the LDA discriminant, its decision threshold, \emph{and} the site-selection
 criterion were all rebuilt from the training patients only and then applied to the held-out patient (Supplementary Methods; fig.~\ref{fig:lopo}). The therapeutic effect
 survives. Honest cross-validation does raise the baseline (unstimulated)
-misclassification of AD as CC from $17.5\%$ to $42.5\%$, so that only $23$ of the
-$40$ AD patients lie on the AD side of the boundary without stimulation, consistent
+misclassification of AD as CC from $21\%$ to $39\%$, so that only $20$ of the $33$ AD patients lie on the AD side of the boundary without stimulation, consistent
 with the modest classifier accuracy; we therefore quantify the effect as the net
 fraction of these AD-side patients that stimulation moves across to the CC side. A
 single \emph{population-average} resonant target, selected on the training patients
-alone, achieves a leakage-free net cure of $\sim$$78\%$, and each patient's
-\emph{personalised} LDA-resonant target moves essentially all AD-side patients across the boundary (Supplementary Methods). The single-site reclassification is therefore a
+alone, achieves a leakage-free net cure of $\sim$$25\%$, and each patient's
+\emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across it ($100\%$ at $A=10$) (Supplementary Methods). The single-site reclassification is therefore a
 genuine, model-prescribed intervention effect rather than an artefact of
 classifier leakage.
 
@@ -918,8 +917,7 @@ established DMN--limbic pathways. This dissociation between lesion locus and
 effective intervention site is consistent with the network-medicine principle
 illustrated most clearly for deep-brain stimulation~\cite{fox2014}: the optimal
 target is not the damaged node but the network node most effectively coupled to
-the symptom circuit. The per-patient heterogeneity of the optimal sites (33
-distinct parcels for 40 patients, Fig.~S4) further argues that no universal
+the symptom circuit. The per-patient heterogeneity of the optimal sites ($25$ distinct parcels for $33$ patients, Fig.~S4) further argues that no universal
 anatomical landmark suffices, a result consistent with the clinical heterogeneity
 of AD and with the emerging literature on connectivity-guided personalised
 neuromodulation.
@@ -1271,8 +1269,7 @@ sessions, train-only tangent reference) \\
   \emph{single global site} for all patients (right dorsal-attention cortex).
   (\textbf{C}) \emph{LDA-resonant} (per patient): the site whose resonant drive
   moves that subject's FC-lag discriminant most toward CC. These therapeutic
-  targets are highly heterogeneous, \textbf{$33$ distinct sites for the $40$
-  patients}, each selected by at most three, spanning Default-network, visual and
+  targets are highly heterogeneous, \textbf{$25$ distinct sites for the $33$ patients}, each selected by at most three, spanning Default-network, visual and
   attention cortex together with medial-temporal and subcortical structures.
   The three criteria answer different questions: where the disease lives in the
   read-out ($\Delta W$), the fixed resonance node of the dynamics (eigenmode), and
@@ -1335,13 +1332,13 @@ sessions, train-only tangent reference) \\
   reshapes the FC network-wide (fig.~S5), one might hope that the frequency/mode
   alone determines the effect. It does not. (\textbf{A}) Driving each of the $121$
   sites at the dominant-mode frequency $f_1$ ($A=4$): the per-site reclassification
-  rate spans the whole low range ($15$--$48\%$, mean $30\%$; no site reaches
+  rate spans the whole low range ($6$--$45\%$, mean $19\%$; no site reaches
   $\ge$$90\%$), so the \emph{site} still decides the outcome, only per-patient
   (LDA) selection reaches $100\%$. (\textbf{B}) Ranking eigenmodes by how well their
   per-patient modal power separates CC from AD (AUC): the most discriminative modes
   lie at higher frequencies ($f\!\approx\!0.25$--$0.48$), while the dominant
   (least-damped, most \emph{drivable}) mode $f_1=0.077$ is only weakly
-  discriminative (AUC $0.40$, rank $7/40$). (\textbf{C},\textbf{D}) At a fixed site
+  discriminative (AUC $0.46$, rank $24/40$). (\textbf{C},\textbf{D}) At a fixed site
   (eigenmode site $71$), driving the most discriminative \emph{deficit} mode
   $f_{\mathrm{disc}}=0.48$ (largest AD power deficit, the only correctable
   direction since drive can only add power) is markedly \emph{less} effective than
@@ -1444,14 +1441,12 @@ sessions, train-only tangent reference) \\
   versus after resonant stimulation at the reference amplitude $A=7$, for each
   target under the transductive scheme (fit on all patients) and the leakage-free
   LOPO scheme (train-only); increments annotated. Honest cross-validation raises
-  the baseline misclassification of AD as CC from $17.5\%$ (transductive) to
-  $42.5\%$ (LOPO), so that only $23$ of $40$ AD patients lie on the AD side of the
+  the baseline misclassification of AD as CC from $21\%$ (transductive) to $39\%$ (LOPO), so that only $20$ of $33$ AD patients lie on the AD side of the
   boundary unstimulated.
   (\textbf{B}) Net cure, the fraction of patients on the AD side at baseline that
   stimulation moves to the CC side, versus resonant drive amplitude, transductive
   vs LOPO, for the population-average (solid) and personalised (dashed) targets.
-  Leakage-free, the single population-average target reaches $\sim$$78\%$ net cure
-  and the personalised target $\sim$$100\%$: the reclassification is a genuine,
+  Leakage-free, the single population-average target reaches $\sim$$25\%$ net cure and the personalised target $\sim$$90\%$ ($100\%$ at $A=10$): the reclassification is a genuine,
   model-prescribed intervention effect, not an artefact of classifier leakage.}
   \label{fig:lopo}
 \end{figure}

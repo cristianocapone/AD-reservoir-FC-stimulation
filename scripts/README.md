@@ -16,7 +16,7 @@ LaTeX); only the generating `.py` scripts live here.
 | `fig5_singlecompare/` | Single-site read-out correction vs resonant drive, closed-loop control. |
 | `fig6_topsites/` | Pathology (ΔW) sites vs discriminant-aligned therapy sites. |
 | `fig_supplement/` | Supplementary figures (scaling, physiology, frequency scans, etc.). |
-| `reanalysis/` | Cohort rebuild from authoritative ADNI labels, ΔW null test, structural-MRI and fusion classifiers, LOSO/batch checks. |
+| `reanalysis/` | Cohort rebuild from authoritative ADNI labels, ΔW null test, structural-MRI and fusion classifiers, batch checks. |
 | `preprocessing/` | BIDS conversion, timeseries extraction, filename/ID fixes. |
 | `misc/` | Exploratory / one-off inspection and QC scripts. |
 

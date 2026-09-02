@@ -123,17 +123,8 @@ def run(arm):
             oof[te] = sc(tr, te)[1]
             if (j + 1) % 5 == 0:
                 aucs.append(roc_auc_score(y, oof)); oof[:] = np.nan
-        z = np.full(len(y), np.nan)
-        for s_ in np.unique(st):
-            te = np.where(st == s_)[0]; tr = np.where(st != s_)[0]
-            if len(np.unique(y[tr])) < 2 or len(tr) < 10: continue
-            a, b = sc(tr, te)
-            z[te] = (b - a.mean()) / (a.std() + 1e-12)
-        k = ~np.isnan(z)
-        lo = roc_auc_score(y[k], z[k]) if len(np.unique(y[k])) == 2 else np.nan
-        res[sel] = (np.mean(aucs), np.std(aucs), lo)
-        print(f"   {sel:10s} CV AUROC = {np.mean(aucs):.3f} +/- {np.std(aucs):.3f}"
-              f"     LOSO AUROC = {lo:.3f}")
+        res[sel] = (np.mean(aucs), np.std(aucs))
+        print(f"   {sel:10s} CV AUROC = {np.mean(aucs):.3f} +/- {np.std(aucs):.3f}")
     return res
 
 
@@ -147,9 +138,6 @@ print("=" * 68)
 for sel in ["reservoir", "empirical"]:
     print(f"  {sel:10s} CV  {r_ad[sel][0]:.3f} (batch confounded) -> "
           f"{r_cn[sel][0]:.3f} (shared batch)   delta = {r_cn[sel][0]-r_ad[sel][0]:+.3f}")
-    print(f"  {'':10s} LOSO {r_ad[sel][2]:.3f} (batch confounded) -> "
-          f"{r_cn[sel][2]:.3f} (shared batch)   delta = {r_cn[sel][2]-r_ad[sel][2]:+.3f}")
-
 np.savez("batch_isolation_results.npz",
          **{f"{a}_{s}": np.array(v[s]) for a, v in
             [("adbatch", r_ad), ("cnbatch", r_cn)] for s in v})

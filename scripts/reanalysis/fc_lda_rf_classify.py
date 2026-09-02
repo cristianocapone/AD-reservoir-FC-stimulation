@@ -15,7 +15,7 @@ Each classified by LDA and Random Forest. Everything that sees the data - the
 tangent reference, the PCA basis, the scaler, the classifier - is fit on the
 training fold only; test subjects are projected in.
 
-Protocols: repeated (x10) stratified 5-fold, and leave-one-site-out.
+Protocol: repeated (x10) stratified 5-fold.
 Metric: AUROC on pooled out-of-fold scores, plus balanced accuracy.
 """
 import numpy as np
@@ -93,28 +93,17 @@ def evaluate(kind, model):
             aucs.append(roc_auc_score(y, oof))
             bals.append(balanced_accuracy_score(y, (oof > 0.5).astype(int)))
             oof[:] = np.nan
-    # leave-one-site-out
-    z = np.full(len(y), np.nan)
-    for s_ in np.unique(st):
-        te = np.where(st == s_)[0]; tr = np.where(st != s_)[0]
-        if len(np.unique(y[tr])) < 2 or len(tr) < 10:
-            continue
-        Xtr, Xte = embed(kind, tr, te)
-        p = proba(model, Xtr, Xte, y[tr])
-        z[te] = (p - p.mean())        # centre per fold so scores are poolable
-    k = ~np.isnan(z)
-    lo = roc_auc_score(y[k], z[k]) if len(np.unique(y[k])) == 2 else np.nan
-    return np.mean(aucs), np.std(aucs), np.mean(bals), lo
+    return np.mean(aucs), np.std(aucs), np.mean(bals)
 
 
-print(f"\n{'feature':10s} {'classifier':13s} {'CV AUROC':16s} {'bal-acc':9s} {'LOSO AUROC'}")
+print(f"\n{'feature':10s} {'classifier':13s} {'CV AUROC':16s} {'bal-acc':9s}")
 print("-" * 62)
 res = {}
 for kind in ["FC-lag", "empirical FC"]:
     for model in ["LDA", "RandomForest"]:
-        a, s, b, lo = evaluate(kind, model)
-        res[(kind, model)] = (a, s, b, lo)
-        print(f"{kind:10s} {model:13s} {a:.3f} +/- {s:.3f}    {b:.3f}    {lo:.3f}")
+        a, s, b = evaluate(kind, model)
+        res[(kind, model)] = (a, s, b)
+        print(f"{kind:10s} {model:13s} {a:.3f} +/- {s:.3f}    {b:.3f}")
 
 np.savez("fc_lda_rf_results.npz",
          **{f"{k}_{m}".replace(" ", ""): np.array(v) for (k, m), v in res.items()})

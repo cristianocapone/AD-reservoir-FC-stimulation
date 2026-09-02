@@ -143,21 +143,6 @@ for a in ARMS:
     print(f"  {a:8s} AUROC = {np.mean(acc[a]):.3f} +/- {np.std(acc[a]):.3f}   "
           f"bal-acc = {np.mean(bal[a]):.3f}")
 
-print("\nLEAVE-ONE-SITE-OUT")
-z = {a: np.full(len(y), np.nan) for a in ARMS}
-for s_ in np.unique(site):
-    te = np.where(site == s_)[0]; tr = np.where(site != s_)[0]
-    if len(np.unique(y[tr])) < 2 or len(tr) < 10:
-        continue
-    fs = fold_scores(tr, te)
-    for a in ARMS:
-        a_tr, a_te = fs[a]
-        z[a][te] = (a_te - a_tr.mean()) / (a_tr.std() + 1e-12)
-for a in ARMS:
-    k = ~np.isnan(z[a])
-    print(f"  {a:8s} AUROC = {roc_auc_score(y[k], z[a][k]):.3f}   (n={k.sum()})")
-
 np.savez("fc_sc_fusion_empirical_results.npz", subjects=ids, labels=y, sites=site,
-         **{f"kfold_{a}": np.array(acc[a]) for a in ARMS},
-         **{f"loso_{a}": z[a] for a in ARMS})
+         **{f"kfold_{a}": np.array(acc[a]) for a in ARMS})
 print("\nSaved fc_sc_fusion_empirical_results.npz")

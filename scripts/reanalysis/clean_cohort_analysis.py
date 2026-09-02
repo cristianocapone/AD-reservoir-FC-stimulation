@@ -8,7 +8,7 @@ subject), so that the numbers can be compared with the published ones.
 Three questions, in the order they matter:
   A. classification  - what AUROC does the reservoir FC-lag read-out reach when
      labels are correct? Reported next to empirical tangent-space FC on the same
-     subjects, under both site-mixed CV and leave-one-site-out.
+     subjects, under site-mixed CV.
   B. batch check     - does the residual preprocessing-batch imbalance among AD
      subjects drive the result? Repeated on the batch-uniform subset.
   C. pathology map   - is the per-site read-out deviation dW disease-specific,
@@ -125,17 +125,7 @@ def evaluate(mask, tag):
             oof[te] = scores(ii[tr], ii[te], sel)[1]
             if (j + 1) % 5 == 0:
                 aucs.append(roc_auc_score(y[ii], oof)); oof[:] = np.nan
-        # leave-one-site-out
-        z = np.full(len(ii), np.nan)
-        for s_ in np.unique(st[ii]):
-            te = np.where(st[ii] == s_)[0]; tr = np.where(st[ii] != s_)[0]
-            if len(np.unique(y[ii][tr])) < 2 or len(tr) < 10: continue
-            a, b = scores(ii[tr], ii[te], sel)
-            z[te] = (b - a.mean()) / (a.std() + 1e-12)
-        k = ~np.isnan(z)
-        lo = roc_auc_score(y[ii][k], z[k]) if len(np.unique(y[ii][k])) == 2 else np.nan
-        print(f"     {sel:10s} CV AUROC = {np.mean(aucs):.3f} +/- {np.std(aucs):.3f}"
-              f"     LOSO AUROC = {lo:.3f}")
+        print(f"     {sel:10s} CV AUROC = {np.mean(aucs):.3f} +/- {np.std(aucs):.3f}")
 
 
 print("\n=== A. CLASSIFICATION ON CLEAN LABELS ===")

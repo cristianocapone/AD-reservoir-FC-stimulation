@@ -10,11 +10,7 @@ with ONE code path (K=25 fixed for all arms):
   2. NON-TRANSDUCTIVE k-fold — random stratified CV, but the embedding is REBUILT
                              per fold from training subjects only and the test
                              subjects are projected in.  Still site-mixed.
-  3. LEAVE-ONE-SITE-OUT    — embedding rebuilt per fold, folds defined by scanner
-                             site, so no same-site subject is ever in training.
-
 Gap 1->2 = optimism from the transductive embedding.
-Gap 2->3 = optimism from site/scanner leakage.
 
 Read-only w.r.t. the manuscript: nothing here touches paper/.
 Saves: cv_decomposition_results.npz  (+ caches the feature matrix)
@@ -36,7 +32,7 @@ from external_oasis_validate import (
     feat, teacher_force, fit_W, build_reservoir, LDA, balm,
     K_LDA, RNG_SEED, N_PC_MODEL, N_SITES, MIN_VOL, ADNI_TS_ROOT)
 
-FB_CACHE = "loso_fb_cache.npz"
+FB_CACHE = "fb_features_cache.npz"
 N_SPLITS, N_REPEATS = 5, 10
 
 def site_of(pid): return pid.split("sub-")[-1].split("S")[0]
@@ -74,7 +70,7 @@ else:
     np.savez(FB_CACHE, fb=fb, y=y, sites=sites, upid=upid)
     print(f"Computed + cached features {fb.shape}")
 
-# same retained cohort as the LOSO/ComBat run (sites with >=2 subjects)
+# retained cohort: sites with >=2 subjects
 cnt = {s_: int((sites == s_).sum()) for s_ in np.unique(sites)}
 keep = np.array([cnt[s_] >= 2 for s_ in sites])
 fb, y, sites, upid = fb[keep], y[keep], sites[keep], upid[keep]
@@ -116,16 +112,6 @@ for i, (tr, te) in enumerate(tqdm(list(rskf.split(fb, y)), desc="  folds")):
         auc_t.append(roc_auc_score(y, oof_t)); auc_n.append(roc_auc_score(y, oof_n))
         oof_t[:] = np.nan; oof_n[:] = np.nan
 
-# ── arm 3: leave-one-site-out ─────────────────────────────────────────────────
-print("Running leave-one-site-out (arm 3) ...")
-oof_s = np.full(len(y), np.nan)
-for s_ in np.unique(sites):
-    te = np.where(sites == s_)[0]; tr = np.where(sites != s_)[0]
-    if len(np.unique(y[tr])) < 2: continue
-    fm, fcc, evf, evecf, Gtr = embed_fit(fb[tr])
-    oof_s[te] = lda_train_score(Gtr, y[tr], embed_apply(fb[te], fm, fcc, evf, evecf))
-m = ~np.isnan(oof_s); auc_s = roc_auc_score(y[m], oof_s[m])
-
 # ── report ────────────────────────────────────────────────────────────────────
 t_m, t_s = np.mean(auc_t), np.std(auc_t)
 n_m, n_s = np.mean(auc_n), np.std(auc_n)
@@ -136,14 +122,11 @@ print(f"  1. transductive k-fold      AUROC = {t_m:.3f} +/- {t_s:.3f}   "
       f"(paper's protocol)")
 print(f"  2. non-transductive k-fold  AUROC = {n_m:.3f} +/- {n_s:.3f}   "
       f"(site-mixed, honest embedding)")
-print(f"  3. leave-one-site-out       AUROC = {auc_s:.3f}          "
-      f"(no same-site subject in train)")
 print("-" * 66)
 print(f"  gap 1->2 (transductive embedding optimism) = {t_m - n_m:+.3f}")
-print(f"  gap 2->3 (site/scanner leakage)            = {n_m - auc_s:+.3f}")
 print("=" * 66)
 
 np.savez("cv_decomposition_results.npz", auc_transductive=np.array(auc_t),
-         auc_nontransductive=np.array(auc_n), auc_loso=auc_s,
+         auc_nontransductive=np.array(auc_n),
          labels=y, sites=sites, subjects=upid)
 print("Saved cv_decomposition_results.npz")

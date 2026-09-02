@@ -20,7 +20,7 @@ identical subject set:
             each standardised on its own training distribution)
   stacked : inner-CV logistic regression on the two training scores
 
-Protocols: repeated (x10) stratified 5-fold, and leave-one-site-out.
+Protocol: repeated (x10) stratified 5-fold.
 """
 import os
 import numpy as np
@@ -43,7 +43,7 @@ def clean_labels():
 
 
 S = np.load("struct_gm_features.npz", allow_pickle=True)
-F = np.load("loso_fb_cache.npz", allow_pickle=True)
+F = np.load("fb_features_cache.npz", allow_pickle=True)
 
 sc_id = S["subjects"]
 sc_X = np.c_[S["vol"] / S["total_gm"][:, None], S["total_gm"]]
@@ -142,7 +142,7 @@ def fold_scores(tr, te):
 
 ARMS = ["SC", "FC", "early", "late", "stacked"]
 
-# ── protocol 1: repeated stratified 5-fold ────────────────────────────────────
+# ── repeated stratified 5-fold ────────────────────────────────────
 print("\nREPEATED STRATIFIED 5-FOLD (x10)")
 rskf = RepeatedStratifiedKFold(n_splits=5, n_repeats=10, random_state=SEED)
 oof = {a: np.full(len(y), np.nan) for a in ARMS}
@@ -160,21 +160,6 @@ for a in ARMS:
     print(f"  {a:10s} AUROC = {np.mean(acc[a]):.3f} +/- {np.std(acc[a]):.3f}   "
           f"bal-acc = {np.mean(bal[a]):.3f}")
 
-# ── protocol 2: leave-one-site-out ────────────────────────────────────────────
-print("\nLEAVE-ONE-SITE-OUT")
-z = {a: np.full(len(y), np.nan) for a in ARMS}
-for s_ in np.unique(site):
-    te = np.where(site == s_)[0]; tr = np.where(site != s_)[0]
-    if len(np.unique(y[tr])) < 2: continue
-    fs = fold_scores(tr, te)
-    for a in ARMS:                       # standardise on the training distribution
-        str_, ste_ = fs[a]
-        z[a][te] = (ste_ - str_.mean()) / (str_.std() + 1e-12)
-for a in ARMS:
-    k = ~np.isnan(z[a])
-    print(f"  {a:10s} AUROC = {roc_auc_score(y[k], z[a][k]):.3f}   (n={k.sum()})")
-
 np.savez("fc_sc_fusion_results.npz", subjects=ids, labels=y, sites=site,
-         **{f"kfold_{a}": np.array(acc[a]) for a in ARMS},
-         **{f"loso_{a}": z[a] for a in ARMS})
+         **{f"kfold_{a}": np.array(acc[a]) for a in ARMS})
 print("\nSaved fc_sc_fusion_results.npz")

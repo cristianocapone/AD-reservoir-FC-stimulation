@@ -82,26 +82,6 @@ print(f"\nCONTAMINATED LABELS (each AD subject also entered as a control): "
 cv_auc(Xc[:, [L_HIPP, R_HIPP]], yc, "3. hippocampus only, contaminated")
 cv_auc(Xc, yc, "3b. all 121 parcels, contaminated")
 
-# ── leave-one-site-out: does the structural signal survive scanner change? ────
-def loso(X, yy, sids, tag):
-    site = np.array([s.replace("sub-", "").split("S")[0] for s in sids])
-    clf = make_pipeline(StandardScaler(),
-                        LogisticRegression(max_iter=5000, class_weight="balanced"))
-    z = np.full(len(yy), np.nan)
-    for s_ in np.unique(site):
-        te = site == s_; tr = ~te
-        if len(np.unique(yy[tr])) < 2: continue
-        clf.fit(X[tr], yy[tr])
-        ptr = clf.predict_proba(X[tr])[:, 1]
-        # standardise on the training distribution so folds are poolable
-        z[te] = (clf.predict_proba(X[te])[:, 1] - ptr.mean()) / (ptr.std() + 1e-12)
-    k = ~np.isnan(z)
-    print(f"  {tag:44s} AUROC = {roc_auc_score(yy[k], z[k]):.3f}   "
-          f"({len(np.unique(site))} sites, n={k.sum()})")
-
-print("\nLEAVE-ONE-SITE-OUT (clean labels)")
-loso(np.c_[Vn[m], tot[m]], y[m], sid[m], "4. 121 parcels + total GM, LOSO")
-
 # ── MCI as an intermediate check (biological sanity) ──────────────────────────
 print("\nMCI positioning (should sit between CN and AD if labels are real)")
 for lb, nm in [(0, "CN"), (2, "MCI"), (1, "AD")]:

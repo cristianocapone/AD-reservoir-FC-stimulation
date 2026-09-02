@@ -17,7 +17,7 @@ scored on the identical set. Each modality is reduced by a train-only PCA
 (<=20 comps), standardised on train rows, then classified; fusion concatenates
 the reduced blocks. Nothing that sees the data is fit outside the training fold.
 
-Protocols: repeated (x10) stratified 5-fold, and leave-one-site-out.
+Protocol: repeated (x10) stratified 5-fold.
 """
 import re
 import numpy as np
@@ -119,31 +119,21 @@ def evaluate(mods, model):
             aucs.append(roc_auc_score(y, oof))
             bals.append(balanced_accuracy_score(y, (oof > 0.5).astype(int)))
             oof[:] = np.nan
-    z = np.full(len(y), np.nan)
-    for s_ in np.unique(st):
-        te = np.where(st == s_)[0]; tr = np.where(st != s_)[0]
-        if len(np.unique(y[tr])) < 2 or len(tr) < 10:
-            continue
-        Xtr, Xte = features(mods, tr, te)
-        p = clf(model).fit(Xtr, y[tr]).predict_proba(Xte)[:, 1]
-        z[te] = p - p.mean()
-    k = ~np.isnan(z)
-    lo = roc_auc_score(y[k], z[k]) if len(np.unique(y[k])) == 2 else np.nan
-    return np.mean(aucs), np.std(aucs), np.mean(bals), lo
+    return np.mean(aucs), np.std(aucs), np.mean(bals)
 
 
 ARMS = [("struct",), ("FC",), ("FC-lag",),
         ("struct", "FC"), ("struct", "FC-lag"),
         ("struct", "FC", "FC-lag")]
-print(f"\n{'modalities':22s} {'clf':13s} {'CV AUROC':16s} {'bal':7s} {'LOSO'}")
+print(f"\n{'modalities':22s} {'clf':13s} {'CV AUROC':16s} {'bal':7s}")
 print("-" * 66)
 rows = {}
 for mods in ARMS:
     for model in ["LDA", "RandomForest"]:
-        a, s, b, lo = evaluate(mods, model)
-        rows[(mods, model)] = (a, s, b, lo)
+        a, s, b = evaluate(mods, model)
+        rows[(mods, model)] = (a, s, b)
         print(f"{'+'.join(mods):22s} {model:13s} {a:.3f} +/- {s:.3f}    "
-              f"{b:.3f}   {lo:.3f}")
+              f"{b:.3f}")
 
 np.savez("fusion_lda_rf_results.npz",
          **{f"{'_'.join(m)}__{c}": np.array(v) for (m, c), v in rows.items()})
