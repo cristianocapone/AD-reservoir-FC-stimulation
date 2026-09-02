@@ -379,12 +379,12 @@ read-outs (Fig.~\ref{fig:stim}C,F). Physiological
 diagnostics confirmed that the focal strategies were already operating at or
 beyond plausible amplitudes: whereas the full-W correction left signal amplitude
 near baseline, focal corrections required large local amplification to achieve
-even partial effects (fig.~S10). An alternative focal
+even partial effects (fig.~S8). An alternative focal
 protocol, injecting an oscillation at the most-affected sites, tuned to the
 reservoir's intrinsic frequencies, showed the same limitation, single- or
 few-site stimulation moving the FC-lag score only weakly and only five-site
 stimulation at supra-physiological amplitude approaching the decision boundary
-(Fig.~\ref{fig:singlecompare}A; fig.~S7). Across both interpolation and oscillatory protocols,
+(Fig.~\ref{fig:singlecompare}A). Across both interpolation and oscillatory protocols,
 no focal intervention reproduced the effect of the distributed correction,
 indicating that, within the fitted models, the AD FC signature behaves as
 functionally distributed and is not reduced to a small set of target sites.
@@ -462,7 +462,7 @@ prescribes \emph{how} to drive a target. Efficacy is sharply frequency-tuned: a
 sinusoidal drive at a focal site moves the FC-lag score toward the control
 distribution most efficiently when its frequency matches the reservoir's dominant
 eigenmode $f_{\mathrm{eig}}$, the resonant drive far outperforming an off-resonance
-one per unit amplitude (fig.~S7A,B). This frequency, $f_{\mathrm{eig}}\approx0.077$
+one per unit amplitude (fig.~S6). This frequency, $f_{\mathrm{eig}}\approx0.077$
 cycles/step, corresponds to $\approx0.026$\,Hz once expressed in physical time
 through the TR ($=3$\,s), a unit conversion, not a dependence of the resonance on
 TR, placing it in the well-established infraslow band in which resting-state
@@ -471,17 +471,14 @@ fluctuates~\cite{fox2007,cordes2001,diantonio2026}, so the same fitted model
 specifies both a location
 (the subcortical/limbic targets of Fig.~\ref{fig:topsites}A,B) and an optimal driving
 frequency, a spatial \emph{and} spectral prescription that descriptive analyses
-cannot provide. This optimum is an \emph{interaction} of the two, however: a
-resonant drive reshapes the FC network-wide, yet the effect still depends strongly
-on the site, and the most disease-discriminative modes are not the most drivable
-ones, so neither frequency nor site alone suffices (fig.~S6). As amplitude grows
+cannot provide. As amplitude grows
 the stimulated AD score shifts steadily toward the control range and a growing
-fraction of patients cross the decision boundary (fig.~S7C,D). A full per-patient
+fraction of patients cross the decision boundary. A full per-patient
 amplitude$\times$frequency scan confirms that reclassification concentrates in a
 narrow band at the resonance $f_{\mathrm{eig}}$, where patients cross the boundary
 at the lowest amplitude and hence the smallest departure from the unstimulated
 simulation, though reclassification and that departure trade off, so full reversal
-still demands a large perturbation (fig.~S8). At
+still demands a large perturbation (fig.~S6). At
 physiologically plausible amplitudes a focal drive does not, by itself, revert the
 classification (Fig.~\ref{fig:stim}); its significance is methodological, demonstrating that an
 identifiable generative model yields concrete, testable stimulation parameters. A
@@ -505,7 +502,7 @@ converts that perturbation into near-complete reclassification ($\sim$$94\%$ vs
 $\sim$$36\%$): selecting the site by its effect on the discriminant extracts more
 therapeutic effect per unit of dynamical perturbation, and does so by perturbing
 a single input site rather than rewriting all $121$ read-out weights. These
-reversions still require supra-physiological amplitudes (fig.~S10); their
+reversions still require supra-physiological amplitudes (fig.~S8); their
 significance is methodological, showing that an identifiable per-subject model
 turns ``where and how to stimulate'' into a directly computable prescription.
 
@@ -644,14 +641,12 @@ the LDA discriminant, its decision threshold, \emph{and} the site-selection
 criterion were all rebuilt from the training patients only and then applied to the
 held-out patient (Methods; fig.~\ref{fig:lopo}). The therapeutic effect
 survives. Honest cross-validation does raise the baseline (unstimulated)
-misclassification of AD as CC from $17.5\%$ to $42.5\%$, so that only $23$ of the
-$40$ AD patients lie on the AD side of the boundary without stimulation, consistent
+misclassification of AD as CC from $21\%$ to $39\%$, so that only $20$ of the $33$ AD patients lie on the AD side of the boundary without stimulation, consistent
 with the modest classifier accuracy; we therefore quantify the effect as the net
 fraction of these AD-side patients that stimulation moves across to the CC side. A
 single \emph{population-average} resonant target, selected on the training patients
-alone, achieves a leakage-free net cure of $\sim$$78\%$, and each patient's
-\emph{personalised} LDA-resonant target moves essentially all AD-side patients
-across the boundary (Methods). The single-site reclassification is therefore a
+alone, achieves a leakage-free net cure of $\sim$$25\%$, and each patient's
+\emph{personalised} LDA-resonant target moves $\sim$$90\%$ of them across it ($100\%$ at $A=10$) (Methods). The single-site reclassification is therefore a
 genuine, model-prescribed intervention effect rather than an artefact of
 classifier leakage.
 
@@ -724,8 +719,7 @@ established DMN--limbic pathways. This dissociation between lesion locus and
 effective intervention site is consistent with the network-medicine principle
 illustrated most clearly for deep-brain stimulation~\cite{fox2014}: the optimal
 target is not the damaged node but the network node most effectively coupled to
-the symptom circuit. The per-patient heterogeneity of the optimal sites (33
-distinct parcels for 40 patients, Fig.~S4) further argues that no universal
+the symptom circuit. The per-patient heterogeneity of the optimal sites ($25$ distinct parcels for $33$ patients, Fig.~S4) further argues that no universal
 anatomical landmark suffices, a result consistent with the clinical heterogeneity
 of AD and with the emerging literature on connectivity-guided personalised
 neuromodulation.
@@ -733,7 +727,7 @@ neuromodulation.
 A distinctive feature of the framework is that it prescribes not only where but
 how to stimulate. The driving frequency that most efficiently moved a target
 toward the control distribution coincided with the model's intrinsic resonance
-(fig.~S7), connecting our results to the broader principle of
+(fig.~S6), connecting our results to the broader principle of
 frequency-specific neuromodulation. Stimulation efficacy is well known to depend
 on frequency, and entraining endogenous rhythms is an active therapeutic
 strategy in AD, most prominently $40$\,Hz ``gamma'' sensory and electrical
@@ -752,16 +746,7 @@ periodic drive, and hence the optimal stimulation site and frequency, follows
 directly from the system's transfer function and eigenspectrum, rather than from
 an exhaustive search: the resonance we observe is precisely the peak of this
 linear frequency response. The model thus affords a closed-form, analytically
-tractable prescription of optimal stimulation parameters. Notably, this optimum is
-an \emph{interaction} of site and resonance that no single-factor heuristic
-captures: a resonant drive reshapes the FC network-wide, yet the reclassification
-still depends strongly on the site (fig.~S6A), the disease-discriminative modes are
-not the drivable ones (the dominant, most-drivable mode is only weakly
-discriminative; fig.~S6B), and steering by a discriminative-but-undrivable
-frequency, alone or combined with the resonance, does not help (fig.~S6C,D).
-Selecting the target by its \emph{effect on the discriminant under a resonant
-drive} (the LDA-resonant criterion) is what jointly resolves drivability and
-direction, and is why it outperforms modal-coupling or disease-deviation selection.
+tractable prescription of optimal stimulation parameters. Selecting the target by its \emph{effect on the discriminant under a resonant drive} (the LDA-resonant criterion) jointly resolves drivability and direction, and is why it outperforms modal-coupling or disease-deviation selection.
 Reassuringly, when the
 target is selected for its effect on the disease discriminant, the leading
 ``drive-toward-health'' site falls in the Default-network prefrontal cortex
@@ -939,7 +924,7 @@ modes: a read-out interpolation ($\mathbf{W}_{\mathrm{int}}$) and an input
 oscillation ($A\sin$) each alter the same reservoir, and each is scored by the
 classifiers on the teacher-forced FC-lag features \emph{and} assessed for its
 departure from baseline on the closed-loop free-run FC
-(Fig.~\ref{fig:singlecompare}, figs.~S5,~S8); the two are therefore compared on a
+(Fig.~\ref{fig:singlecompare}, figs.~S5,~S6); the two are therefore compared on a
 common footing, not one in open- and the other in closed-loop.
 
 \paragraph{Read-out ``G-space''.}
@@ -1045,7 +1030,7 @@ not a subject-specific fit. Frequencies were swept over $f\in[0,0.5]$ cycles/ste
 and amplitude up to \emph{supra-physiological} values, i.e.\ beyond the RMS of
 the endogenous teacher-forcing drive (the target scaled by the feedback gain
 $0.1$), so that the stimulated-to-baseline amplitude ratio
-$\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}>1$ (fig.~S10).
+$\mathrm{RMS}_{\mathrm{pert}}/\mathrm{RMS}_{\mathrm{base}}>1$ (fig.~S8).
 The state-level response of the linear
 reservoir to a periodic drive is governed by the transfer function
 $(\mathrm{i}\omega\mathbf{I}-\mathbf{J})^{-1}\mathbf{J}_{\mathrm{in}}\mathbf{b}$,
@@ -1191,7 +1176,7 @@ Analysis & Controls (CC) & AD & Cross-validation / unit \\
 Available pool & 46 subj / 163 ses & 34 subj / 104 ses & ,  \\
 Data overview, FC similarity (Fig.~1) & 163 sessions & 104 sessions & per session \\
 Reservoir fit \& FC validation (Fig.~2); G-space \& FC-lag classifiers
-(Fig.~3A--D); all in-silico stimulation (Figs~4--6, S2--S10)
+(Fig.~3A--D); all in-silico stimulation (Figs~4--6, S2--S8)
 & 38 subjects & 33 subjects & one session/subject; $40$ CC sessions sampled
 from the $48$ verified CC subjects ($38$ passing the volume filter); repeated
 stratified CV \\
@@ -1283,8 +1268,7 @@ sessions, train-only tangent reference) \\
   \emph{single global site} for all patients (right dorsal-attention cortex).
   (\textbf{C}) \emph{LDA-resonant} (per patient): the site whose resonant drive
   moves that subject's FC-lag discriminant most toward CC. These therapeutic
-  targets are highly heterogeneous, \textbf{$33$ distinct sites for the $40$
-  patients}, each selected by at most three, spanning Default-network, visual and
+  targets are highly heterogeneous, \textbf{$25$ distinct sites for the $33$ patients}, each selected by at most three, spanning Default-network, visual and
   attention cortex together with medial-temporal and subcortical structures.
   The three criteria answer different questions: where the disease lives in the
   read-out ($\Delta W$), the fixed resonance node of the dynamics (eigenmode), and
@@ -1341,79 +1325,6 @@ sessions, train-only tangent reference) \\
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\linewidth]{figureS7_modefreq.pdf}
-  \caption{\textbf{Why site and resonance both matter: a drivable mode is not the
-  same as a disease-discriminative one} ($N=33$ AD). Because a resonant drive
-  reshapes the FC network-wide (fig.~S5), one might hope that the frequency/mode
-  alone determines the effect. It does not. (\textbf{A}) Driving each of the $121$
-  sites at the dominant-mode frequency $f_1$ ($A=4$): the per-site reclassification
-  rate spans the whole low range ($15$--$48\%$, mean $30\%$; no site reaches
-  $\ge$$90\%$), so the \emph{site} still decides the outcome, only per-patient
-  (LDA) selection reaches $100\%$. (\textbf{B}) Ranking eigenmodes by how well their
-  per-patient modal power separates CC from AD (AUC): the most discriminative modes
-  lie at higher frequencies ($f\!\approx\!0.25$--$0.48$), while the dominant
-  (least-damped, most \emph{drivable}) mode $f_1=0.077$ is only weakly
-  discriminative (AUC $0.40$, rank $7/40$). (\textbf{C},\textbf{D}) At a fixed site
-  (eigenmode site $71$), driving the most discriminative \emph{deficit} mode
-  $f_{\mathrm{disc}}=0.48$ (largest AD power deficit, the only correctable
-  direction since drive can only add power) is markedly \emph{less} effective than
-  the resonant $f_1$ ($40\%$ vs $62\%$ reclassified at $A=10$), and an
-  energy-matched two-frequency drive $f_1+f_{\mathrm{disc}}$ does \emph{not} beat
-  $f_1$ alone ($60\%$ vs $62\%$): diverting energy to the weakly-driven
-  discriminative mode loses more amplification than it gains in direction. Efficacy
-  thus requires a \emph{drivable} (resonant) mode \emph{and} the right site, which
-  is precisely what the LDA-resonant criterion optimises, and why it outperforms
-  modal-coupling, disease-deviation, or discriminative-frequency heuristics.
-  (\textbf{E}) Signed per-site mean effect at $f_1$ on a glass brain (red: toward
-  CC; blue: toward AD). Almost every site is therapeutic on average
-  ($120/121$ toward CC; only the right control/parietal site is net-harmful, and
-  only marginally). This is \emph{not} because the drive finds the CC direction by
-  chance: a resonant drive injects the \emph{same} stereotyped dominant-mode pattern
-  into every patient (site-independent; fig.~S5), so there is effectively one driven
-  direction, and it is CC-aligned because (i) AD sits at the far extreme of the
-  discriminant (baseline score $+3.9$ vs boundary $-0.22$, CC mean $-4.3$) and the
-  low-structure oscillatory FC lacks the AD-specific lag pattern, and (ii) the
-  dominant mode is mildly under-expressed in AD (panel B, AUC $0.40$), so adding its
-  power is restorative. The effect is a directed \emph{shift}, not a collapse, it
-  moves the score mean $\sim$$5.8$ toward CC while preserving the per-patient spread
-  ($\pm4.9\!\to\!\pm5.6$), so a patient-specific minority still worsens ($24\%$ of
-  all (site,patient) drives push toward AD, flipping $5/40$ borderline patients back
-  across the boundary), a safety argument for personalised targeting. The
-  ``therapeutic'' action is thus largely a regularisation that erases AD-specific
-  structure rather than a precise restoration of healthy connectivity.}
-  \label{fig:modefreq}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=\linewidth]{figureS8_oscfreq.pdf}
-  \caption{\textbf{Frequency prescription and high-amplitude dose-response of
-  focal oscillatory stimulation} ($N=33$ AD). A sinusoidal drive
-  $A\sin(2\pi f t)$ is injected at the top-$k$ most-affected ($\Delta W$) sites and
-  the FC-lag score re-evaluated (lower\,$=$\,more control-like).
-  (\textbf{A}) Frequency tuning at moderate amplitude ($A=4$): mean $\pm$ SEM for
-  the single top site ($k=1$, purple) and the top-five sites ($k=5$, green). For
-  $k=1$ the score is minimal precisely at the reservoir's dominant eigenmode
-  frequency $f_{\mathrm{eig}}=0.077$ (red dashed), a sharp resonance;
-  $f_{\mathrm{FFT}}$ (orange dotted) marks the spectral peak of the AD reservoir
-  states. The $k=5$ optimum broadens and shifts, as the FC-lag effect is a
-  nonlinear functional of the dynamics, not the modal excitation amplitude.
-  (\textbf{B}) Dose-response to high amplitude ($A=10$), resonant
-  ($f_{\mathrm{eig}}$, solid) vs off-resonance (highest frequency, dashed) for
-  $k=1$ and $k=5$; scores move toward the CC mean (blue dashed) as amplitude grows.
-  (\textbf{C}) FC-lag score distributions: CC baseline, AD baseline, and AD after
-  top-five resonant stimulation at $A=4$ and $A=10$ (decision boundary dot-dashed;
-  fraction crossing it annotated).
-  (\textbf{D}) Patients reclassified as CC vs amplitude, for
-  top-1/top-5 $\times$ resonant/off-resonance (baseline dotted): resonance is most
-  efficient at low-to-moderate amplitude, whereas at supra-physiological amplitude
-  even an off-resonance multi-site drive reclassifies most patients
-  ($36/40$ at $A=10$), an energy-driven (non-specific) saturation effect.}
-  \label{fig:oscfreq}
-\end{figure}
-
-\begin{figure}[htbp]
-  \centering
   \includegraphics[width=\linewidth]{figureS9_ampfreq.pdf}
   \caption{\textbf{Per-patient amplitude$\times$frequency stimulation landscape:
   trading off reclassification against departure from the unstimulated simulation}
@@ -1433,8 +1344,7 @@ sessions, train-only tangent reference) \\
   elevated near $f_1$. The two objectives therefore conflict: the operating point
   that maximises reclassification minus distance ($\star$; $A\!=\!6$, $f\!=\!f_1$,
   $100\%$ reclassified) sits at high distance ($\approx0.68$), and reverting most
-  patients unavoidably requires a large perturbation (distance $\gtrsim0.66$, cf.\
-  fig.~S5--S6). Resonance is nonetheless the most \emph{efficient} axis, the
+  patients unavoidably requires a large perturbation (distance $\gtrsim0.66$, cf.\ fig.~S5). Resonance is nonetheless the most \emph{efficient} axis, the
   minimum-distance route to any target reclassification runs along $f_1$, so the
   model's prescription is to drive the personalised site at the intrinsic
   resonance, accepting the minimal perturbation that crosses the boundary.}
@@ -1457,14 +1367,12 @@ sessions, train-only tangent reference) \\
   versus after resonant stimulation at the reference amplitude $A=7$, for each
   target under the transductive scheme (fit on all patients) and the leakage-free
   LOPO scheme (train-only); increments annotated. Honest cross-validation raises
-  the baseline misclassification of AD as CC from $17.5\%$ (transductive) to
-  $42.5\%$ (LOPO), so that only $23$ of $40$ AD patients lie on the AD side of the
+  the baseline misclassification of AD as CC from $21\%$ (transductive) to $39\%$ (LOPO), so that only $20$ of $33$ AD patients lie on the AD side of the
   boundary unstimulated.
   (\textbf{B}) Net cure, the fraction of patients on the AD side at baseline that
   stimulation moves to the CC side, versus resonant drive amplitude, transductive
   vs LOPO, for the population-average (solid) and personalised (dashed) targets.
-  Leakage-free, the single population-average target reaches $\sim$$78\%$ net cure
-  and the personalised target $\sim$$100\%$: the reclassification is a genuine,
+  Leakage-free, the single population-average target reaches $\sim$$25\%$ net cure and the personalised target $\sim$$90\%$ ($100\%$ at $A=10$): the reclassification is a genuine,
   model-prescribed intervention effect, not an artefact of classifier leakage.}
   \label{fig:lopo}
 \end{figure}
