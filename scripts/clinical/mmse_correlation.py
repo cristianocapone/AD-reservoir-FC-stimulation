@@ -13,8 +13,12 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.preprocessing import StandardScaler
 import warnings; warnings.filterwarnings("ignore")
 
-MM = r"C:\Users\user\.claude\uploads\6e43a621-22c2-45ea-a643-0050c4d24963\d9d0cc53-MMSE_28Jan2025.xlsx"
-DM = r"C:\Users\user\.claude\uploads\6e43a621-22c2-45ea-a643-0050c4d24963\ec6b87dc-Demographics.xlsx"
+# ADNI clinical tables, obtained from the LONI archive under the ADNI Data
+# Use Agreement and not redistributed here. Put them in ADNI_TABLES
+# (default ./adni_tables) or point that environment variable at your copy.
+TABLES = os.environ.get("ADNI_TABLES", "adni_tables")
+MM = os.path.join(TABLES, "MMSE.xlsx")
+DM = os.path.join(TABLES, "Demographics.xlsx")
 OUT = "clinical_results"; os.makedirs(OUT, exist_ok=True)
 K_FC, SEED = 25, 42
 
