@@ -186,13 +186,6 @@ Nicola Albor{\'e}, Andrea Galluzzi, Pierpaolo Pani, Stefano Ferraina, and
   cortex and its {RNN} replicas.
 \newblock {\em bioRxiv}, pages 2025--11, 2025.
 
-\bibitem{koch2022}
-Giacomo Koch, Elias~P. Casula, Sonia Bonn{\`i}, Ilaria Borghi, Martina Assogna,
-  et~al.
-\newblock Precuneus magnetic stimulation for alzheimer's disease: a randomized,
-  sham-controlled trial.
-\newblock {\em Brain}, 145(11):3776--3786, 2022.
-
 \bibitem{spiegler2016}
 Andreas Spiegler, Enrique C.~A. Hansen, Christophe Bernard, Anthony~R.
   McIntosh, and Viktor~K. Jirsa.
@@ -256,5 +249,12 @@ Anthony~J. Martorell, Abigail~L. Paulson, Ho-Jun Suk, Fatema Abdurrob,
 \newblock Multi-sensory gamma stimulation ameliorates alzheimer's-associated
   pathology and improves cognition.
 \newblock {\em Cell}, 177(2):256--271, 2019.
+
+\bibitem{koch2022}
+Giacomo Koch, Elias~P. Casula, Sonia Bonn{\`i}, Ilaria Borghi, Martina Assogna,
+  et~al.
+\newblock Precuneus magnetic stimulation for alzheimer's disease: a randomized,
+  sham-controlled trial.
+\newblock {\em Brain}, 145(11):3776--3786, 2022.
 
 \end{thebibliography}
