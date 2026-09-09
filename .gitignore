@@ -19,7 +19,6 @@ __pycache__/
 .ipynb_checkpoints/
 
 # ---- Editor / tooling -----------------------------------------------------
-.claude/
 .vscode/
 .idea/
 
@@ -101,12 +100,15 @@ timeseries_clean_all/
 abide_generality/*.npz
 clinical_results/
 
-# Only the current (Brain) cover letter is public; older ones stay local
+# Only the current cover letter is public; superseded ones stay local
 cover_letter/*
-!cover_letter/cover_letter_brain.tex
-!cover_letter/cover_letter_brain.pdf
+!cover_letter/cover_letter_ais.tex
+!cover_letter/cover_letter_ais.pdf
 
 archive_paper_nature/
 
 presentation/
 archive_site_cv/
+eeg_twin/
+
+archive_paper_brain/

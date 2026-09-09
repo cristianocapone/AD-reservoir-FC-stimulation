@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=0.82in]{geometry}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{empty}
+\setlength{\emergencystretch}{2em}
+\setlength{\parskip}{0.45em}
+
+\begin{document}
+
+{\raggedright
+\textbf{Cristiano Capone}\\
+\href{mailto:cristiano0capone@gmail.com}{cristiano0capone@gmail.com}\par}
+
+\vspace{0.6em}
+{\raggedright The Editors, \textit{Advanced Intelligent Systems}\par}
+
+\vspace{0.8em}
+
+Dear Editors,
+
+We are pleased to submit our manuscript, ``Optimal stimulation sites are not the
+most affected: personalised fMRI models of Alzheimer's disease,'' by Cristiano
+Capone, Enza Cece, Luca Falorsi, Andrea Ciardiello, Guido Gigante, Evaristo
+Cisbani and Maurizio Mattia, for consideration in \textit{Advanced Intelligent
+Systems}.
+
+Targeted neuromodulation rests on two decisions that are still made
+heuristically: which site to engage, and at what amplitude. Both are typically
+settled anatomically and fixed in advance. We ask whether they can instead be
+\emph{computed}, for each individual, from a model of that person's own brain.
+
+We build individualised digital twins: reservoir-computing models fit to
+resting-state functional MRI so that their free-running dynamics reproduce each
+individual's own lagged connectivity. The design choice that makes this work is
+that the recurrent substrate is fixed and shared across every subject, and only a
+linear read-out is fit per person. Three consequences follow. Per-subject
+estimation stays tractable where a subject-specific autoregression would be
+underdetermined, since $121$ regions must be fit from roughly $140$ volumes. All
+fitted models occupy the same coordinates, so they can be compared, averaged and
+interpolated. And the reservoir's separate input pathway makes ``drive region
+$k$'' an explicit, well-posed operation rather than an ad hoc addition. The
+resulting twins are identifiable: a model fit to one individual describes that
+individual's held-out data better than anyone else's.
+
+Perturbing them yields a result with a direct engineering consequence. Correcting
+a twin's connectivity toward a control template reverts the disease signature,
+but the necessary correction is distributed, and no single-node edit reproduces
+it. A focal drive at the region whose connectivity is most altered fails at any
+amplitude, whereas a drive at the region selected by its \emph{effect on the
+disease discriminant} succeeds from one site. The two site sets are nearly
+disjoint, and the reason is mechanistic rather than incidental: the most-affected
+regions are the most weakly connected, and therefore poor actuators. Targets are
+individual, and a real-time closed-loop controller that titrates amplitude from
+the model's own output reaches comparable efficacy at substantially lower dose,
+using only causally available information.
+
+We are explicit about scope. This is an in-silico study; no patient was
+stimulated, and complete reversal requires amplitudes above the physiological
+range. The contribution is a computable, per-patient prescription for where and
+how hard to drive, and a demonstration that the intuitive target is
+systematically the wrong one. We believe this speaks to readers of
+\textit{Advanced Intelligent Systems} working on digital twins, closed-loop
+control and model-based decision-making in biological systems, beyond the
+Alzheimer's application in which we demonstrate it.
+
+The manuscript is original, is not under consideration elsewhere, and all authors
+have approved its submission. The data derive from the Alzheimer's Disease
+Neuroimaging Initiative and are used under its Data Use Agreement. Code is
+available at
+\href{https://github.com/cristianocapone/AD-reservoir-FC-stimulation}%
+{github.com/cristianocapone/AD-reservoir-FC-stimulation}. We declare no
+competing interests, and have suggested potential referees who have no conflict
+of interest with the authors. We thank you for considering our work.
+
+\vspace{1em}
+{\raggedright
+Sincerely,\\[0.3em]
+Cristiano Capone, on behalf of all authors\par}
+
+\end{document}
